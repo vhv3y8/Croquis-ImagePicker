@@ -1,0 +1,147 @@
+@import "../../style/all.css";
+
+html,
+body {
+  width: 500px;
+  // width: 800px;
+  height: 900px;
+}
+
+.main {
+  // width: 500px;
+  // height: 500px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #666666;
+
+  header {
+    width: 100%;
+    height: 40px;
+    background-color: #666666;
+  }
+
+  #infoBar {
+    width: 100%;
+    height: 35px;
+    background-color: red;
+  }
+
+  #timer {
+    width: 100%;
+    height: 120px;
+    // background-color: #f2f2f2;
+    background-color: #666666;
+    // display: block;
+
+    .timeButtonContainer {
+      width: 20%;
+      height: 100%;
+      margin: 0;
+      // background-color: orange;
+
+      .timeButton {
+        width: 55px;
+        height: 55px;
+        border-radius: 10px;
+        background-color: white;
+      }
+    }
+
+    .time {
+      width: 60%;
+      height: 100%;
+      margin: 0;
+      // background-color: #666666;
+
+      .paddingRight {
+        padding-right: 40px;
+      }
+
+      img {
+        margin: 10px;
+      }
+
+      span {
+        display: inline-block;
+        // width: 200px;
+        // height: 100%;
+        font-family: "PoppinsB", sans-serif;
+        font-size: 80px;
+        // color: black;
+        color: #f2f2f2;
+        margin: 0;
+        text-align: center;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  #viewImage {
+    width: 100%;
+    // height: calc(100% - (40px+40px+100px+130px));
+    height: calc(900px - (40px + 35px + 120px + 135px));
+    // background-color: rgb(0, 151, 151);
+    // background-color: white;
+
+    #image {
+      width: 94%;
+      height: 97%;
+      background-color: white;
+    }
+  }
+
+  .moverFlex {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  #mover {
+    width: 100%;
+    height: 135px;
+    // background-color: green;
+
+    #moverLeft {
+      width: 37.5%;
+      height: 95%;
+      margin-bottom: 10px;
+      // background-color: brown;
+
+      .moverButtonContainer {
+        width: 100%;
+        height: 125px;
+        margin: 0;
+
+        #passButton {
+          width: 100%;
+          height: 45px;
+          border-radius: 10px;
+          background-color: #f9f9eb;
+        }
+
+        #backButton {
+          width: 100%;
+          height: 65px;
+          border-radius: 10px;
+          background-color: #f2f2f2;
+        }
+      }
+    }
+
+    #moverRight {
+      width: 57.5%;
+      height: 95%;
+      margin-bottom: 10px;
+      // background-color: black;
+
+      #nextButton {
+        width: 95%;
+        height: 95%;
+        background-color: #bac4bf;
+        border-radius: 10px;
+      }
+    }
+  }
+}

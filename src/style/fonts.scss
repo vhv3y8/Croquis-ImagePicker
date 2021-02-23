@@ -1,0 +1,107 @@
+/* used https://transfonter.org/ */
+
+@font-face {
+  font-family: "NanumSquareB";
+  src: url("../../assets/fonts/NanumSquare/NanumSquareB/NanumSquareB.eot");
+  src: url("../../assets/fonts/NanumSquare/NanumSquareB/NanumSquareB.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../assets/fonts/NanumSquare/NanumSquareB/NanumSquareB.woff2")
+      format("woff2"),
+    url("../../assets/fonts/NanumSquare/NanumSquareB/NanumSquareB.woff")
+      format("woff"),
+    url("../../assets/fonts/NanumSquare/NanumSquareB/NanumSquareB.ttf")
+      format("truetype"),
+    url("../../assets/fonts/NanumSquare/NanumSquareB/NanumSquareB.svg#NanumSquareB")
+      format("svg");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NanumSquareRoundR";
+  src: url("../../assets/fonts/Nanum_Square_Round/NanumSquareRoundR/NanumSquareRoundR.eot");
+  src: url("../../assets/fonts/Nanum_Square_Round/NanumSquareRoundR/NanumSquareRoundR.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../assets/fonts/Nanum_Square_Round/NanumSquareRoundR/NanumSquareRoundR.woff2")
+      format("woff2"),
+    url("../../assets/fonts/Nanum_Square_Round/NanumSquareRoundR/NanumSquareRoundR.woff")
+      format("woff"),
+    url("../../assets/fonts/Nanum_Square_Round/NanumSquareRoundR/NanumSquareRoundR.ttf")
+      format("truetype"),
+    url("../../assets/fonts/Nanum_Square_Round/NanumSquareRoundR/NanumSquareRoundR.svg#NanumSquareRoundR")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NanumSquareRoundB";
+  src: url("../../assets/fonts/Nanum_Square_Round/NanumSquareRoundB/NanumSquareRoundB.eot");
+  src: url("../../assets/fonts/Nanum_Square_Round/NanumSquareRoundB/NanumSquareRoundB.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../assets/fonts/Nanum_Square_Round/NanumSquareRoundB/NanumSquareRoundB.woff2")
+      format("woff2"),
+    url("../../assets/fonts/Nanum_Square_Round/NanumSquareRoundB/NanumSquareRoundB.woff")
+      format("woff"),
+    url("../../assets/fonts/Nanum_Square_Round/NanumSquareRoundB/NanumSquareRoundB.ttf")
+      format("truetype"),
+    url("../../assets/fonts/Nanum_Square_Round/NanumSquareRoundB/NanumSquareRoundB.svg#NanumSquareRoundB")
+      format("svg");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NanumSquareRoundEB";
+  src: url("../../assets/fonts/Nanum_Square_Round/NanumSquareRoundEB/NanumSquareRoundEB.eot");
+  src: url("../../assets/fonts/Nanum_Square_Round/NanumSquareRoundEB/NanumSquareRoundEB.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../assets/fonts/Nanum_Square_Round/NanumSquareRoundEB/NanumSquareRoundEB.woff2")
+      format("woff2"),
+    url("../../assets/fonts/Nanum_Square_Round/NanumSquareRoundEB/NanumSquareRoundEB.woff")
+      format("woff"),
+    url("../../assets/fonts/Nanum_Square_Round/NanumSquareRoundEB/NanumSquareRoundEB.ttf")
+      format("truetype"),
+    url("../../assets/fonts/Nanum_Square_Round/NanumSquareRoundEB/NanumSquareRoundEB.svg#NanumSquareRoundEB")
+      format("svg");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Only English */
+
+@font-face {
+  font-family: "Imprima";
+  src: url("../../assets/fonts/Imprima/Imprima-Regular.eot");
+  src: url("../../assets/fonts/Imprima/Imprima-Regular.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../assets/fonts/Imprima/Imprima-Regular.woff2") format("woff2"),
+    url("../../assets/fonts/Imprima/Imprima-Regular.woff") format("woff"),
+    url("../../assets/fonts/Imprima/Imprima-Regular.ttf") format("truetype"),
+    url("../../assets/fonts/Imprima/Imprima-Regular.svg#Imprima-Regular")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "PoppinsB";
+  src: url("../../assets/fonts/Poppins/PoppinsB/Poppins-Bold.eot");
+  src: url("../../assets/fonts/Poppins/PoppinsB/Poppins-Bold.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../assets/fonts/Poppins/PoppinsB/Poppins-Bold.woff2")
+      format("woff2"),
+    url("../../assets/fonts/Poppins/PoppinsB/Poppins-Bold.woff") format("woff"),
+    url("../../assets/fonts/Poppins/PoppinsB/Poppins-Bold.ttf")
+      format("truetype"),
+    url("../../assets/fonts/Poppins/PoppinsB/Poppins-Bold.svg#Poppins-Bold")
+      format("svg");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}

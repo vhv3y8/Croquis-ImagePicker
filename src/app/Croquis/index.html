@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="./style.css" />
+
+    <title></title>
+  </head>
+  <body>
+    <!-- use Window + <- to fill screen 비스무리한 메세지 1초동안 띄우고 fade out -->
+
+    <div class="main">
+      <header>
+        <!-- 상단 바 -->
+        <!-- width 100% 높이고정 -->
+      </header>
+
+      <div id="infoBar">
+        <!-- width 100% 높이 고정 -->
+      </div>
+
+      <div id="timer" class="fl-row-aro">
+        <!-- 조정 가능 -->
+        <div class="timeButtonContainer fl-cen-cen">
+          <div class="timeButton fl-cen-cen">
+            <img src="../../../assets/icons/timerReset.svg" alt="" />
+          </div>
+        </div>
+
+        <div class="time fl-cen-cen">
+          <div class="paddingRight fl-row-st">
+            <img src="../../../assets/icons/timerClock.svg" alt="" />
+            <span id="timeText">3:10</span>
+          </div>
+        </div>
+
+        <div class="timeButtonContainer fl-cen-cen">
+          <div class="timeButton fl-cen-cen">
+            <img src="../../../assets/icons/timerPause.svg" alt="" />
+          </div>
+        </div>
+      </div>
+
+      <div id="viewImage" class="fl-col-st">
+        <!-- 조정 가능 -->
+        <div id="image"></div>
+      </div>
+
+      <div id="mover" class="moverFlex">
+        <!-- 조정 가능? -->
+        <div id="moverLeft" class="fl-cen-cen">
+          <div class="moverButtonContainer fl-col-aro">
+            <div id="passButton"></div>
+            <div id="backButton"></div>
+          </div>
+        </div>
+        <div id="moverRight" class="fl-cen-cen">
+          <div id="nextButton"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
