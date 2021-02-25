@@ -2,9 +2,57 @@
 
 html,
 body {
-  width: 500px;
+  // width: 500px;
   // width: 800px;
-  height: 900px;
+  // height: 900px;
+  margin: 0;
+}
+
+header {
+  width: 500px;
+  height: 40px;
+  // margin: auto 12.5px;
+  // padding: auto 12.5px;
+  -webkit-app-region: drag;
+
+  p {
+    font-family: "NanumSquareRoundB", "Imprima", sans-serif;
+    font-size: 15px;
+    /* color: #f2f2f2; */
+    /* color: black; */
+    /* color: #e6e6e6; */
+    // color: #333333;
+    color: #d9d9d9;
+
+    margin: 0;
+    padding-left: 12px;
+    padding-top: 8px;
+  }
+
+  .headerInner {
+    width: 94%;
+    height: 100%;
+  }
+
+  .headerButtonDiv {
+    width: 28px;
+    height: 28px;
+    -webkit-app-region: no-drag;
+    // margin-bottom: 12px;
+    margin-right: 3px;
+
+    // background-color: #595959;
+    // background-color: #999999;
+    background-color: #737373;
+    border-radius: 14px;
+
+    &:hover {
+      background-color: #808080;
+    }
+    &:active {
+      background-color: #404040;
+    }
+  }
 }
 
 .main {
@@ -24,14 +72,17 @@ body {
   #infoBar {
     width: 100%;
     height: 35px;
-    background-color: red;
+    // background-color: red;
+    background-color: #999999;
   }
 
   #timer {
     width: 100%;
     height: 120px;
     // background-color: #f2f2f2;
-    background-color: #666666;
+    // background-color: #666666;
+    // background-color: #999999;
+    background-color: #bfbfbf;
     // display: block;
 
     .timeButtonContainer {
@@ -45,6 +96,17 @@ body {
         height: 55px;
         border-radius: 10px;
         background-color: white;
+
+        &:hover {
+          background-color: #f2f2f2;
+        }
+        &:active {
+          background-color: #888888;
+        }
+
+        &._unactable {
+          background-color: #999999;
+        }
       }
     }
 
@@ -69,7 +131,9 @@ body {
         font-family: "PoppinsB", sans-serif;
         font-size: 80px;
         // color: black;
-        color: #f2f2f2;
+        // color: #f2f2f2;
+        // color: #404040;
+        color: #262626;
         margin: 0;
         text-align: center;
         vertical-align: middle;
@@ -80,14 +144,14 @@ body {
   #viewImage {
     width: 100%;
     // height: calc(100% - (40px+40px+100px+130px));
-    height: calc(900px - (40px + 35px + 120px + 135px));
+    height: calc(100vh - (40px + 35px + 120px + 135px));
     // background-color: rgb(0, 151, 151);
     // background-color: white;
 
     #image {
       width: 94%;
-      height: 97%;
-      background-color: white;
+      height: 95%;
+      // background-color: white;
     }
   }
 

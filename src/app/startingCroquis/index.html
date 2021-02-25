@@ -9,12 +9,16 @@
   </head>
   <body class="nonselectable">
     <div class="main">
-      <header>
-        <div>
-          <p>크로키 그리기</p>
+      <header class="fl-cen-cen">
+        <div class="headerInner fl-row-bet">
+          <div>
+            <p>그리기 옵션 설정</p>
+          </div>
+          <div id="closeButton" class="headerButtonDiv fl-cen-cen">
+            <img src="../../../assets/icons/close.svg" alt="" />
+          </div>
         </div>
-        <div></div>
-        <div></div>
+        <!-- <div></div> -->
       </header>
       <div class="body fl-col-st">
         <div class="article">
@@ -40,7 +44,7 @@
                   d="M16 0h-14v24h20v-18l-6-6zm0 3l3 3h-3v-3zm-12 19v-20h10v6h6v14h-16z"
                 />
               </svg> -->
-
+              <img src="../../../assets/icons/pictures.svg" alt="" />
               <p>그림 파일 선택</p>
             </div>
 
@@ -63,23 +67,23 @@
           </div>
         </div>
 
-        <div class="article">
+        <div id="article2" class="article">
           <div class="articleBar">
             <div class="name">
               <p>세부 설정</p>
             </div>
-            <hr />
-            <div class="content">
-              <div class="item">
-                <p>타이머</p>
-              </div>
-              <div class="item">
-                <input type="checkbox" name="" id="" />
-                <p>시간 종료시 자동으로 넘어가기</p>
-              </div>
-              <div class="item">
-                <p>목표치</p>
-              </div>
+          </div>
+          <hr />
+          <div class="content">
+            <div class="item">
+              <p>타이머</p>
+            </div>
+            <div class="item">
+              <input type="checkbox" name="" id="" />
+              <p>시간 종료시 자동으로 넘어가기</p>
+            </div>
+            <div class="item">
+              <p>목표치</p>
             </div>
           </div>
         </div>
@@ -91,6 +95,6 @@
       </div>
     </div>
 
-    <script src="./app.js"></script>
+    <script type="module" src="./app.js"></script>
   </body>
 </html>

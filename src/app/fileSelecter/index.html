@@ -8,7 +8,59 @@
 
     <title></title>
   </head>
-  <body>
+  <body class="nonselectable">
+    <div class="main">
+      <header class="fl-cen-cen">
+        <div class="headerInner fl-row-bet">
+          <p>파일 선택하기</p>
+          <div id="closeButton" class="headerButtonDiv fl-cen-cen">
+            <img src="../../../assets/icons/close.svg" alt="" />
+          </div>
+        </div>
+      </header>
+
+      <div class="body fl-col-st">
+        <div class="bodyInner fl-row-st">
+          <div id="bodyLeft" class="fl-col-st-st">
+            <div class="itemLayout">
+              <div class="item">폴더: ㅂㅈㄷㄱㅂㅈㄷㄱ</div>
+            </div>
+            <div id="imgList">
+              <div class="item fl-row-st">
+                <p>파일 162개 선택됨</p>
+              </div>
+            </div>
+            <div class="buttonItemLayout">
+              <div class="item fl-row-st">
+                <div class="button fl-cen-cen">
+                  <p>현재까지 선택된 파일 모두 숨기기</p>
+                </div>
+              </div>
+            </div>
+            <div class="buttonItemLayout">
+              <div class="item fl-row-st">
+                <div class="button fl-cen-cen">
+                  <p>현재까지 선택된 파일 모두 숨기기</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="bodyRight" class="fl-col-st">
+            <div class="itemLayout">
+              <div class="item">태그로 선택</div>
+            </div>
+            <div id="tagBoard"></div>
+            <div id="tagSearch"></div>
+            <div id="downBar" class="fl-row-rev-st">
+              <div id="okButton">확인</div>
+              <div class="infoText">파일 162개 선택됨</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="./app.js"></script>
   </body>
 </html>

@@ -4,7 +4,7 @@
   "description": "",
   "private": "true",
   "scripts": {
-    "start": "electron dist/main.js",
+    "start": "electron --disable-gpu --enable-transparent-visuals dist/main.js",
     "build": "tsc && sass src:dist && webpack --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:electron": "npm run build && npm run start",
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/vhv3y8/Croquis-ImagePicker#readme",
   "devDependencies": {
+    "@types/electron": "^1.6.10",
     "html-webpack-plugin": "^5.2.0",
     "nodemon": "^2.0.7",
     "sass": "^1.32.8",

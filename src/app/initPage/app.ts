@@ -1,7 +1,20 @@
-let btn = document.getElementById("drawCroquisButton");
+var { ipcRenderer } = require("electron");
+var remote = require("electron").remote;
+var win = remote.getCurrentWindow();
 
-btn.addEventListener("click", function () {
-  window.open("https://github.com", "_blank", "nodeIntegration=no");
+let addFileButton = document.getElementById("addFileButton");
+addFileButton.addEventListener("click", function () {
+  ipcRenderer.send("openApp", "fileSetting", 50);
+  win.close();
 });
 
-console.log("HIHI");
+let drawCroquisButton = document.getElementById("drawCroquisButton");
+drawCroquisButton.addEventListener("click", function () {
+  ipcRenderer.send("openApp", "startingCroquis", 25);
+  win.close();
+});
+
+let closeButton = document.getElementById("closeButton");
+closeButton.addEventListener("click", function () {
+  win.close();
+});

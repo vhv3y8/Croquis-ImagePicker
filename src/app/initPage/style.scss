@@ -1,17 +1,27 @@
 @import "../../style/all.css";
 
+html,
+body {
+  margin: 0;
+}
+
 .main {
   display: block;
   width: 350px;
-  height: 300px;
-  border-radius: 10px;
-  background-color: #999999;
+  // height: 300px;
+  height: 360px;
+  // border-radius: 10px;
+  border-radius: 8px;
+  background-color: #595959;
+  // background-color: #999999;
 }
 
 header {
-  width: 325px;
-  height: 45px;
-  margin: auto 12.5px;
+  width: 350px;
+  height: 55px;
+  // margin: auto 12.5px;
+  // padding: auto 12.5px;
+  -webkit-app-region: drag;
 
   p {
     font-family: "NanumSquareRoundB", "Imprima", sans-serif;
@@ -19,29 +29,51 @@ header {
     /* color: #f2f2f2; */
     /* color: black; */
     /* color: #e6e6e6; */
-    color: #333333;
+    // color: #333333;
+    color: #d9d9d9;
 
     margin: 0;
-    padding-left: 3px;
+    padding-left: 12px;
+    padding-top: 8px;
+  }
+
+  .headerInner {
+    width: 94%;
+    height: 100%;
   }
 
   .headerButtonDiv {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
+    -webkit-app-region: no-drag;
+    // margin-bottom: 12px;
+    margin-right: 3px;
 
-    background-color: #595959;
-    border-radius: 12px;
+    // background-color: #595959;
+    // background-color: #999999;
+    background-color: #737373;
+    border-radius: 14px;
+
+    &:hover {
+      background-color: #808080;
+    }
+    &:active {
+      background-color: #404040;
+    }
   }
 }
 
 .body {
-  height: 245px;
+  // height: 245px;
+  height: 295px;
 
   .button {
     width: 310px;
-    height: 105px;
+    // height: 105px;
+    height: 130px;
     /* background-color: white; */
-    border-radius: 15px;
+    // border-radius: 15px;
+    border-radius: 5px;
 
     .buttonInner {
       width: 100%;
@@ -50,7 +82,9 @@ header {
       p {
         font-family: "NanumSquareRoundB", sans-serif;
         font-size: 23px;
-        color: #333333;
+        // color: #333333;
+        // color: #d9d9d9;
+        color: #3b332b;
         /* color: #f2f2f2; */
 
         margin: 10px;
@@ -59,10 +93,31 @@ header {
   }
 
   #addFileButton {
-    background-color: #ffe6cc;
+    // background-color: #ffe6cc;
+    // background-color: #d8d1c9;
+    background-color: #b4a697;
+
+    &:hover {
+      background-color: #9f8d7a;
+    }
+    &:active {
+      // background-color: #766756;
+      // background-color: #594d40;
+      background-color: #4a4036;
+    }
   }
 
   #drawCroquisButton {
-    background-color: #d8f3d8;
+    background-color: #a0aba0;
+
+    &:hover {
+      background-color: #788878;
+    }
+    &:active {
+      // background-color: #606c60;
+      // background-color: #485148;
+      // background-color: #242924;
+      background-color: #3c443c;
+    }
   }
 }

@@ -6,7 +6,7 @@ class Timer {
   private givenSeconds: number;
   private divElement: HTMLElement;
   private timerSetting: timerSetting;
-  private runCallbackAfterEnd: Boolean;
+  private runCallbackAfterEnd: boolean;
   private callbackFunc: Function;
   private state: timerStates;
 
@@ -16,7 +16,7 @@ class Timer {
     givenSeconds: number,
     divElement: HTMLElement,
     timerSetting: timerSetting,
-    runCallbackAfterEnd: Boolean,
+    runCallbackAfterEnd: boolean,
     callbackFunc: Function
   ) {
     this.givenSeconds = givenSeconds;
@@ -33,7 +33,7 @@ class Timer {
     console.log("constructing Timer UI.");
   }
 
-  start(): Boolean {
+  start(): boolean {
     if (this.state == "Paused") {
       this.state = "Running";
       this.startTime = new Date().getTime();
@@ -45,7 +45,7 @@ class Timer {
     }
   }
 
-  pause(): Boolean {
+  pause(): boolean {
     if (this.state == "Running") {
       this.state = "Paused";
       let pauseTime = new Date().getTime();
@@ -57,7 +57,7 @@ class Timer {
     }
   }
 
-  reset(): Boolean {
+  reset(): boolean {
     if (this.state == "Paused") {
       this.time = this.givenSeconds;
       console.log(`Successfully reseted timer time to ${this.givenSeconds}.`);

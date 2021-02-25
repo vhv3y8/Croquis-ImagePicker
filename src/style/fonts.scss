@@ -72,6 +72,24 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "NanumGothicR";
+  src: url("../../assets/fonts/Nanum_Gothic/NanumGothicR/NanumGothic.eot");
+  src: url("../../assets/fonts/Nanum_Gothic/NanumGothicR/NanumGothic.eot?#iefix")
+      format("embedded-opentype"),
+    url("../../assets/fonts/Nanum_Gothic/NanumGothicR/NanumGothic.woff2")
+      format("woff2"),
+    url("../../assets/fonts/Nanum_Gothic/NanumGothicR/NanumGothic.woff")
+      format("woff"),
+    url("../../assets/fonts/Nanum_Gothic/NanumGothicR/NanumGothic.ttf")
+      format("truetype"),
+    url("../../assets/fonts/Nanum_Gothic/NanumGothicR/NanumGothic.svg#NanumGothic")
+      format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Only English */
 
 @font-face {

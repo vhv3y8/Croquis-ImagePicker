@@ -6,15 +6,20 @@ body {
   /* margin: 10px; */
   /* width: 350px;
   height: 500px; */
+  margin: 0;
+}
+
+p {
+  margin: 0;
 }
 
 .main {
   display: block;
   position: relative;
   width: 380px;
-  height: 550px;
+  height: 560px;
   border-radius: 10px;
-  background-color: #999999;
+  background-color: #595959;
 }
 
 // .body {
@@ -22,77 +27,170 @@ body {
 /* margin-top: 10px; */
 
 hr {
-  background-color: #666666;
+  // background-color: #666666;
+  background-color: #f2f2f2;
   height: 1px;
   border: 0;
 }
 
+// header {
+//   width: 380px;
+//   height: 55px;
+
+//   p {
+//     font-family: "NanumSquareRoundEB", "Imprima", sans-serif;
+//     font-size: 15px;
+//     color: #f2f2f2;
+
+//     margin: 0;
+//     padding-left: 3px;
+//   }
+// }
+
 header {
-  height: 40px;
+  width: 380px;
+  height: 55px;
+  // margin: auto 12.5px;
+  // padding: auto 12.5px;
+  -webkit-app-region: drag;
 
   p {
-    font-family: "NanumSquareRoundEB", "Imprima", sans-serif;
+    font-family: "NanumSquareRoundB", "Imprima", sans-serif;
     font-size: 15px;
-    color: #f2f2f2;
+    /* color: #f2f2f2; */
+    /* color: black; */
+    /* color: #e6e6e6; */
+    // color: #333333;
+    color: #d9d9d9;
 
     margin: 0;
-    padding-left: 3px;
+    padding-left: 12px;
+    padding-top: 8px;
+  }
+
+  .headerInner {
+    width: 94%;
+    height: 100%;
+  }
+
+  .headerButtonDiv {
+    width: 28px;
+    height: 28px;
+    -webkit-app-region: no-drag;
+    // margin-bottom: 12px;
+    margin-right: 3px;
+
+    // background-color: #595959;
+    // background-color: #999999;
+    background-color: #737373;
+    border-radius: 14px;
+
+    &:hover {
+      background-color: #808080;
+    }
+    &:active {
+      background-color: #404040;
+    }
   }
 }
 
-.article {
-  /* width: 90%; */
-  width: 335px;
-}
-
-#startButton {
-  width: 340px;
-  height: 100px;
-  background-color: #2d8659;
-  border-radius: 15px;
-
-  &:hover {
-    background-color: rgba(45, 134, 89, 0.8);
-  }
-  &:active {
-    background-color: #206040;
-  }
+.body {
+  width: 100%;
+  height: 480px;
 
   p {
-    font-family: "NanumSquareRoundB", sans-serif;
-    font-size: 27px;
-    color: #f2f2f2;
-  }
-}
-
-.name {
-  width: 40%;
-  margin-left: 3px;
-
-  svg {
-    fill: black;
+    color: #d9d9d9;
   }
 
-  p {
-    /* padding-left: 5px; */
-    color: black;
-    font-family: "NanumSquareRoundR", sans-serif;
-    font-size: 17px;
+  .article {
+    /* width: 90%; */
+    width: 335px;
+    margin-top: 10px;
+    background-color: #666666;
+    border-radius: 5px;
+    padding: 7px;
+
+    .articleBar {
+      height: 35px;
+    }
+
+    .content {
+      background-color: #666666;
+
+      .item {
+        font-family: "NanumGothicB", sans-serif;
+        font-size: 15px;
+      }
+    }
   }
-}
 
-#openFileSelect {
-  width: 25%;
-  /* height: 100%; */
-  height: 35px;
-  margin: 0;
-  background-color: #666666;
-  border-radius: 4px;
-  font-size: 13px;
-  /* font-size: 13px; */
-  /* f */
-}
+  #fileView {
+    height: 115px;
+    border-radius: 5px;
+  }
 
-.articleBar p {
-  margin: 0;
+  #article2 {
+    margin-top: 15px;
+  }
+
+  #startButton {
+    // width: 340px;
+    width: 345px;
+    height: 105px;
+    border-radius: 15px;
+    background-color: #339966;
+    margin-top: 15px;
+
+    &:hover {
+      // background-color: rgba(45, 134, 89, 0.8);
+      background-color: #2d8659;
+    }
+    &:active {
+      // background-color: #206040;
+      background-color: #206040;
+      // background-color: #133926;
+    }
+
+    p {
+      font-family: "NanumSquareRoundB", sans-serif;
+      font-size: 27px;
+      // color: #f2f2f2;
+      color: #133926;
+    }
+  }
+
+  .name {
+    width: 40%;
+    margin-left: 3px;
+
+    img {
+      // fill: black;
+      margin: auto 5px auto 5px;
+    }
+
+    p {
+      padding-left: 5px;
+      // color: black;
+      // color: #cccccc;
+      // color: #3b332b;
+      font-family: "NanumSquareB", sans-serif;
+      font-size: 16px;
+    }
+  }
+
+  #openFileSelect {
+    width: 25%;
+    /* height: 100%; */
+    height: 35px;
+    margin: 0;
+    background-color: #666666;
+    border-radius: 4px;
+    font-size: 13px;
+    /* font-size: 13px; */
+    /* f */
+  }
+
+  .articleBar p {
+    margin: 0;
+  }
 }
