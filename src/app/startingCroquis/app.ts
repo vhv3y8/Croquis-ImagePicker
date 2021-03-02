@@ -21,5 +21,12 @@ startButton.addEventListener("click", function () {
 let openFileSelect = document.getElementById("openFileSelect");
 openFileSelect.addEventListener("click", function () {
   ipcRenderer.send("openApp", "fileSelecter", 25);
-  win.close();
+  // win.close();
+});
+
+// flow start
+// let appData = {};
+ipcRenderer.on("fileData", (event, data) => {
+  console.log(data);
+  alert(data);
 });

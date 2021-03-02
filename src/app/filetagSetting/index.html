@@ -8,10 +8,18 @@
 
     <title></title>
   </head>
-  <body>
-    <div class="main">
-      <header></header>
-      <div class="body">
+  <body class="nonselectable">
+    <div class="main fl-col-st">
+      <header class="fl-cen-cen">
+        <div class="headerInner fl-row-bet">
+          <p>파일 및 태그 설정</p>
+          <div id="closeButton" class="headerButtonDiv fl-cen-cen">
+            <img src="../../../assets/icons/close.svg" alt="" />
+          </div>
+        </div>
+      </header>
+
+      <div class="body fl-col-st">
         <div class="tabBar">
           <div id="fileTab" class="tab">
             <p>파일</p>
@@ -21,16 +29,40 @@
           </div>
         </div>
 
-        <div id="folderBar" class="bar">
-          <div class="barName">폴더</div>
-          <div class="barContent">~~/Downloads/Croquis</div>
+        <div class="content">
+          <div id="fileContent" class="contentInner fl-col-st">
+            <div id="fileContentMain" class="visible content">
+              <div class="item"></div>
+              <div id="fileList"></div>
+              <div id="selectMode" class="fl-col-st">
+                <div class="modeItem fl-cen-cen">
+                  <p>모드 : 새 파일들에 태그 추가하기</p>
+                </div>
+                <div class="modeItem fl-cen-cen">
+                  <p>모드 : 태그 수정하기</p>
+                </div>
+              </div>
+              <div id="footer" class="item fl-row-bet">
+                <div id="undoButton">UNDO</div>
+                <div id="submitButton">확인</div>
+              </div>
+            </div>
+
+            <div id="newFileTagMode" class="_invisible">
+              <div class="item"></div>
+              <div id="fileList"></div>
+              <div id="footer" class="item"></div>
+            </div>
+
+            <div id="editTagMode" class="_invisible">
+              <div class="item"></div>
+              <div id="fileList"></div>
+              <div id="footer" class="item"></div>
+            </div>
+          </div>
+
+          <div id="tagContent" class="_invisible contentInner fl-col-st"></div>
         </div>
-
-        <div class="imgList"></div>
-
-        <div class="modes"></div>
-
-        <div class="footerBar"></div>
       </div>
     </div>
 

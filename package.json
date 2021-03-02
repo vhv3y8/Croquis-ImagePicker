@@ -1,7 +1,8 @@
 {
   "name": "Croquis-ImagePicker",
   "version": "1.0.0",
-  "description": "",
+  "description": "app for picking random image",
+  "main": "dist/main.js",
   "private": "true",
   "scripts": {
     "start": "electron --disable-gpu --enable-transparent-visuals dist/main.js",
@@ -9,6 +10,15 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:electron": "npm run build && npm run start",
     "start:browser": "npm run build"
+  },
+  "build": {
+    "appId": "com.electron.Croquis",
+    "files": [
+      "dist/**/*",
+      "assets/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ]
   },
   "repository": {
     "type": "git",
@@ -23,6 +33,8 @@
   "homepage": "https://github.com/vhv3y8/Croquis-ImagePicker#readme",
   "devDependencies": {
     "@types/electron": "^1.6.10",
+    "electron": "^11.3.0",
+    "electron-builder": "^22.9.1",
     "html-webpack-plugin": "^5.2.0",
     "nodemon": "^2.0.7",
     "sass": "^1.32.8",
@@ -31,7 +43,6 @@
     "webpack-cli": "^4.5.0"
   },
   "dependencies": {
-    "electron": "^11.3.0",
     "electron-store": "^7.0.2"
   }
 }

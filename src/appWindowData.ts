@@ -29,8 +29,8 @@ const appWindowValueList: {
     height: 700,
   },
   fileSetting: {
-    width: 800,
-    height: 600,
+    width: 600,
+    height: 850,
   },
 };
 const getAppUrl: {
@@ -40,7 +40,7 @@ const getAppUrl: {
   startingCroquis: "app/startingCroquis/index.html",
   Croquis: "app/Croquis/index.html",
   fileSelecter: "app/fileSelecter/index.html",
-  fileSetting: "app/fileSetting/index.html",
+  fileSetting: "app/filetagSetting/index.html",
 };
 
 export { appWindowValueList, getAppUrl };

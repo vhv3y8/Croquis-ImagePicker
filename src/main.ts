@@ -1,6 +1,13 @@
-const { app, BrowserWindow, ipcMain, screen } = require("electron");
+const {
+  app,
+  BrowserWindow,
+  ipcMain,
+  screen,
+  webContents,
+} = require("electron");
 const path = require("path");
 import { appName } from "./types/main";
+import { setId, appIds, startingCroqiusFileData } from "./mainCommunication";
 
 function createWindow(appName: appName, delay: number) {
   // cannot use screen module before app.on("ready")
@@ -32,9 +39,14 @@ function createWindow(appName: appName, delay: number) {
 
     // flow start
     const win = new BrowserWindow(windowParams);
+    console.log(win);
     setTimeout(() => {
       win.loadFile(path.join(__dirname, getAppUrl[appName]));
       win.webContents.openDevTools({ mode: "undocked" });
+      setId(appName, win.webContents.id);
+      console.log("this is win");
+      console.log(win);
+      console.log(win.webContents);
     }, delay);
   });
 }
@@ -51,6 +63,21 @@ app.on("ready", () => {
   }, 500);
 
   console.log(screen.getPrimaryDisplay());
+
+  ipcMain.on(
+    "fileSelecter-to-startingCroquis",
+    (event, data: startingCroqiusFileData) => {
+      console.log("asdf");
+      console.log(event);
+      console.log("this is web content startingCroquis :");
+      console.log(webContents.getAllWebContents());
+      console.log(appIds["startingCroquis"]);
+      console.log(webContents.fromId(appIds["startingCroquis"]));
+      console.log(data);
+      console.log(appIds);
+      webContents.fromId(appIds["startingCroquis"]).send("fileData", data);
+    }
+  );
 });
 
 // app.on("window-all-closed", () => {
