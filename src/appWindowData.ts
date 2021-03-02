@@ -5,7 +5,10 @@ interface appWindowValue {
   width: number;
   height: number;
   resizable?: boolean;
+  parent?: appName;
+  modal?: boolean;
 }
+
 const appWindowValueList: {
   [name in appName]: appWindowValue;
 } = {
@@ -27,12 +30,15 @@ const appWindowValueList: {
   fileSelecter: {
     width: 1000,
     height: 700,
+    parent: "startingCroquis",
+    modal: true,
   },
   fileSetting: {
     width: 600,
     height: 850,
   },
 };
+
 const getAppUrl: {
   [name in appName]: string;
 } = {

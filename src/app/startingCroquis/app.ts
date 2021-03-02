@@ -20,7 +20,8 @@ startButton.addEventListener("click", function () {
 
 let openFileSelect = document.getElementById("openFileSelect");
 openFileSelect.addEventListener("click", function () {
-  ipcRenderer.send("openApp", "fileSelecter", 25);
+  console.log(win);
+  ipcRenderer.send("openApp", "fileSelecter", 25, "startingCroquis");
   // win.close();
 });
 
