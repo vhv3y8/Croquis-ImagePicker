@@ -1,10 +1,44 @@
 var { ipcRenderer } = require("electron");
 
+interface selectedFilesTags {
+  files: file[];
+  tags: {
+    must: string[];
+    atleast: string[];
+  };
+}
+
+/** Data */
+let selecterAppData: selectedFilesTags = {
+  files: [],
+  tags: {
+    must: [],
+    atleast: [],
+  },
+};
+let selecterTags = selecterAppData.tags;
+let selecterFiles = selecterAppData.files;
+
+function selectOneFile() {}
+function unselectOneFile() {}
+
+function addTag() {}
+function deleteTag() {}
+
+/** */
+
+/** */
+
 let okButton = document.getElementById("okButton");
 okButton.addEventListener("click", function () {
-  ipcRenderer.sendSync("fileSelecter-to-startingCroquis", {
-    must: [1, 2],
-    atleast: [1, 2, 3, 4, 5],
-    count: 162,
-  });
+  ipcRenderer.send("toStartingCroquis", "fileSelecter", selecterAppData);
+});
+
+ipcRenderer.on("getInitialData", (event, data: selectedFilesTags) => {
+  // if data exists, get it. if does not, just show default page.
+  if (data !== undefined) {
+    // apply data
+    // apply tag
+    // apply selected files
+  }
 });

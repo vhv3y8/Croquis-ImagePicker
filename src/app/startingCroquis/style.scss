@@ -7,13 +7,23 @@ body {
   /* width: 350px;
   height: 500px; */
   margin: 0;
+  // background-color: white;
 }
 
 p {
   margin: 0;
 }
 
-.main {
+#mainContainer {
+  display: block;
+  position: relative;
+  width: 380px;
+  height: 560px;
+  border-radius: 10px;
+  background-color: black;
+}
+
+#main {
   display: block;
   position: relative;
   width: 380px;
@@ -115,11 +125,13 @@ header {
     }
 
     .content {
+      height: 90px;
       background-color: #666666;
 
       .item {
         font-family: "NanumGothicB", sans-serif;
         font-size: 15px;
+        height: 30px;
       }
     }
   }
@@ -127,10 +139,42 @@ header {
   #fileView {
     height: 115px;
     border-radius: 5px;
+
+    .item {
+      div {
+        span {
+          width: 40%;
+        }
+
+        // .text {
+        //   width: ;
+        // }
+      }
+    }
   }
 
   #article2 {
     margin-top: 15px;
+
+    #timeSetting {
+      p {
+        width: 40%;
+        // margin: 0;
+      }
+    }
+
+    #goalSetting {
+      p {
+        width: 40%;
+        // margin: 0;
+      }
+    }
+
+    #autopassSetting {
+      p {
+        width: 85%;
+      }
+    }
   }
 
   #startButton {

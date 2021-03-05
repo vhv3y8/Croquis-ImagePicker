@@ -42,11 +42,11 @@ const appWindowValueList: {
 const getAppUrl: {
   [name in appName]: string;
 } = {
-  initPage: "app/initPage/index.html",
-  startingCroquis: "app/startingCroquis/index.html",
-  Croquis: "app/Croquis/index.html",
-  fileSelecter: "app/fileSelecter/index.html",
-  fileSetting: "app/filetagSetting/index.html",
+  initPage: "../app/initPage/index.html",
+  startingCroquis: "../app/startingCroquis/index.html",
+  Croquis: "../app/Croquis/index.html",
+  fileSelecter: "../app/fileSelecter/index.html",
+  fileSetting: "../app/filetagSetting/index.html",
 };
 
 export { appWindowValueList, getAppUrl };

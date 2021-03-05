@@ -5,23 +5,6 @@ const { ipcMain, webContents } = require("electron");
 
 /* about app id */
 
-type appIdSaver = {
-  [name in appName]: number;
-};
-
-let appIds: appIdSaver = {
-  initPage: undefined,
-  startingCroquis: undefined,
-  Croquis: undefined,
-  fileSelecter: undefined,
-  fileSetting: undefined,
-};
-
-function setId(name: appName, num: number) {
-  appIds[name] = num;
-  console.log(appIds);
-}
-
 /* data formats */
 
 interface tag {
@@ -72,4 +55,4 @@ ipcMain.on("startingCroquis-to-fileSelecter", (event, data) => {
 
 ipcMain.on("startingCroquis-to-Croquis", (event, data: croquisData) => {});
 
-export { setId, appIds, startingCroqiusFileData };
+export { croquisTag, startingCroqiusFileData, croquisAppData };
