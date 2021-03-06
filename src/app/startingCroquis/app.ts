@@ -1,6 +1,7 @@
 var { ipcRenderer } = require("electron");
 var remote = require("electron").remote;
 var win = remote.getCurrentWindow();
+import { file } from "../../database/fileTag";
 // import {
 //   CroquisInitial,
 //   selectedFilesTags,
@@ -136,7 +137,9 @@ openFileSelect.addEventListener("click", function () {
     fileSelected == true ? selectedData : undefined
   );
 
-  document.getElementById("main").style.opacity = "0.5";
+  setTimeout(() => {
+    document.getElementById("main").style.opacity = "0.5";
+  }, 100);
 });
 
 let autopassSetting = document.getElementById("autopassSetting");

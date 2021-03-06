@@ -1,6 +1,7 @@
 // const { webContents } = require("electron");
 import { appName } from "../types/main";
 import { appIds } from "./appId";
+import { file } from "../database/fileTag";
 
 interface selectedFilesTags {
   files: file[];

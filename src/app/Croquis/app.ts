@@ -1,4 +1,5 @@
 var { ipcRenderer } = require("electron");
+import { file } from "../../database/fileTag";
 
 let timerStartPauseButton = document.getElementById("timerStartPause");
 

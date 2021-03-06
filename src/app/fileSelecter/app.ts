@@ -1,4 +1,5 @@
 var { ipcRenderer } = require("electron");
+import { file } from "../../database/fileTag";
 
 interface selectedFilesTags {
   files: file[];
@@ -37,7 +38,7 @@ okButton.addEventListener("click", function () {
 ipcRenderer.on("getInitialData", (event, data: selectedFilesTags) => {
   // if data exists, get it. if does not, just show default page.
   if (data !== undefined) {
-    // apply data
+    /** apply data */
     // apply tag
     // apply selected files
   }

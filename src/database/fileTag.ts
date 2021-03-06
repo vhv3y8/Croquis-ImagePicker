@@ -14,6 +14,11 @@ interface tagDB {
   [tagNum: number]: string;
 }
 
+interface dbFile {
+  files: file[];
+  tags: tagDB;
+}
+
 let a: tagDB = {
   0: "hi",
   1: "hell",
@@ -46,3 +51,5 @@ function updateFileList() {
 function getTagDB(): tagDB {
   return;
 }
+
+export { file, tagDB, dbFile };

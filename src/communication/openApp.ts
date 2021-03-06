@@ -52,6 +52,11 @@ function createWindow(
       win.webContents.once("did-finish-load", () => {
         win.webContents.send("getInitialData", data);
       });
+
+      // BrowserWindow.fromId(appIds[appName]).once("close", () => {
+      //   console.log(`${appName} App is closed.`);
+      //   console.log("hihihihihihihihihiihihiihihihhi");
+      // });
     }, delay);
   });
 }
