@@ -21,6 +21,14 @@
   align-items: center;
 }
 
+.fl-row-st-wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .fl-row-bet {
   display: flex;
   flex-direction: row;

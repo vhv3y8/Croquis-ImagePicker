@@ -103,10 +103,19 @@ header {
     }
 
     #bodyLeft {
-      width: 54%;
+      // width: 54%;
+      width: 60%;
       height: 100%;
       padding-left: 1%;
       // background-color: red;
+
+      #showFolder {
+        button {
+          width: 100px;
+          height: 30px;
+          background-color: white;
+        }
+      }
 
       #imgList {
         width: 97%;
@@ -125,6 +134,39 @@ header {
             font-size: 15px;
           }
         }
+
+        #imgListBody {
+          width: 100%;
+          height: 93.5%;
+          background-color: rgb(71, 71, 107);
+
+          overflow-y: scroll;
+
+          .imgItem {
+            width: 179px;
+            height: 48%;
+            background-color: white;
+            border: 1px solid black;
+
+            .checkbox {
+              width: 100%;
+              height: 12.5%;
+              background-color: red;
+            }
+
+            .image {
+              width: 100%;
+              height: 65%;
+              background-color: green;
+            }
+
+            .tags {
+              width: 100%;
+              height: 22.5%;
+              background-color: aqua;
+            }
+          }
+        }
       }
 
       .button {
@@ -141,7 +183,8 @@ header {
     }
 
     #bodyRight {
-      width: 45%;
+      // width: 45%;
+      width: 40%;
       height: 100%;
       background-color: rgb(71, 71, 107);
 

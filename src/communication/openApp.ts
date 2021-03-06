@@ -50,6 +50,7 @@ function createWindow(
 
       // give app initial data
       win.webContents.once("did-finish-load", () => {
+        console.dir(data);
         win.webContents.send("getInitialData", data);
       });
 

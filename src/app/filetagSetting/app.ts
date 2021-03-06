@@ -1,9 +1,22 @@
-import { dbFile } from "../../database/fileTag";
-
 var { ipcRenderer } = require("electron");
 var remote = require("electron").remote;
 var win = remote.getCurrentWindow();
 const { getConfigFile, flushConfigFile } = require("../../database/databaseFs");
+
+interface file {
+  filename: string;
+  tags: number[];
+  address: string;
+}
+
+interface tagDB {
+  [tagNum: number]: string;
+}
+
+interface dbFile {
+  files: file[];
+  tags: tagDB;
+}
 
 /** flow start */
 const datas: dbFile = getConfigFile();

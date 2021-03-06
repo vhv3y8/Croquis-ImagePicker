@@ -1,11 +1,16 @@
 var { ipcRenderer } = require("electron");
 var remote = require("electron").remote;
 var win = remote.getCurrentWindow();
-import { file } from "../../database/fileTag";
 // import {
 //   CroquisInitial,
 //   selectedFilesTags,
 // } from "../../communication/appInitialData";
+
+interface file {
+  filename: string;
+  tags: number[];
+  address: string;
+}
 
 interface selectedFilesTags {
   files: file[];
@@ -47,14 +52,14 @@ function applySelectedFileUI(): void {
   if (selectedData === undefined) {
     console.log("ERR at applySelectedFileUI : selectedData is undefined");
   } else {
-    must.querySelector(
-      "div .text"
-    ).innerHTML = selectedData.tags.must.toString();
+    must.querySelector("div .text").innerHTML = selectedData.tags.must.join(
+      ", "
+    );
     atleast.querySelector(
       "div .text"
-    ).innerHTML = selectedData.tags.atleast.toString();
+    ).innerHTML = selectedData.tags.atleast.join(", ");
     fileCount.querySelector(
-      "div .text"
+      "div .count"
     ).innerHTML = selectedData.files.length.toString();
   }
 }
@@ -153,10 +158,14 @@ autopassSetting.addEventListener("click", function () {
 
 // flow start
 ipcRenderer.on("selectedFiles", (event, data: selectedFilesTags) => {
-  console.log(data);
-  selectedData = data;
-  fileSelected = true;
+  if (data === null) {
+    // closed with X button
+  } else {
+    console.log(data);
+    selectedData = data;
+    fileSelected = true;
 
+    applySelectedFileUI();
+  }
   document.getElementById("main").style.opacity = "1";
-  applySelectedFileUI();
 });

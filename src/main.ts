@@ -14,6 +14,9 @@ import {
   initializeCroquisfolder,
   initializeConfigFile,
 } from "./database/databaseFs";
+import { st } from "./communication/appToApp";
+
+st();
 
 // app.whenReady().then(() => setTimeout(createWindow("initPage"), 500));
 app.on("ready", () => {

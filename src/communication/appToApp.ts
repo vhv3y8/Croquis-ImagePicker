@@ -1,10 +1,12 @@
-const { ipcMain, webContents } = require("electron");
+const { ipcMain, BrowserWindow } = require("electron");
 import { appName } from "../types/main";
 import { appIds } from "./appId";
 import { selectedFilesTags } from "./appInitialData";
 
 /** startingCroquis <-> fileSelecter */
-
+function st() {
+  console.log("st");
+}
 // ipcMain.on(
 //   "toFileSelecter",
 //   (event, from: appName, data: selectedFilesTags) => {
@@ -17,8 +19,18 @@ import { selectedFilesTags } from "./appInitialData";
 ipcMain.on(
   "toStartingCroquis",
   (event, from: appName, data: selectedFilesTags) => {
+    console.log("############$#$#$#$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+    console.log(from);
     if (from == "fileSelecter") {
-      webContents.fromId(appIds["startingCroquis"]).send("selectedFiles", data);
+      BrowserWindow.fromId(appIds["startingCroquis"]).send(
+        "selectedFiles",
+        data
+      );
+      console.log(
+        "######################################################################"
+      );
     }
   }
 );
+
+export { st };
