@@ -42,6 +42,15 @@ app.on("ready", () => {
     // initial file checking
     initialCheckCroquisfolder();
     initialCheckConfigFile();
+
+    setTimeout(() => {
+      Object.values(appIds)
+        .filter((id) => id !== undefined)
+        .forEach((id) => {
+          BrowserWindow.fromId(id).send("log", "log testing");
+        });
+      console.log("hi!!!!!!!!!!!!!!!!!!!!!!!!");
+    }, 5000);
   }, 500);
 
   console.log(screen.getPrimaryDisplay());
@@ -96,6 +105,15 @@ autoUpdater.on("error", (err) => {
     title: "Croquis Image Picker",
     body: "앱 업데이트 도중 에러가 발생했습니다.",
   }).show();
+  new Notification({
+    title: "Error Message",
+    body: err,
+  }).show();
+  Object.values(appIds)
+    .filter((id) => id !== undefined)
+    .forEach((id) => {
+      BrowserWindow.fromId(id).send("log", err);
+    });
   log.info(err);
 });
 autoUpdater.on("download-progress", (progressObj) => {

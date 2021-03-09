@@ -18,3 +18,8 @@ let closeButton = document.getElementById("closeButton");
 closeButton.addEventListener("click", function () {
   win.close();
 });
+
+ipcRenderer.on("log", (event, arg) => {
+  console.log("log from main process:");
+  console.log(arg);
+});
