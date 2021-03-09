@@ -3,7 +3,10 @@
 const path = require("path");
 const fs = require("fs");
 
-const downloadsFolderPath = path.join(process.env.HOME, "Downloads");
+const downloadsFolderPath = path.join(
+  process.env.HOME || process.env.USERPROFILE,
+  "Downloads"
+);
 const croquisFolderPath = path.join(downloadsFolderPath, "Croquis");
 const configFilePath = path.join(croquisFolderPath, "CroquisData.json");
 

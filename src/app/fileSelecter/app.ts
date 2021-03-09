@@ -37,7 +37,7 @@ interface selectedFilesTags {
 /** flow start */
 
 document.querySelector("#showFolder p").innerHTML = `폴더: ${path.join(
-  process.env.HOME,
+  process.env.HOME || process.env.USERPROFILE,
   "Downloads",
   "Croquis"
 )}`;
@@ -392,7 +392,13 @@ okButton.addEventListener("click", function () {
 
 let folderExplorerButton = document.getElementById("openExplorer");
 folderExplorerButton.addEventListener("click", function () {
-  shell.openPath(path.join(process.env.HOME, "Downloads", "Croquis"));
+  shell.openPath(
+    path.join(
+      process.env.HOME || process.env.USERPROFILE,
+      "Downloads",
+      "Croquis"
+    )
+  );
 });
 
 window.onbeforeunload = (e) => {

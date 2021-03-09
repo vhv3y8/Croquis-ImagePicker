@@ -27,7 +27,13 @@ interface file {
 
 let openExplorer = document.getElementById("openExplorer");
 openExplorer.addEventListener("click", function () {
-  shell.openPath(path.join(process.env.HOME, "Downloads", "Croquis"));
+  shell.openPath(
+    path.join(
+      process.env.HOME || process.env.USERPROFILE,
+      "Downloads",
+      "Croquis"
+    )
+  );
 });
 
 let settingCloseButton = document.getElementById("closeButton");
