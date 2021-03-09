@@ -27,6 +27,13 @@ autoUpdater.logger.transports.file.level = "info";
 // app.whenReady().then(() => setTimeout(createWindow("initPage"), 500));
 app.on("ready", () => {
   autoUpdater.checkForUpdatesAndNotify();
+  new Notification({
+    title: "Croquis Image Picker",
+    body: app.getVersion(),
+  }).show();
+  // console.log(app.getVersion());
+  // console.log(app.getVersion().version);
+  // console.log(app.app.getVersion());
 
   setTimeout(() => {
     createWindow("initPage", 0, undefined, {
