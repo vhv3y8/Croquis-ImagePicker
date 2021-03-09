@@ -81,7 +81,7 @@ header {
 .body {
   width: 95%;
   height: 775px;
-  background-color: red;
+  // background-color: red;
 
   border-radius: 0 0 8px 8px;
 
@@ -94,7 +94,7 @@ header {
   .content {
     width: 100%;
     height: 720px;
-    background-color: orange;
+    // background-color: orange;
     border-radius: 0 0 8px 8px;
 
     .contentInner {
@@ -105,11 +105,18 @@ header {
       .item {
         width: 100%;
         height: 8%;
-        background-color: white;
+        // background-color: white;
       }
     }
 
     #fileContent {
+      .submitButton {
+        height: 85%;
+        width: 150px;
+        background-color: black;
+        border-radius: 8px;
+      }
+
       #fileContentMain {
         width: 100%;
         height: 100%;
@@ -140,11 +147,108 @@ header {
           background-color: black;
           border-radius: 8px;
         }
-        #submitButton {
-          height: 100%;
-          width: 120px;
-          background-color: black;
-          border-radius: 8px;
+      }
+
+      #newFileTagMode {
+        width: 100%;
+        height: 100%;
+        // background-color: green;
+
+        #newFileView {
+          width: 100%;
+          height: 50%;
+          background-color: rgb(71, 71, 107);
+
+          .side {
+            width: 15%;
+            height: 100%;
+            background-color: black;
+            margin: 0;
+          }
+
+          #currImgView {
+            width: 70%;
+            height: 100%;
+            background-color: white;
+            margin: 0;
+
+            img {
+              max-width: 90%;
+              max-height: 90%;
+              // background-color: #737373;
+            }
+          }
+        }
+
+        #tagListView {
+          width: 100%;
+          height: 42%;
+          background-color: #737373;
+
+          .board {
+            width: 100%;
+            height: 45%;
+            background-color: red;
+
+            .tagBoard {
+              width: 50%;
+              height: 100%;
+
+              .mustleast {
+                width: 100%;
+                height: 25%;
+                background-color: lightgreen;
+              }
+            }
+
+            // #mustBoard {
+            //   border-right: 1px solid black;
+            // }
+          }
+
+          .tagSearchList {
+            width: 100%;
+            height: 55%;
+            background-color: white;
+
+            .tagSearchView {
+              width: 75%;
+              height: 100%;
+
+              #tagList {
+                width: 100%;
+                height: 80%;
+                background-color: #737373;
+              }
+
+              #tagInput {
+                width: 100%;
+                height: 20%;
+
+                input {
+                  width: 90%;
+                  height: 100%;
+                  border: none;
+                  outline: none;
+                  padding: 0;
+                  margin: 0;
+                }
+              }
+            }
+
+            .buttons {
+              width: 25%;
+              height: 100%;
+              background-color: white;
+
+              .tagAddButton {
+                width: 90%;
+                height: 48%;
+                background-color: gray;
+                border-radius: 3px;
+              }
+            }
+          }
         }
       }
     }

@@ -31,8 +31,14 @@
 
         <div class="content">
           <div id="fileContent" class="contentInner fl-col-st">
-            <div id="fileContentMain" class="visible content">
-              <div class="item"></div>
+            <!--  -->
+            <div id="fileContentMain" class="_invisible content">
+              <div class="item">
+                <div id="showFolder" class="item fl-row-bet">
+                  <p>폴더:</p>
+                  <button id="openExplorer">폴더 바로가기</button>
+                </div>
+              </div>
               <div id="fileList"></div>
               <div id="selectMode" class="fl-col-st">
                 <div class="modeItem fl-cen-cen">
@@ -42,25 +48,59 @@
                   <p>모드 : 태그 수정하기</p>
                 </div>
               </div>
-              <div id="footer" class="item fl-row-bet">
-                <div id="undoButton">UNDO</div>
-                <div id="submitButton">확인</div>
+              <div id="footer" class="item fl-row-rev-st">
+                <div class="submitButton">확인</div>
               </div>
             </div>
-
-            <div id="newFileTagMode" class="_invisible">
-              <div class="item"></div>
-              <div id="fileList"></div>
-              <div id="footer" class="item"></div>
+            <!--  -->
+            <div id="newFileTagMode" class="_visible">
+              <div id="newFileView" class="fl-row-st">
+                <div class="side"></div>
+                <div id="currImgView" class="fl-cen-cen">
+                  <img src="" alt="" />
+                </div>
+                <div class="side"></div>
+              </div>
+              <div id="tagListView">
+                <div class="board fl-row-st">
+                  <div id="mustBoard" class="tagBoard">
+                    <div class="mustleast">
+                      <p>반드시 포함</p>
+                    </div>
+                  </div>
+                  <div id="atleastBoard" class="tagBoard">
+                    <div class="mustleast">
+                      <p>적어도 하나 포함</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="tagSearchList fl-row-st">
+                  <div class="tagSearchView">
+                    <div id="tagList"></div>
+                    <div id="tagInput" class="fl-cen-cen">
+                      <input type="text" placeholder="태그 입력" />
+                    </div>
+                  </div>
+                  <div class="buttons fl-col-bet">
+                    <div id="mustAddButton" class="tagAddButton"></div>
+                    <div id="atleastAddbutton" class="tagAddButton"></div>
+                  </div>
+                </div>
+              </div>
+              <div id="footer" class="item fl-row-rev-st">
+                <div class="submitButton">확인</div>
+              </div>
             </div>
-
+            <!--  -->
             <div id="editTagMode" class="_invisible">
               <div class="item"></div>
               <div id="fileList"></div>
-              <div id="footer" class="item"></div>
+              <div id="footer" class="item fl-row-rev-st">
+                <div class="submitButton">확인</div>
+              </div>
             </div>
           </div>
-
+          <!--  -->
           <div id="tagContent" class="_invisible contentInner fl-col-st"></div>
         </div>
       </div>

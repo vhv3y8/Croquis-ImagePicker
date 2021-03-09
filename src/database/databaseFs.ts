@@ -1,14 +1,14 @@
-import { dbFile } from "./fileTag";
+// import { dbFile } from "./fileTag";
 
 const path = require("path");
 const fs = require("fs");
 
 const downloadsFolderPath = path.join(process.env.HOME, "Downloads");
 const croquisFolderPath = path.join(downloadsFolderPath, "Croquis");
-const configFilePath = path.join(croquisFolderPath, ".CroquisData.json");
+const configFilePath = path.join(croquisFolderPath, "CroquisData.json");
 
 /** Check for Croquis folder and create it if it does not exist. */
-function initializeCroquisfolder(): void {
+function initialCheckCroquisfolder(): void {
   if (!fs.existsSync(croquisFolderPath)) {
     fs.mkdirSync(croquisFolderPath);
     console.log(`Created folder Croquis at ${downloadsFolderPath}.`);
@@ -18,12 +18,12 @@ function initializeCroquisfolder(): void {
 }
 
 /** Check for CroquisConfig.json */
-function initializeConfigFile(): void {
+function initialCheckConfigFile(): void {
   // flow start
   if (!fs.existsSync(configFilePath)) {
     console.log("file does not exist. initializing config file.");
     const initialConfig = {
-      tags: {},
+      tags: [],
       files: [],
     };
     let configContent: string = JSON.stringify(initialConfig, null, 2);
@@ -34,10 +34,40 @@ function initializeConfigFile(): void {
   }
 }
 
+/** Update files in Croquis folder */
+
+function updateFiles(configFile: dbFile): dbFile {
+  let existingFiles = fs
+    .readdirSync(croquisFolderPath)
+    .filter((file) => file !== "CroquisData.json")
+    .map((filename) => path.join(croquisFolderPath, filename));
+  let configFiles = configFile.files.map((fileObj) => fileObj.address);
+  console.log(existingFiles);
+  console.log(configFiles);
+  let configFileSet = new Set(configFiles);
+
+  // update new files
+  let newFileList = existingFiles.filter(
+    (filename) => !configFileSet.has(filename)
+  );
+  console.log(newFileList);
+  newFileList.forEach((filePath) => {
+    configFile.files.push({
+      filename: path.basename(filePath),
+      tags: [],
+      address: filePath,
+    });
+  });
+
+  // update deleted files
+
+  return configFile;
+}
+
 /** read write config file */
 
 function getConfigFile(): dbFile {
-  return JSON.parse(fs.readFileSync(configFilePath));
+  return JSON.parse(fs.readFileSync(configFilePath, "utf8"));
 }
 
 function flushConfigFile(json: dbFile): void {
@@ -48,8 +78,9 @@ function flushConfigFile(json: dbFile): void {
 /**  */
 
 export {
-  initializeConfigFile,
-  initializeCroquisfolder,
+  initialCheckConfigFile,
+  initialCheckCroquisfolder,
+  updateFiles,
   getConfigFile,
   flushConfigFile,
 };

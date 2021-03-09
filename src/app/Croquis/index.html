@@ -30,8 +30,8 @@
         <p style="padding-left: 10px; font-size: 14px">
           역동적 / 인간, 물고기, 악귀
         </p>
-        <p style="padding-right: 10px; font-size: 14px">
-          <span class="current">1</span> / <span class="goal">30</span>
+        <p id="goalInfo" style="padding-right: 10px; font-size: 14px">
+          <span class="current">0</span> / <span class="goal">3장째</span>
         </p>
       </div>
 
@@ -71,19 +71,36 @@
 
       <div id="viewImage" class="fl-cen-cen">
         <!-- 조정 가능 -->
-        <div id="image"></div>
+        <div id="image" class="fl-cen-cen">
+          <img src="" alt="" />
+        </div>
       </div>
 
       <div id="mover" class="moverFlex">
         <!-- 조정 가능? -->
         <div id="moverLeft" class="fl-cen-cen">
           <div class="moverButtonContainer fl-col-aro">
-            <div id="passButton"></div>
-            <div id="backButton"></div>
+            <div id="passButton">
+              <img src="../../../assets/icons/arrowPass.svg" alt="" />
+              <div class="text">
+                <p>넘기기</p>
+              </div>
+            </div>
+            <div id="backButton">
+              <img src="../../../assets/icons/arrowPrev.svg" alt="" />
+              <div class="text">
+                <p>이전으로</p>
+              </div>
+            </div>
           </div>
         </div>
         <div id="moverRight" class="fl-cen-cen">
-          <div id="nextButton"></div>
+          <div id="nextButton">
+            <img src="../../../assets/icons/arrowNext.svg" alt="" />
+            <div class="text">
+              <p>다음으로</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

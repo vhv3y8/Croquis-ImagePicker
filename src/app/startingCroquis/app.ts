@@ -8,12 +8,12 @@ var win = remote.getCurrentWindow();
 
 interface file {
   filename: string;
-  tags: number[];
+  tags: string[];
   address: string;
 }
 
 interface selectedFilesTags {
-  files: file[];
+  filePaths: string[];
   tags: {
     must: string[];
     atleast: string[];
@@ -21,7 +21,7 @@ interface selectedFilesTags {
 }
 
 interface CroquisInitial {
-  files: file[];
+  filePaths: string[];
   tags: {
     must: string[];
     atleast: string[];
@@ -36,10 +36,10 @@ interface CroquisInitial {
 /** usage : when opening fileSelecter, if this value is true, than give selected file data that is already existing. */
 let fileSelected: boolean = false;
 let selectedData: selectedFilesTags = {
-  files: [],
+  filePaths: [],
   tags: {
-    must: ["인간인가?", "아닌가?"],
-    atleast: ["아닙니다", "아 맞나?"],
+    must: [],
+    atleast: [],
   },
 };
 
@@ -60,7 +60,9 @@ function applySelectedFileUI(): void {
     ).innerHTML = selectedData.tags.atleast.join(", ");
     fileCount.querySelector(
       "div .count"
-    ).innerHTML = selectedData.files.length.toString();
+    ).innerHTML = selectedData.filePaths.length.toString();
+    let goal: HTMLInputElement = document.querySelector("#goalSetting input");
+    goal.value = selectedData.filePaths.length.toString();
   }
 }
 
@@ -101,7 +103,7 @@ function configData(): CroquisInitial {
   let goalElem: HTMLInputElement = goal.querySelector("input");
 
   let croquisData: CroquisInitial = {
-    files: selectedData.files,
+    filePaths: selectedData.filePaths,
     tags: selectedData.tags,
     config: {
       time: convertSelectValue(time.querySelector("select").value),
@@ -125,14 +127,17 @@ closeBtn.addEventListener("click", function () {
 
 let startButton = document.getElementById("startButton");
 startButton.addEventListener("click", function () {
-  ipcRenderer.send("openApp", "Croquis", 25, undefined, configData());
-  console.log(configData());
-  // win.close();
+  if (selectedData.filePaths.length > 0) {
+    ipcRenderer.send("openApp", "Croquis", 25, undefined, configData());
+    console.log(configData());
+    win.close();
+  }
 });
 
 let openFileSelect = document.getElementById("openFileSelect");
 openFileSelect.addEventListener("click", function () {
-  console.log(win);
+  console.log(fileSelected);
+  console.log(selectedData);
 
   ipcRenderer.send(
     "openApp",
@@ -160,7 +165,9 @@ autopassSetting.addEventListener("click", function () {
 ipcRenderer.on("selectedFiles", (event, data: selectedFilesTags) => {
   if (data === null) {
     // closed with X button
+    // closing value null is needed to change opacity to 1..
   } else {
+    console.log("selectedFiles:");
     console.log(data);
     selectedData = data;
     fileSelected = true;

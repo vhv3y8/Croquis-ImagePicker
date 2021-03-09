@@ -1,6 +1,6 @@
 {
   "name": "Croquis-ImagePicker",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "app for picking random image",
   "main": "dist/main.js",
   "private": "true",
@@ -43,6 +43,7 @@
     "webpack-cli": "^4.5.0"
   },
   "dependencies": {
-    "electron-store": "^7.0.2"
+    "electron-log": "^4.3.2",
+    "electron-updater": "^4.3.8"
   }
 }

@@ -1,55 +1,55 @@
-const Store = require("electron-store");
+// const Store = require("electron-store");
 
-const store = new Store();
+// const store = new Store();
 
 /** set Interfaces */
 
 interface file {
   filename: string;
-  tags: number[];
+  tags: string[];
   address: string;
 }
 
-interface tagDB {
-  [tagNum: number]: string;
-}
+// interface tagDB {
+//   [tagNum: number]: string;
+// }
 
 interface dbFile {
   files: file[];
-  tags: tagDB;
+  tags: string[];
 }
 
-let a: tagDB = {
-  0: "hi",
-  1: "hell",
-  3: "hihihih",
-};
+// let a: tagDB = {
+//   0: "hi",
+//   1: "hell",
+//   3: "hihihih",
+// };
 
 /** Converter Functions */
 
-function tagNumToString(tagNum: number): string {
-  return "hi";
-}
+// function tagNumToString(tagNum: number): string {
+//   return "hi";
+// }
 
-function tagStringtoNum(tagString: string): number {
-  return 1;
-}
+// function tagStringtoNum(tagString: string): number {
+//   return 1;
+// }
 
 /** File Data */
 
-function getFileDB(): file[] {
-  return;
-}
+// function getFileDB(): file[] {
+//   return;
+// }
 
-function updateFileList() {
-  // update for new added files
-  // update for deleted files
-}
+// function updateFileList() {
+//   // update for new added files
+//   // update for deleted files
+// }
 
 /** Tag Data */
 
-function getTagDB(): tagDB {
-  return;
-}
+// function getTagDB(): tagDB {
+//   return;
+// }
 
-export { file, tagDB, dbFile };
+// export { file, tagDB, dbFile };

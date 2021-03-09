@@ -23,7 +23,7 @@ const appWindowValueList: {
     resizable: false,
   },
   Croquis: {
-    width: screen.getPrimaryDisplay().workAreaSize.width ?? 800,
+    width: screen.getPrimaryDisplay().workAreaSize.width * 0.3 ?? 800,
     height: screen.getPrimaryDisplay().workAreaSize.height ?? 900,
     resizable: true,
   },

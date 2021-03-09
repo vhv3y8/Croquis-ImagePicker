@@ -114,6 +114,9 @@ header {
           width: 100px;
           height: 30px;
           background-color: white;
+          border: none;
+          border-radius: 3px;
+          font-size: 12px;
         }
       }
 
@@ -123,6 +126,9 @@ header {
         height: 75%;
         background-color: white;
         margin-bottom: 5px;
+
+        // overflow: auto;
+        // visibility: hidden;
 
         .item {
           width: 100%;
@@ -135,12 +141,20 @@ header {
           }
         }
 
+        // &:hover {
+        //   visibility: visible;
+        // }
+        // &:focus {
+        //   visibility: visible;
+        // }
+
         #imgListBody {
           width: 100%;
           height: 93.5%;
           background-color: rgb(71, 71, 107);
 
           overflow-y: scroll;
+          // visibility: visible;
 
           .imgItem {
             width: 179px;
@@ -187,16 +201,119 @@ header {
       width: 40%;
       height: 100%;
       background-color: rgb(71, 71, 107);
+      max-width: 384px;
 
       #tagBoard {
         width: 100%;
         height: 35%;
+
+        #mustBoard {
+          width: 100%;
+          height: 50%;
+        }
+
+        #atleastBoard {
+          width: 100%;
+          height: 50%;
+        }
+
+        .title {
+          width: 100%;
+          height: 40%;
+          // background-color: orange;
+        }
+
+        .body {
+          width: 100%;
+          height: 60%;
+          // overflow-x: scroll;
+          overflow-x: scroll;
+        }
+        // overflow-y: auto;
+
+        .tagItem {
+          // width: 100px;
+          // display: inline-block;
+          width: max-content;
+          height: 40px;
+          border-radius: 5px;
+          background-color: fuchsia;
+          margin: auto 5px;
+
+          p {
+            font-size: 13px;
+            margin: auto 8px;
+          }
+
+          .xButton {
+            width: 20px;
+            height: 20px;
+            font-size: 15px;
+            background-color: white;
+          }
+        }
       }
 
       #tagSearch {
         width: 100%;
         height: 48%;
         background-color: rgb(20, 28, 52);
+
+        #searchLayout {
+          width: 66%;
+          height: 85%;
+          margin: auto 2%;
+          background-color: white;
+
+          #searchContent {
+            height: 85%;
+            // background-color: aqua;
+            overflow-y: auto;
+
+            .tagItem {
+              width: 100%;
+              height: 12.5%;
+              background-color: #d9d9d9;
+              border-bottom: 1px solid black;
+              font-size: 12px;
+            }
+          }
+
+          #inputDiv {
+            width: 100%;
+            height: 15%;
+            border-top: 1px solid black;
+            // background-color: #999999;
+
+            input {
+              width: 90%;
+              height: 90%;
+              padding: 0;
+              border: 0;
+              outline: none;
+              // background-color: beige;
+            }
+          }
+        }
+
+        #buttonLayout {
+          width: 28%;
+          height: 85%;
+          margin-right: 2%;
+          // background-color: yellow;
+
+          .addTagItem {
+            width: 100%;
+            height: 48%;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+          }
+
+          #mustAddButton {
+          }
+          #atleastAddButton {
+          }
+        }
       }
 
       #downBar {
@@ -212,3 +329,13 @@ header {
     }
   }
 }
+
+._invisible {
+  visibility: hidden;
+  display: none;
+  // transition: visibility 0.5s;
+}
+
+// ._visible {
+//   visibility: visible;
+// }

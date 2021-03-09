@@ -4,6 +4,7 @@ const {
   ipcMain,
   screen,
   webContents,
+  Notification,
 } = require("electron");
 const path = require("path");
 import { appName } from "./types/main";
@@ -11,23 +12,30 @@ import { startingCroqiusFileData } from "./mainCommunication";
 import { setId, appIds } from "./communication/appId";
 import { createWindow } from "./communication/openApp";
 import {
-  initializeCroquisfolder,
-  initializeConfigFile,
+  initialCheckCroquisfolder,
+  initialCheckConfigFile,
 } from "./database/databaseFs";
 import { st } from "./communication/appToApp";
+const log = require("electron-log");
+const { autoUpdater } = require("electron-updater");
 
 st();
 
+autoUpdater.logger = log;
+autoUpdater.logger.transports.file.level = "info";
+
 // app.whenReady().then(() => setTimeout(createWindow("initPage"), 500));
 app.on("ready", () => {
+  autoUpdater.checkForUpdatesAndNotify();
+
   setTimeout(() => {
     createWindow("initPage", 0, undefined, {
       testing: "hi",
     });
 
     // initial file checking
-    initializeCroquisfolder();
-    initializeConfigFile();
+    initialCheckCroquisfolder();
+    initialCheckConfigFile();
   }, 500);
 
   console.log(screen.getPrimaryDisplay());
@@ -59,3 +67,51 @@ app.on("ready", () => {
 //     createWindow("initPage");
 //   }
 // });
+
+/** autoUpdater */
+
+autoUpdater.on("checking-for-update", () => {
+  // sendStatusToWindow("Checking for update...");
+});
+autoUpdater.on("update-available", (info) => {
+  // sendStatusToWindow("Update available.");
+  new Notification({
+    title: "Croquis Image Picker",
+    body: "앱 업데이트가 출시되었습니다. 다운로드 시작하는 중...",
+  }).show();
+});
+autoUpdater.on("update-not-available", (info) => {
+  // sendStatusToWindow("Update not available.");
+  log.info("업데이트 없음");
+});
+autoUpdater.on("error", (err) => {
+  // sendStatusToWindow("Error in auto-updater. " + err);
+  new Notification({
+    title: "Croquis Image Picker",
+    body: "앱 업데이트 도중 에러가 발생했습니다.",
+  }).show();
+  log.info(err);
+});
+autoUpdater.on("download-progress", (progressObj) => {
+  // let log_message = "Download 속도: " + progressObj.bytesPerSecond;
+  // log_message = log_message + " - Downloaded " + progressObj.percent + "%";
+  // log_message =
+  //   log_message +
+  //   " (" +
+  //   progressObj.transferred +
+  //   "/" +
+  //   progressObj.total +
+  //   ")";
+  // sendStatusToWindow(log_message);
+  new Notification({
+    title: "Croquis Image Picker",
+    body: "앱 업데이트 " + Math.floor(progressObj.percent) + "% 진행중...",
+  }).show();
+});
+autoUpdater.on("update-downloaded", (info) => {
+  // sendStatusToWindow("Update downloaded");
+  new Notification({
+    title: "Croquis Image Picker",
+    body: "업데이트가 다운로드되었습니다.",
+  }).show();
+});

@@ -45,7 +45,7 @@ function createWindow(
     console.log(win);
     setTimeout(() => {
       win.loadFile(path.join(__dirname, getAppUrl[appName]));
-      win.webContents.openDevTools({ mode: "undocked" });
+      // win.webContents.openDevTools({ mode: "undocked" });
       setId(appName, win.id);
 
       // give app initial data

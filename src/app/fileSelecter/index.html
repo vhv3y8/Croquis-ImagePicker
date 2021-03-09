@@ -24,7 +24,7 @@
           <div id="bodyLeft" class="fl-col-st-st">
             <div class="itemLayout">
               <div id="showFolder" class="item fl-row-bet">
-                <p>폴더: /home/vhv3y8/Downloads/Croquis</p>
+                <p>폴더:</p>
                 <button id="openExplorer">폴더 바로가기</button>
               </div>
             </div>
@@ -32,12 +32,45 @@
               <div class="item fl-row-st">
                 <p>파일 <span class="count">0</span>개 선택됨</p>
               </div>
-              <div id="imgListBody" class="fl-row-st-wrap">
+              <div id="imgListBody" class="fl-row-st-st-wrap">
+                <!-- <div class="imgItem" data-address="hi.png">
+                  <div class="checkbox">
+                    <input type="checkbox" name="" id="" />
+                  </div>
+                  <div class="image fl-cen-cen">
+                    <img
+                      src="/home/vhv3y8/Downloads/Croquis/TestImage1.jpeg"
+                      alt=""
+                      style="max-height: 130px; max-width: 175px"
+                    />
+                     height="135"
+                  </div>
+                  <div class="tags"></div>
+                </div>
                 <div class="imgItem">
                   <div class="checkbox">
                     <input type="checkbox" name="" id="" />
                   </div>
-                  <div class="image"></div>
+                  <div class="image fl-cen-cen">
+                    <img
+                      src="/home/vhv3y8/Downloads/Croquis/TestImage2.jpeg"
+                      alt=""
+                      style="max-height: 130px; max-width: 175px"
+                    />
+                  </div>
+                  <div class="tags"></div>
+                </div>
+                <div class="imgItem">
+                  <div class="checkbox">
+                    <input type="checkbox" name="" id="" />
+                  </div>
+                  <div class="image fl-cen-cen">
+                    <img
+                      src="/home/vhv3y8/Downloads/Croquis/TestImage3.jpeg"
+                      alt=""
+                      style="max-height: 130px; max-width: 175px"
+                    />
+                  </div>
                   <div class="tags"></div>
                 </div>
                 <div class="imgItem"></div>
@@ -53,22 +86,23 @@
                 <div class="imgItem"></div>
                 <div class="imgItem"></div>
                 <div class="imgItem"></div>
-                <div class="imgItem"></div>
-                <div class="imgItem"></div>
-                <div class="imgItem"></div>
+                <div class="imgItem"></div> -->
               </div>
             </div>
-            <div class="buttonItemLayout">
+            <div id="hideButton" class="buttonItemLayout">
               <div class="item fl-row-st">
                 <div class="button fl-cen-cen">
-                  <p>현재까지 선택된 파일 모두 숨기기</p>
+                  <p>
+                    현재까지 선택된 파일 <span class="count">0</span>개 모두
+                    숨기기
+                  </p>
                 </div>
               </div>
             </div>
-            <div class="buttonItemLayout">
+            <div id="showButton" class="buttonItemLayout">
               <div class="item fl-row-st">
                 <div class="button fl-cen-cen">
-                  <p>현재까지 선택된 파일 모두 숨기기</p>
+                  <p>숨긴 파일 모두 보기</p>
                 </div>
               </div>
             </div>
@@ -78,11 +112,97 @@
             <div class="itemLayout">
               <div class="item">태그로 선택</div>
             </div>
-            <div id="tagBoard"></div>
-            <div id="tagSearch"></div>
+            <div id="tagBoard">
+              <div id="mustBoard">
+                <div class="title">
+                  <p>반드시 포함</p>
+                </div>
+                <div class="body x-horizontal"></div>
+              </div>
+              <div id="atleastBoard">
+                <div class="title">
+                  <p>적어도 하나 포함</p>
+                </div>
+                <div class="body x-horizontal">
+                  <!--                   
+                  <div class="tagItem fl-row-st">
+                    <p>태그입니다</p>
+                    <div class="xButton">X</div>
+                  </div>
+
+                  <div class="tagItem fl-row-st">
+                    <p>태그입니다</p>
+                    <div class="xButton">X</div>
+                  </div>
+                  <div class="tagItem fl-row-st">
+                    <p>태그입니다</p>
+                    <div class="xButton">X</div>
+                  </div>
+                  <div class="tagItem fl-row-st">
+                    <p>태그입니다</p>
+                    <div class="xButton">X</div>
+                  </div>
+                  <div class="tagItem fl-row-st">
+                    <p>태그입니다</p>
+                    <div class="xButton">X</div>
+                  </div>
+                  <div class="tagItem fl-row-st">
+                    <p>태그입니다</p>
+                    <div class="xButton">X</div>
+                  </div>
+                  <div class="tagItem fl-row-st">
+                    <p>태그입니다</p>
+                    <div class="xButton">X</div>
+                  </div>
+                  <div class="tagItem fl-row-st">
+                    <p>태그입니다</p>
+                    <div class="xButton">X</div>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+            <div id="tagSearch" class="fl-row-st">
+              <div id="searchLayout">
+                <div id="searchContent">
+                  <!-- <div class="tagItem">
+                    <input type="checkbox" name="" id="" />
+                    <span>태그입니다</span>
+                  </div>
+                  <div class="tagItem"></div>
+                  <div class="tagItem"></div>
+                  <div class="tagItem"></div>
+                  <div class="tagItem"></div>
+                  <div class="tagItem"></div>
+                  <div class="tagItem"></div>
+                  <div class="tagItem"></div>
+                  <div class="tagItem"></div>
+                  <div class="tagItem"></div>
+                  <div class="tagItem"></div>
+                  <div class="tagItem"></div>
+                  <div class="tagItem"></div>
+                  <div class="tagItem"></div>
+                  <div class="tagItem"></div>
+                  <div class="tagItem"></div>
+                  <div class="tagItem"></div> -->
+                </div>
+                <div id="inputDiv" class="fl-cen-cen">
+                  <input type="text" placeholder="태그 검색" value="" />
+                </div>
+              </div>
+              <div id="buttonLayout" class="fl-col-bet">
+                <div id="mustAddButton" class="addTagItem">
+                  <span>반드시 포함에 추가</span>
+                </div>
+                <div id="atleastAddButton" class="addTagItem">
+                  <span>적어도 하나 포함에 추가</span>
+                </div>
+              </div>
+            </div>
             <div id="downBar" class="fl-row-rev-st">
-              <div id="okButton">확인</div>
-              <div class="infoText">파일 162개 선택됨</div>
+              <div id="okButton">선택 완료</div>
+              <div class="infoText">
+                파일 <span class="count">0</span>개 선택됨
+              </div>
             </div>
           </div>
         </div>

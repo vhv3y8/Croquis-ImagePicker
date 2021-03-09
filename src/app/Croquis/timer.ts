@@ -1,69 +1,67 @@
-interface timerSetting {}
-type timerStates = "Running" | "Paused";
+class Timer {
+  private defaultTime: number;
+  private time: number;
+  private state: "Running" | "Stopped";
+  private startingTime: number;
+  private intervalFunc: Function;
 
-// class Timer {
-//   private time: number;
-//   private givenSeconds: number;
-//   private spanElement: HTMLElement;
-//   private timerSetting: timerSetting;
-//   private runCallbackAfterEnd: boolean;
-//   private callbackFunc: Function;
-//   private state: timerStates;
+  constructor(seconds: number) {
+    this.time = seconds * 1000;
+    this.defaultTime = seconds * 1000;
+  }
 
-//   private startTime: number;
+  getState() {
+    return this.state;
+  }
 
-//   constructor(
-//     givenSeconds: number,
-//     spanElement: HTMLElement,
-//     timerSetting: timerSetting,
-//     runCallbackAfterEnd: boolean,
-//     callbackFunc: Function
-//   ) {
-//     this.givenSeconds = givenSeconds;
-//     this.spanElement = spanElement;
-//     this.timerSetting = timerSetting;
-//     this.runCallbackAfterEnd = runCallbackAfterEnd;
-//     this.callbackFunc = callbackFunc;
+  timeLeft() {
+    return this.time;
+  }
 
-//     this.state = "Paused";
-//   }
+  start() {
+    if (this.state == "Stopped") {
+      this.startingTime = new Date().getTime();
+      this.state = "Running";
+      return this.time;
+    }
+  }
 
-//   start(): boolean {
-//     if (this.state == "Paused") {
-//       this.state = "Running";
-//       this.startTime = new Date().getTime();
+  pause() {
+    if (this.state == "Running") {
+      let curr = new Date().getTime();
+      this.state = "Stopped";
+      this.time -= curr - this.startingTime;
+    }
+  }
 
-//       return true;
-//     } else {
-//       console.log("ERROR: tried to start timer when timer is Running.");
-//       return false;
-//     }
-//   }
+  reset() {
+    if (this.state == "Stopped") {
+      this.time = this.defaultTime;
+    }
+  }
 
-//   pause(): boolean {
-//     if (this.state == "Running") {
-//       this.state = "Paused";
-//       let pauseTime = new Date().getTime();
+  // forceReset() {
+  //   /** Only use it at doneButton! */
+  //   this.time = this.defaultTime;
+  // }
+}
 
-//       return true;
-//     } else {
-//       console.log("ERROR: tried to pause timer when timer is Paused.");
-//       return false;
-//     }
-//   }
+class TimerUI {
+  private milliSeconds: number;
+  private elem: HTMLElement;
 
-//   reset(): boolean {
-//     if (this.state == "Paused") {
-//       this.time = this.givenSeconds;
-//       console.log(`Successfully reseted timer time to ${this.givenSeconds}.`);
-//       return true;
-//     } else {
-//       console.log(`Timer is running. cannot reset time.`);
-//       return false;
-//     }
-//   }
-// }
+  constructor(milliSeconds, element) {
+    this.milliSeconds = milliSeconds;
+    this.elem = element;
 
-class Timer {}
+    let sec = Math.floor(this.milliSeconds / 1000);
+    this.setTime(sec);
+  }
 
-export { Timer };
+  setTime(seconds: number): void {
+    let min = Math.floor(seconds / 60);
+    this.elem.innerHTML = "";
+  }
+}
+
+export { Timer, TimerUI };
