@@ -6,7 +6,6 @@ const {
   webContents,
   Notification,
 } = require("electron");
-const path = require("path");
 import { appName } from "./types/main";
 import { startingCroqiusFileData } from "./mainCommunication";
 import { setId, appIds } from "./communication/appId";
