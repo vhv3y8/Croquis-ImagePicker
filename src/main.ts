@@ -25,7 +25,7 @@ autoUpdater.logger.transports.file.level = "info";
 
 // app.whenReady().then(() => setTimeout(createWindow("initPage"), 500));
 app.on("ready", () => {
-  // autoUpdater.checkForUpdatesAndNotify();
+  autoUpdater.checkForUpdatesAndNotify();
   // new Notification({
   //   title: "Croquis Image Picker",
   //   body: app.getVersion(),
@@ -104,7 +104,7 @@ autoUpdater.on("update-not-available", (info) => {
   // sendStatusToWindow("Update not available.");
   new Notification({
     title: "Croquis Image Picker" + app.getVersion(),
-    body: "앱 업데이트 없음.",
+    body: "앱 업데이트 없음",
   }).show();
   log.info("업데이트 없음");
 });
