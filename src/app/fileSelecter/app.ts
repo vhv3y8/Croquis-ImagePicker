@@ -418,15 +418,26 @@ ipcRenderer.on("getInitialData", (event, data) => {
     console.log(selectedDataJson);
 
     if (selectedDataJson.filePaths !== undefined) {
+      let imgList: HTMLDataElement[] = Array.from(
+        document.querySelectorAll(".imgItem")
+      );
       selectedDataJson.filePaths
         .map((path) => {
-          return document.querySelector("[data-address='" + path + "']");
+          // return document.querySelector("[data-address='" + path + "']");
+          for (let i = 0; i < imgList.length; i++) {
+            if (imgList[i].dataset.address == path) {
+              return imgList[i];
+            }
+          }
+          return undefined;
         })
         .forEach((elem) => {
-          elem.classList.add("_selected");
-          let check: HTMLInputElement = elem.querySelector(".checkbox input");
-          check.checked = true;
-          setCount(getCount() + 1);
+          if (elem !== undefined) {
+            elem.classList.add("_selected");
+            let check: HTMLInputElement = elem.querySelector(".checkbox input");
+            check.checked = true;
+            setCount(getCount() + 1);
+          }
         });
       console.log("fileSelecter: data Applied.");
     }

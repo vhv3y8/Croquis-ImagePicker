@@ -43,14 +43,14 @@ app.on("ready", () => {
     initialCheckCroquisfolder();
     initialCheckConfigFile();
 
-    setTimeout(() => {
-      Object.values(appIds)
-        .filter((id) => id !== undefined)
-        .forEach((id) => {
-          BrowserWindow.fromId(id).send("log", "log testing");
-        });
-      console.log("hi!!!!!!!!!!!!!!!!!!!!!!!!");
-    }, 5000);
+    // setTimeout(() => {
+    //   Object.values(appIds)
+    //     .filter((id) => id !== undefined)
+    //     .forEach((id) => {
+    //       BrowserWindow.fromId(id).send("log", "log testing");
+    //     });
+    //   console.log("hi!!!!!!!!!!!!!!!!!!!!!!!!");
+    // }, 5000);
   }, 500);
 
   console.log(screen.getPrimaryDisplay());
