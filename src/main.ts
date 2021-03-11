@@ -87,37 +87,37 @@ app.on("ready", () => {
 
 autoUpdater.on("checking-for-update", () => {
   // sendStatusToWindow("Checking for update...");
-  new Notification({
-    title: "Croquis Image Picker " + app.getVersion(),
-    body: "앱 업데이트 확인 중",
-  }).show();
+  // new Notification({
+  //   title: "Croquis Image Picker " + app.getVersion(),
+  //   body: "앱 업데이트 확인 중",
+  // }).show();
 });
 autoUpdater.on("update-available", (info) => {
   // sendStatusToWindow("Update available.");
   new Notification({
-    title: "Croquis Image Picker " + app.getVersion(),
+    title: "Croquis Image Picker v" + app.getVersion(),
     body:
       "앱 업데이트가 출시되었습니다. 다운로드를 시작합니다. 앱을 닫지 마세요...",
   }).show();
 });
 autoUpdater.on("update-not-available", (info) => {
   // sendStatusToWindow("Update not available.");
-  new Notification({
-    title: "Croquis Image Picker " + app.getVersion(),
-    body: "앱 업데이트 없음",
-  }).show();
+  // new Notification({
+  //   title: "Croquis Image Picker " + app.getVersion(),
+  //   body: "앱 업데이트 없음",
+  // }).show();
   log.info("업데이트 없음");
 });
 autoUpdater.on("error", (err) => {
   // sendStatusToWindow("Error in auto-updater. " + err);
   new Notification({
-    title: "Croquis Image Picker " + app.getVersion(),
+    title: "Croquis Image Picker v" + app.getVersion(),
     body: "앱 업데이트 도중 에러가 발생했습니다.",
   }).show();
-  new Notification({
-    title: "Error Message",
-    body: err,
-  }).show();
+  // new Notification({
+  //   title: "Error Message",
+  //   body: err,
+  // }).show();
   Object.values(appIds)
     .filter((id) => id !== undefined)
     .forEach((id) => {
@@ -127,10 +127,10 @@ autoUpdater.on("error", (err) => {
 });
 autoUpdater.on("update-downloaded", (info) => {
   // sendStatusToWindow("Update downloaded");
-  new Notification({
-    title: "Croquis Image Picker",
-    body: "업데이트가 다운로드되었습니다. 앱 종료 시 설치가 진행됩니다.",
-  }).show();
+  // new Notification({
+  //   title: "Croquis Image Picker",
+  //   body: "업데이트가 다운로드되었습니다. 앱 종료 시 설치가 진행됩니다.",
+  // }).show();
 });
 
 let percentArr = [90, 75, 50, 25, 0];
