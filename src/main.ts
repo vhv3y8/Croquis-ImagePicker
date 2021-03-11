@@ -153,4 +153,18 @@ autoUpdater.on("download-progress", (progressObj) => {
     }).show();
     curr = percentArr.pop();
   }
+  if (BrowserWindow.fromId(appIds["initPage"]) !== null) {
+    BrowserWindow.fromId(appIds["initPage"]).send("log", {
+      percent: progressObj.percent,
+      percentArr: percentArr,
+      curr: curr,
+      len: percentArr.length,
+      bigThanCurr: progressObj.percent > curr,
+    });
+  } else {
+    new Notification({
+      title: "plz",
+      body: "initPage is null",
+    });
+  }
 });
