@@ -25,7 +25,7 @@ autoUpdater.logger.transports.file.level = "info";
 
 // app.whenReady().then(() => setTimeout(createWindow("initPage"), 500));
 app.on("ready", () => {
-  autoUpdater.checkForUpdatesAndNotify();
+  // autoUpdater.checkForUpdatesAndNotify();
   new Notification({
     title: "Croquis Image Picker",
     body: app.getVersion(),
@@ -116,6 +116,8 @@ autoUpdater.on("error", (err) => {
     });
   log.info(err);
 });
+
+let percentArr = [90, 75, 50, 25, 0];
 autoUpdater.on("download-progress", (progressObj) => {
   // let log_message = "Download 속도: " + progressObj.bytesPerSecond;
   // log_message = log_message + " - Downloaded " + progressObj.percent + "%";
@@ -127,10 +129,14 @@ autoUpdater.on("download-progress", (progressObj) => {
   //   progressObj.total +
   //   ")";
   // sendStatusToWindow(log_message);
-  new Notification({
-    title: "Croquis Image Picker",
-    body: "앱 업데이트 " + Math.floor(progressObj.percent) + "% 진행중...",
-  }).show();
+  let curr = percentArr.pop();
+  if (percentArr.length > 0 && progressObj.percent > curr) {
+    new Notification({
+      title: "Croquis Image Picker",
+      body: "앱 업데이트 " + Math.floor(progressObj.percent) + "% 진행중...",
+    }).show();
+    curr = percentArr.pop();
+  }
 });
 autoUpdater.on("update-downloaded", (info) => {
   // sendStatusToWindow("Update downloaded");
