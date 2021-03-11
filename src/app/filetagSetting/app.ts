@@ -139,5 +139,5 @@ window.onbeforeunload = (e) => {
   console.log("Flushed.");
   console.log(getConfigFile());
   // ipcRenderer.send("openApp", "Croquis", 25);
-  e.returnValue = false;
+  // e.returnValue = false;
 };
