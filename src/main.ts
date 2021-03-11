@@ -26,10 +26,10 @@ autoUpdater.logger.transports.file.level = "info";
 // app.whenReady().then(() => setTimeout(createWindow("initPage"), 500));
 app.on("ready", () => {
   // autoUpdater.checkForUpdatesAndNotify();
-  new Notification({
-    title: "Croquis Image Picker",
-    body: app.getVersion(),
-  }).show();
+  // new Notification({
+  //   title: "Croquis Image Picker",
+  //   body: app.getVersion(),
+  // }).show();
   // console.log(app.getVersion());
   // console.log(app.getVersion().version);
   // console.log(app.app.getVersion());
@@ -87,22 +87,31 @@ app.on("ready", () => {
 
 autoUpdater.on("checking-for-update", () => {
   // sendStatusToWindow("Checking for update...");
+  new Notification({
+    title: "Croquis Image Picker" + app.getVersion(),
+    body: "앱 업데이트 확인 중",
+  }).show();
 });
 autoUpdater.on("update-available", (info) => {
   // sendStatusToWindow("Update available.");
   new Notification({
-    title: "Croquis Image Picker",
-    body: "앱 업데이트가 출시되었습니다. 다운로드 시작하는 중...",
+    title: "Croquis Image Picker" + app.getVersion(),
+    body:
+      "앱 업데이트가 출시되었습니다. 다운로드를 시작합니다. 앱을 닫지 마세요...",
   }).show();
 });
 autoUpdater.on("update-not-available", (info) => {
   // sendStatusToWindow("Update not available.");
+  new Notification({
+    title: "Croquis Image Picker" + app.getVersion(),
+    body: "앱 업데이트 없음.",
+  }).show();
   log.info("업데이트 없음");
 });
 autoUpdater.on("error", (err) => {
   // sendStatusToWindow("Error in auto-updater. " + err);
   new Notification({
-    title: "Croquis Image Picker",
+    title: "Croquis Image Picker" + app.getVersion(),
     body: "앱 업데이트 도중 에러가 발생했습니다.",
   }).show();
   new Notification({
@@ -115,6 +124,13 @@ autoUpdater.on("error", (err) => {
       BrowserWindow.fromId(id).send("log", err);
     });
   log.info(err);
+});
+autoUpdater.on("update-downloaded", (info) => {
+  // sendStatusToWindow("Update downloaded");
+  new Notification({
+    title: "Croquis Image Picker",
+    body: "업데이트가 다운로드되었습니다. 앱 종료 시 설치가 진행됩니다.",
+  }).show();
 });
 
 let percentArr = [90, 75, 50, 25, 0];
@@ -137,11 +153,4 @@ autoUpdater.on("download-progress", (progressObj) => {
     }).show();
     curr = percentArr.pop();
   }
-});
-autoUpdater.on("update-downloaded", (info) => {
-  // sendStatusToWindow("Update downloaded");
-  new Notification({
-    title: "Croquis Image Picker",
-    body: "업데이트가 다운로드되었습니다.",
-  }).show();
 });
