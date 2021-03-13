@@ -1,5 +1,6 @@
 const { screen } = require("electron");
-import { appName } from "./types/main";
+const path = require("path");
+import { appName } from "../types/main";
 
 interface appWindowValue {
   width: number;
@@ -49,4 +50,17 @@ const getAppUrl: {
   fileSetting: "../app/filetagSetting/index.html",
 };
 
-export { appWindowValueList, getAppUrl };
+function getPreloadPath(appName: appName): string {
+  return path.join(process.cwd(), "dist", "app", appName, "preload.js");
+}
+// : {
+//   [name in appName]: string;
+// } = {
+//   initPage: path.join(process.cwd(), "dist", "app", "initPage", "app.js"),
+//   startingCroquis: "../app/startingCroquis/app.js",
+//   Croquis: "../app/Croquis/app.js",
+//   fileSelecter: "../app/fileSelecter/app.js",
+//   fileSetting: "../app/filetagSetting/app.js",
+// };
+
+export { appWindowValueList, getAppUrl, getPreloadPath };

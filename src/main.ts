@@ -9,7 +9,7 @@ const {
 import { appName } from "./types/main";
 import { startingCroqiusFileData } from "./mainCommunication";
 import { setId, appIds } from "./communication/appId";
-import { createWindow } from "./communication/openApp";
+import { createWindow } from "./openWindow/openApp";
 import {
   initialCheckCroquisfolder,
   initialCheckConfigFile,

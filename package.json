@@ -34,7 +34,7 @@
   "homepage": "https://github.com/vhv3y8/Croquis-ImagePicker#readme",
   "devDependencies": {
     "@types/electron": "^1.6.10",
-    "electron": "^11.3.0",
+    "electron": "^12.0.1",
     "electron-builder": "^22.9.1",
     "html-webpack-plugin": "^5.2.0",
     "nodemon": "^2.0.7",

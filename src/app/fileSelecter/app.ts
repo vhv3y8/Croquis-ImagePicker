@@ -1,13 +1,9 @@
-var { ipcRenderer, shell } = require("electron");
-var remote = require("electron").remote;
-var win = remote.getCurrentWindow();
-var path = require("path");
-var {
-  getConfigFile,
-  flushConfigFile,
-  updateFiles,
-} = require("../../database/databaseFs");
-var { tagNumToString } = require("../../database/fileTag");
+// var { ipcRenderer } = require("electron");
+// var remote = require("electron").remote;
+// var win = remote.getCurrentWindow();
+// var path = require("path");
+
+// var { tagNumToString } = require("../../database/fileTag");
 
 /** initialize types */
 
@@ -36,17 +32,15 @@ interface selectedFilesTags {
 
 /** flow start */
 
-document.querySelector("#showFolder p").innerHTML = `폴더: ${path.join(
-  process.env.HOME || process.env.USERPROFILE,
-  "Downloads",
-  "Croquis"
-)}`;
+document.querySelector(
+  "#showFolder p"
+).innerHTML = `폴더: ${(window as any).api.getCroquisFolderPath()}`;
 
 /** Data */
 
 // initialize datas to use in this app
 // let configFileData = updateFiles(getConfigFile());
-let configFileData = updateFiles(getConfigFile());
+let configFileData = (window as any).api.getDataWithUpdate();
 let tagList = configFileData.tags;
 let selectedDataJson = {
   filePaths: [],
@@ -70,6 +64,16 @@ configFileData.tags.forEach((tag) => {
 //   document.getElementById("searchContent").appendChild(tagListItem(tag));
 // });
 /** define Functions */
+
+function getCount(): number {
+  return parseInt(document.querySelector("span.count").innerHTML);
+}
+
+function setCount(num: number) {
+  document
+    .querySelectorAll("span.count")
+    .forEach((elem) => (elem.innerHTML = num.toString()));
+}
 
 /** */
 
@@ -113,16 +117,6 @@ function removeTag(tagname: string, where: "must" | "atleast") {
 }
 
 /**  */
-
-function getCount(): number {
-  return parseInt(document.querySelector("span.count").innerHTML);
-}
-
-function setCount(num: number) {
-  document
-    .querySelectorAll("span.count")
-    .forEach((elem) => (elem.innerHTML = num.toString()));
-}
 
 /** */
 
@@ -372,8 +366,9 @@ showButton.addEventListener("click", function () {
 
 let closeSelectBtn = document.getElementById("closeButton");
 closeSelectBtn.addEventListener("click", function () {
-  ipcRenderer.send("toStartingCroquis", "fileSelecter", null);
-  win.close();
+  // ipcRenderer.send("toStartingCroquis", "fileSelecter", null);
+  (window as any).api.toStartingCroquis(null);
+  window.close();
 });
 
 let okButton = document.getElementById("okButton");
@@ -384,64 +379,21 @@ okButton.addEventListener("click", function () {
     ),
     tags: selectedDataJson.tags,
   };
-  console.log();
-  ipcRenderer.send("toStartingCroquis", "fileSelecter", collect);
+  // console.log();
+  // ipcRenderer.send("toStartingCroquis", "fileSelecter", collect);
+  (window as any).api.toStartingCroquis(collect);
   console.log("sent.");
-  win.close();
+  window.close();
 });
 
 let folderExplorerButton = document.getElementById("openExplorer");
 folderExplorerButton.addEventListener("click", function () {
-  shell.openPath(
-    path.join(
-      process.env.HOME || process.env.USERPROFILE,
-      "Downloads",
-      "Croquis"
-    )
-  );
+  (window as any).api.openfileExplorer();
 });
 
 window.onbeforeunload = (e) => {
-  flushConfigFile(configFileData);
+  // flushConfigFile(configFileData);
+  (window as any).api.flushConfigFile(configFileData);
 
   // e.returnValue = false;
 };
-
-ipcRenderer.on("getInitialData", (event, data) => {
-  // if data exists, get it. if does not, just show default page.
-  if (data !== undefined) {
-    /** apply data */
-    selectedDataJson.tags = data.tags;
-    selectedDataJson.filePaths = data.filePaths;
-
-    console.log("selectedDataJson:");
-    console.log(selectedDataJson);
-
-    if (selectedDataJson.filePaths !== undefined) {
-      let imgList: HTMLDataElement[] = Array.from(
-        document.querySelectorAll(".imgItem")
-      );
-      selectedDataJson.filePaths
-        .map((path) => {
-          // return document.querySelector("[data-address='" + path + "']");
-          for (let i = 0; i < imgList.length; i++) {
-            if (imgList[i].dataset.address == path) {
-              return imgList[i];
-            }
-          }
-          return undefined;
-        })
-        .forEach((elem) => {
-          if (elem !== undefined) {
-            elem.classList.add("_selected");
-            let check: HTMLInputElement = elem.querySelector(".checkbox input");
-            check.checked = true;
-            setCount(getCount() + 1);
-          }
-        });
-      console.log("fileSelecter: data Applied.");
-    }
-    // apply tag
-    // apply selected files
-  }
-});

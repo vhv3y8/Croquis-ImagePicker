@@ -1,7 +1,7 @@
 const { BrowserWindow, ipcMain, screen } = require("electron");
 const path = require("path");
 import { appName } from "../types/main";
-import { setId, appIds } from "./appId";
+import { setId, appIds } from "../communication/appId";
 
 function createWindow(
   appName: appName,
@@ -13,10 +13,11 @@ function createWindow(
     "Starting createWindow Function: " + appName + " " + delay + " " + parent
   );
   // cannot use screen module before app.on("ready")
-  let appWindowData = import("../appWindowData").then((module) => {
-    var [appWindowValueList, getAppUrl] = [
+  let appWindowData = import("./appWindowData").then((module) => {
+    var [appWindowValueList, getAppUrl, getPreloadPath] = [
       module.appWindowValueList,
       module.getAppUrl,
+      module.getPreloadPath,
     ];
 
     let windowParams = {
@@ -28,8 +29,10 @@ function createWindow(
       frame: false,
       transparent: true,
       webPreferences: {
-        nodeIntegration: true,
-        enableRemoteModule: true,
+        nodeIntegration: false,
+        enableRemoteModule: false,
+        contextIsolation: true,
+        preload: getPreloadPath(appName),
       },
     };
 

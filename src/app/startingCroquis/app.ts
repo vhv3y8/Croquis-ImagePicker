@@ -1,6 +1,6 @@
-var { ipcRenderer } = require("electron");
-var remote = require("electron").remote;
-var win = remote.getCurrentWindow();
+// var { ipcRenderer } = require("electron");
+// var remote = require("electron").remote;
+// var win = remote.getCurrentWindow();
 // import {
 //   CroquisInitial,
 //   selectedFilesTags,
@@ -33,38 +33,8 @@ interface CroquisInitial {
   };
 }
 
-/** usage : when opening fileSelecter, if this value is true, than give selected file data that is already existing. */
-let fileSelected: boolean = false;
-let selectedData: selectedFilesTags = {
-  filePaths: [],
-  tags: {
-    must: [],
-    atleast: [],
-  },
-};
-
-function applySelectedFileUI(): void {
-  let [must, atleast, fileCount] = [
-    document.getElementById("tagMust"),
-    document.getElementById("tagAtleast"),
-    document.getElementById("fileCount"),
-  ];
-  if (selectedData === undefined) {
-    console.log("ERR at applySelectedFileUI : selectedData is undefined");
-  } else {
-    must.querySelector("div .text").innerHTML = selectedData.tags.must.join(
-      ", "
-    );
-    atleast.querySelector(
-      "div .text"
-    ).innerHTML = selectedData.tags.atleast.join(", ");
-    fileCount.querySelector(
-      "div .count"
-    ).innerHTML = selectedData.filePaths.length.toString();
-    let goal: HTMLInputElement = document.querySelector("#goalSetting input");
-    goal.value = selectedData.filePaths.length.toString();
-  }
-}
+// let selectedData = (window as any).api.getSelectedData();
+// let fileSelected = (window as any).api.getFileSelected();
 
 function configData(): CroquisInitial {
   function convertSelectValue(val: string): number {
@@ -103,8 +73,8 @@ function configData(): CroquisInitial {
   let goalElem: HTMLInputElement = goal.querySelector("input");
 
   let croquisData: CroquisInitial = {
-    filePaths: selectedData.filePaths,
-    tags: selectedData.tags,
+    filePaths: (window as any).api.getSelectedData().filePaths,
+    tags: (window as any).api.getSelectedData().tags,
     config: {
       time: convertSelectValue(time.querySelector("select").value),
       goal: parseInt(goalElem.value), // if value is undefined, goal is NaN
@@ -115,6 +85,8 @@ function configData(): CroquisInitial {
   return croquisData;
 }
 
+// flow start
+
 let fileView = document.getElementById("fileView");
 fileView.addEventListener("click", function () {
   // add class to show effect
@@ -122,29 +94,38 @@ fileView.addEventListener("click", function () {
 
 let closeBtn = document.getElementById("closeButton");
 closeBtn.addEventListener("click", function () {
-  win.close();
+  window.close();
 });
 
 let startButton = document.getElementById("startButton");
 startButton.addEventListener("click", function () {
-  if (selectedData.filePaths.length > 0) {
-    ipcRenderer.send("openApp", "Croquis", 25, undefined, configData());
+  if ((window as any).api.getSelectedData().filePaths.length > 0) {
+    // ipcRenderer.send("openApp", "Croquis", 25, undefined, configData());
+    (window as any).api.openApp("Croquis", 25, undefined, configData());
     console.log(configData());
-    win.close();
+    window.close();
   }
 });
 
 let openFileSelect = document.getElementById("openFileSelect");
 openFileSelect.addEventListener("click", function () {
-  console.log(fileSelected);
-  console.log(selectedData);
+  // console.log(fileSelected);
+  // console.log(selectedData);
 
-  ipcRenderer.send(
-    "openApp",
+  // ipcRenderer.send(
+  //   "openApp",
+  //   "fileSelecter",
+  //   25,
+  //   "startingCroquis",
+  //   fileSelected == true ? selectedData : undefined
+  // );
+  (window as any).api.openApp(
     "fileSelecter",
     25,
     "startingCroquis",
-    fileSelected == true ? selectedData : undefined
+    (window as any).api.getFileSelected() == true
+      ? (window as any).api.getSelectedData()
+      : undefined
   );
 
   setTimeout(() => {
@@ -159,20 +140,4 @@ autopassSetting.addEventListener("click", function () {
     "input[type=checkbox]"
   );
   autopassCheckbox.checked = !autopassCheckbox.checked;
-});
-
-// flow start
-ipcRenderer.on("selectedFiles", (event, data: selectedFilesTags) => {
-  if (data === null) {
-    // closed with X button
-    // closing value null is needed to change opacity to 1..
-  } else {
-    console.log("selectedFiles:");
-    console.log(data);
-    selectedData = data;
-    fileSelected = true;
-
-    applySelectedFileUI();
-  }
-  document.getElementById("main").style.opacity = "1";
 });

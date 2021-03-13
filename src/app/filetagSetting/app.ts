@@ -1,12 +1,6 @@
-var { ipcRenderer, shell } = require("electron");
-var remote = require("electron").remote;
-var win = remote.getCurrentWindow();
-var {
-  getConfigFile,
-  flushConfigFile,
-  updateFiles,
-} = require("../../database/databaseFs");
-var path = require("path");
+// var { ipcRenderer } = require("electron");
+// var remote = require("electron").remote;
+// var win = remote.getCurrentWindow();
 
 interface file {
   filename: string;
@@ -27,19 +21,20 @@ interface file {
 
 let openExplorer = document.getElementById("openExplorer");
 openExplorer.addEventListener("click", function () {
-  shell.openPath(
-    path.join(
-      process.env.HOME || process.env.USERPROFILE,
-      "Downloads",
-      "Croquis"
-    )
-  );
+  // shell.openPath(
+  //   path.join(
+  //     process.env.HOME || process.env.USERPROFILE,
+  //     "Downloads",
+  //     "Croquis"
+  //   )
+  // );
+  (window as any).api.openfileExplorer();
 });
 
 let settingCloseButton = document.getElementById("closeButton");
 settingCloseButton.addEventListener("click", function () {
   // close
-  win.close();
+  window.close();
 });
 
 /** mode changing functions */
@@ -127,7 +122,7 @@ newInputTag.addEventListener("input", function () {});
 /** Tag Tab functions */
 
 /** flow start */
-const datas = updateFiles(getConfigFile());
+const datas = (window as any).api.getDataWithUpdate();
 let [tags, files] = [datas.tags, datas.files];
 
 console.log("hi this is const require");
@@ -135,9 +130,10 @@ console.log(datas);
 
 window.onbeforeunload = (e) => {
   // flush datas
-  flushConfigFile({ tags, files });
+  (window as any).api.flushConfigFile({ tags, files });
+
   console.log("Flushed.");
-  console.log(getConfigFile());
+  // console.log(getConfigFile());
   // ipcRenderer.send("openApp", "Croquis", 25);
   // e.returnValue = false;
 };
