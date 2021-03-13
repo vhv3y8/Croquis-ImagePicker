@@ -134,6 +134,7 @@ autoUpdater.on("update-downloaded", (info) => {
 });
 
 let percentArr = [90, 75, 50, 25, 0];
+let curr = percentArr.pop();
 autoUpdater.on("download-progress", (progressObj) => {
   // let log_message = "Download 속도: " + progressObj.bytesPerSecond;
   // log_message = log_message + " - Downloaded " + progressObj.percent + "%";
@@ -145,7 +146,6 @@ autoUpdater.on("download-progress", (progressObj) => {
   //   progressObj.total +
   //   ")";
   // sendStatusToWindow(log_message);
-  let curr = percentArr.pop();
   if (percentArr.length > 0 && progressObj.percent > curr) {
     new Notification({
       title: "Croquis Image Picker",
