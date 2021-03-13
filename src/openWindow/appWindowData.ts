@@ -20,7 +20,7 @@ const appWindowValueList: {
   },
   startingCroquis: {
     width: 380,
-    height: 560,
+    height: 565,
     resizable: false,
   },
   Croquis: {

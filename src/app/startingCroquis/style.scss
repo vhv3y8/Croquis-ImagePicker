@@ -18,7 +18,7 @@ p {
   display: block;
   position: relative;
   width: 380px;
-  height: 560px;
+  height: 565px;
   border-radius: 10px;
   background-color: black;
 }
@@ -27,7 +27,7 @@ p {
   display: block;
   position: relative;
   width: 380px;
-  height: 560px;
+  height: 565px;
   border-radius: 10px;
   background-color: #595959;
 }
@@ -38,7 +38,8 @@ p {
 
 hr {
   // background-color: #666666;
-  background-color: #f2f2f2;
+  // background-color: #f2f2f2;
+  background-color: #333333;
   height: 1px;
   border: 0;
 }
@@ -109,14 +110,22 @@ header {
   height: 480px;
 
   p {
-    color: #d9d9d9;
+    // color: #d9d9d9;
+    // color: #666666;
+    color: #333333;
+    // color: #1a1a1a;
   }
 
   .article {
     /* width: 90%; */
     width: 335px;
     margin-top: 10px;
-    background-color: #666666;
+    // background-color: #666666;
+    // background-color: #d9d9d9;
+    // background-color: #bfbfbf;
+    // background-color: #999999;
+    // background-color: #8c8c8c;
+    background-color: #808080;
     border-radius: 5px;
     padding: 7px;
 
@@ -126,7 +135,11 @@ header {
 
     .content {
       height: 90px;
-      background-color: #666666;
+      // background-color: #666666;
+      // background-color: #d9d9d9;
+      // background-color: #999999;
+      // background-color: #8c8c8c;
+      background-color: #808080;
 
       .item {
         font-family: "NanumGothicB", sans-serif;
@@ -144,11 +157,74 @@ header {
       div {
         span {
           width: 40%;
+          font-family: "NanumSquareB", sans-serif;
+          color: #333333;
         }
 
-        // .text {
-        //   width: ;
-        // }
+        .text {
+          // width: ;
+          padding-left: 0.3em;
+          margin: 0;
+          font-family: "NanumGothicR", sans-serif;
+          overflow: hidden;
+        }
+      }
+    }
+
+    #tags {
+      width: 100%;
+      // height: 85px;
+      height: 80px;
+      // background-color: rebeccapurple;
+    }
+
+    #tagMust {
+      // max-height: 42.5px;
+      max-height: 40px;
+
+      .containTxt {
+        padding-top: 5px;
+
+        .txtTitle {
+          // padding-left: 0.8em;
+          margin-left: 0.5em;
+        }
+      }
+    }
+
+    #tagAtleast {
+      // max-height: 42.5px;
+      max-height: 40px;
+
+      .containTxt {
+        padding-top: 5px;
+
+        .txtTitle {
+          // padding-left: 0.5em;
+          margin-left: 0.5em;
+        }
+      }
+    }
+
+    #fileCount {
+      // background-color: #595959;
+      height: 35px;
+      background-color: #737373;
+      border-radius: 4px;
+
+      div {
+        padding-left: 1.5em;
+        // padding-left: 0.8em;
+        padding-right: 0.8em;
+        // padding: auto 0.8em;
+
+        span {
+          // padding-left: 1em;
+          // color: #d9d9d9;
+          // font-size: 14px;
+          color: #cccccc;
+          font-size: 13px;
+        }
       }
     }
   }
@@ -156,23 +232,66 @@ header {
   #article2 {
     margin-top: 15px;
 
+    .content {
+      height: 100px;
+
+      .item {
+        // background-color: red;
+        p {
+          font-family: "NanumSquareB", sans-serif;
+          font-size: 15px;
+          // font-size: 13px;
+          // padding-left: 0.5em;
+          padding-left: 1.2em;
+        }
+
+        .title {
+          width: 30%;
+
+          p {
+            width: 100%;
+          }
+        }
+
+        .detail {
+          width: 70%;
+        }
+      }
+    }
+
     #timeSetting {
-      p {
-        width: 40%;
-        // margin: 0;
+      .detail {
+        select {
+          width: 54px;
+          margin-right: 2.5em;
+        }
       }
     }
 
     #goalSetting {
-      p {
-        width: 40%;
-        // margin: 0;
+      .detail {
+        height: 30px;
+
+        input {
+          width: 47px;
+          height: 19px;
+          margin-right: 2.5em;
+        }
       }
     }
 
     #autopassSetting {
+      margin-top: 10px;
+      background-color: #a6a6a6;
+      border-radius: 4px;
+
+      input {
+        margin-left: 1em;
+      }
+
       p {
-        width: 85%;
+        padding-left: 0.3em;
+        font-size: 13px;
       }
     }
   }
@@ -227,11 +346,31 @@ header {
     /* height: 100%; */
     height: 35px;
     margin: 0;
-    background-color: #666666;
+    // background-color: #666666;
+    // background-color: #bfbfbf;
+    background-color: #b3b3b3;
+    // background-color: #808080;
     border-radius: 4px;
-    font-size: 13px;
+    // font-size: 13px;
+    font-size: 14px;
+    font-family: "NanumSquareB", sans-serif;
     /* font-size: 13px; */
     /* f */
+    p {
+      // color: #bfbfbf;
+      // color: #666666;
+      color: #595959;
+    }
+
+    &:hover {
+      // background-color: #737373;
+      background-color: #999999;
+    }
+    &:active {
+      // background-color: #595959;
+      // background-color: #808080;
+      background-color: #737373;
+    }
   }
 
   .articleBar p {

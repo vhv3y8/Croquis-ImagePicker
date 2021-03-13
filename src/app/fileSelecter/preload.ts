@@ -29,7 +29,11 @@ contextBridge.exposeInMainWorld("api", {
   },
 
   getCroquisFolderPath: () => {
-    return croquisFolderPath;
+    if (croquisFolderPath.length > 40) {
+      return "..." + croquisFolderPath.slice(-37);
+    } else {
+      return croquisFolderPath;
+    }
   },
 
   getDataWithUpdate: () => {

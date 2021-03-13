@@ -93,30 +93,46 @@ header {
     .itemLayout {
       width: 97%;
       height: 7%;
-      background-color: green;
+      // background-color: green;
 
       .item {
         width: 100%;
         height: 100%;
-        background-color: rgb(0, 151, 151);
+        // background-color: rgb(0, 151, 151);
       }
     }
 
     #bodyLeft {
-      // width: 54%;
-      width: 60%;
+      width: 54%;
+      // width: 60%;
       height: 100%;
       padding-left: 1%;
       // background-color: red;
 
       #showFolder {
+        background-color: #808080;
+
+        div {
+          img {
+            margin-left: 10px;
+          }
+
+          p {
+            margin-left: 10px;
+            font-family: "NanumSquareB", sans-serif;
+          }
+        }
+
         button {
-          width: 100px;
+          // width: 100px;
+          width: 90px;
           height: 30px;
+          margin: auto 10px;
           background-color: white;
           border: none;
           border-radius: 3px;
-          font-size: 12px;
+          font-size: 12.5px;
+          font-family: "NanumSquareB", sans-serif;
         }
       }
 
@@ -133,11 +149,14 @@ header {
         .item {
           width: 100%;
           height: 6.5%;
-          background-color: red;
+          // background-color: red;
+          background-color: #a6a6a6;
 
           p {
+            margin-left: 0.8em;
             font-family: "NanumSquareRoundB", sans-serif;
-            font-size: 15px;
+            font-size: 13.5px;
+            color: #1a1a1a;
           }
         }
 
@@ -151,7 +170,8 @@ header {
         #imgListBody {
           width: 100%;
           height: 93.5%;
-          background-color: rgb(71, 71, 107);
+          // background-color: rgb(71, 71, 107);
+          background-color: #f2f2f2;
 
           overflow-y: scroll;
           // visibility: visible;
@@ -197,10 +217,10 @@ header {
     }
 
     #bodyRight {
-      // width: 45%;
-      width: 40%;
+      width: 45%;
+      // width: 40%;
       height: 100%;
-      background-color: rgb(71, 71, 107);
+      // background-color: rgb(71, 71, 107);
       max-width: 384px;
 
       #tagBoard {
@@ -319,12 +339,36 @@ header {
       #downBar {
         width: 100%;
         height: 10%;
+
+        .infoText {
+          margin: auto 1.5em;
+          font-family: "NanumGothicR", sans-serif;
+          font-size: 16px;
+          color: #d9d9d9;
+        }
       }
 
       #okButton {
         width: 40%;
         height: 100%;
-        background-color: orange;
+        // background-color: orange;
+        background-color: #328175;
+        border-radius: 5px;
+
+        &:hover {
+          background-color: #399385;
+        }
+        &:active {
+          background-color: #2b6e64;
+        }
+
+        p {
+          font-family: "NanumSquareRoundB", sans-serif;
+          font-size: 18px;
+          // color: #d9d9d9;
+          color: #163732;
+          // color: #333333;
+        }
       }
     }
   }

@@ -34,7 +34,7 @@ interface selectedFilesTags {
 
 document.querySelector(
   "#showFolder p"
-).innerHTML = `폴더: ${(window as any).api.getCroquisFolderPath()}`;
+).innerHTML = `${(window as any).api.getCroquisFolderPath()}`;
 
 /** Data */
 
