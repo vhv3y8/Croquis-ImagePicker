@@ -35,9 +35,7 @@ app.on("ready", () => {
   // console.log(app.app.getVersion());
 
   setTimeout(() => {
-    createWindow("initPage", 0, undefined, {
-      testing: "hi",
-    });
+    createWindow("initPage", 0, undefined);
 
     // initial file checking
     initialCheckCroquisfolder();
@@ -53,7 +51,7 @@ app.on("ready", () => {
     // }, 5000);
   }, 500);
 
-  console.log(screen.getPrimaryDisplay());
+  // console.log(screen.getPrimaryDisplay());
 
   // ipcMain.on(
   //   "fileSelecter-to-startingCroquis",
@@ -161,10 +159,11 @@ autoUpdater.on("download-progress", (progressObj) => {
       len: percentArr.length,
       bigThanCurr: progressObj.percent > curr,
     });
-  } else {
-    new Notification({
-      title: "plz",
-      body: "initPage is null",
-    });
   }
+  // else {
+  //   new Notification({
+  //     title: "plz",
+  //     body: "initPage is null",
+  //   });
+  // }
 });
