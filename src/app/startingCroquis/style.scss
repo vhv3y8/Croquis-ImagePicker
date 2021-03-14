@@ -123,9 +123,10 @@ header {
     // background-color: #666666;
     // background-color: #d9d9d9;
     // background-color: #bfbfbf;
-    // background-color: #999999;
+    background-color: #999999;
     // background-color: #8c8c8c;
-    background-color: #808080;
+    // background-color: #808080;
+    // background-color: #8c8c8c;
     border-radius: 5px;
     padding: 7px;
 
@@ -137,9 +138,10 @@ header {
       height: 90px;
       // background-color: #666666;
       // background-color: #d9d9d9;
-      // background-color: #999999;
+      background-color: #999999;
       // background-color: #8c8c8c;
-      background-color: #808080;
+      // background-color: #808080;
+      // background-color: #8c8c8c;
 
       .item {
         font-family: "NanumGothicB", sans-serif;
@@ -223,7 +225,7 @@ header {
           // color: #d9d9d9;
           // font-size: 14px;
           color: #cccccc;
-          font-size: 13px;
+          font-size: 14px;
         }
       }
     }
@@ -282,7 +284,8 @@ header {
 
     #autopassSetting {
       margin-top: 10px;
-      background-color: #a6a6a6;
+      // background-color: #a6a6a6;
+      background-color: #b3b3b3;
       border-radius: 4px;
 
       input {
@@ -348,7 +351,7 @@ header {
     margin: 0;
     // background-color: #666666;
     // background-color: #bfbfbf;
-    background-color: #b3b3b3;
+    background-color: #bfbfbf;
     // background-color: #808080;
     border-radius: 4px;
     // font-size: 13px;
@@ -359,12 +362,14 @@ header {
     p {
       // color: #bfbfbf;
       // color: #666666;
-      color: #595959;
+      // color: #595959;
+      color: #404040;
     }
 
     &:hover {
       // background-color: #737373;
-      background-color: #999999;
+      // background-color: #999999;
+      background-color: #b3b3b3;
     }
     &:active {
       // background-color: #595959;

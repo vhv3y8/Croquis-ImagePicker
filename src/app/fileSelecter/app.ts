@@ -182,6 +182,9 @@ function tagListItem(tagName: string, checked?: boolean): HTMLElement {
   let tagItem = document.createElement("div");
   tagItem.classList.add("tagItem");
   tagItem.dataset.name = tagName;
+  tagItem.classList.add("fl-cen-cen");
+
+  let cont = document.createElement("div");
 
   let inputElem = document.createElement("input");
   inputElem.setAttribute("type", "checkbox");
@@ -216,9 +219,14 @@ function createItemUI(data: file): HTMLElement {
   let elem: HTMLElement = document.createElement("div");
   elem.classList.add("imgItem");
   elem.dataset.address = data.address;
+  elem.classList.add("fl-cen-cen");
+
+  let cont = document.createElement("div");
+  cont.classList.add("cont");
 
   let checkboxDiv = document.createElement("div");
   checkboxDiv.classList.add("checkbox");
+  checkboxDiv.classList.add("fl-row-st");
   let checkbox = document.createElement("input");
   checkbox.setAttribute("type", "checkbox");
   checkbox.checked = false;
@@ -229,17 +237,18 @@ function createItemUI(data: file): HTMLElement {
   imgDiv.classList.add("fl-cen-cen");
   let img = document.createElement("img");
   img.src = data.address;
-  img.style.maxHeight = "130px";
-  img.style.maxWidth = "150px";
+  img.style.maxHeight = "120px";
+  img.style.maxWidth = "140px";
   imgDiv.appendChild(img);
 
   let tagsDiv = document.createElement("div");
   tagsDiv.classList.add("tags");
   tagsDiv.innerHTML = data.tags.join(", ");
 
-  elem.appendChild(checkboxDiv);
-  elem.appendChild(imgDiv);
-  elem.appendChild(tagsDiv);
+  cont.appendChild(checkboxDiv);
+  cont.appendChild(imgDiv);
+  cont.appendChild(tagsDiv);
+  elem.appendChild(cont);
 
   elem.addEventListener("click", function () {
     let check: HTMLInputElement = elem.querySelector(".checkbox input");

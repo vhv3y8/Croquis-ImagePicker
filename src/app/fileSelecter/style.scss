@@ -1,5 +1,39 @@
 @import "../../style/all.css";
 
+@mixin scrollbars(
+  $size,
+  $foreground-color,
+  $background-color: mix($foreground-color, white, 50%),
+  $hover-thumb,
+  $active-thumb
+) {
+  // For Google Chrome
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $foreground-color;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: $hover-thumb;
+  }
+  &::-webkit-scrollbar-thumb:active {
+    background: $active-thumb;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $background-color;
+  }
+
+  // For Internet Explorer
+  & {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+}
+
 html,
 body {
   margin: 0;
@@ -99,6 +133,14 @@ header {
         width: 100%;
         height: 100%;
         // background-color: rgb(0, 151, 151);
+
+        // img {
+        //   margin-left: 10px;
+        // }
+
+        // p {
+        //   margin-left: 10px;
+        // }
       }
     }
 
@@ -110,7 +152,8 @@ header {
       // background-color: red;
 
       #showFolder {
-        background-color: #808080;
+        // background-color: #808080;
+        background-color: #a6a6a6;
 
         div {
           img {
@@ -120,6 +163,7 @@ header {
           p {
             margin-left: 10px;
             font-family: "NanumSquareB", sans-serif;
+            font-size: 15px;
           }
         }
 
@@ -150,13 +194,15 @@ header {
           width: 100%;
           height: 6.5%;
           // background-color: red;
-          background-color: #a6a6a6;
+          // background-color: #a6a6a6;
+          background-color: #81b3fd;
 
           p {
             margin-left: 0.8em;
             font-family: "NanumSquareRoundB", sans-serif;
             font-size: 13.5px;
             color: #1a1a1a;
+            // color: #3685fc;
           }
         }
 
@@ -168,36 +214,69 @@ header {
         // }
 
         #imgListBody {
-          width: 100%;
+          width: calc(100% - 2px);
           height: 93.5%;
           // background-color: rgb(71, 71, 107);
-          background-color: #f2f2f2;
+          // background-color: #f2f2f2;
+          background-color: #d6d6d6;
+          padding-top: 1px;
+          padding-left: 2px;
 
-          overflow-y: scroll;
+          @include scrollbars(10px, #4d4d4d, #d9d9d9, #737373, #333333);
+          // overflow-y: scroll;
+          overflow: auto;
+
           // visibility: visible;
-
           .imgItem {
-            width: 179px;
+            // width: 179px;
+            width: 33.333%;
             height: 48%;
-            background-color: white;
-            border: 1px solid black;
+            // background-color: white;
+            // border: 1px solid black;
 
-            .checkbox {
-              width: 100%;
-              height: 12.5%;
-              background-color: red;
+            &._selected {
+              .cont {
+                background-color: #3685fc;
+                .tags {
+                  background-color: #81b3fd;
+                }
+              }
             }
 
-            .image {
-              width: 100%;
-              height: 65%;
-              background-color: green;
-            }
+            .cont {
+              width: 98%;
+              height: 98%;
+              border-radius: 3px;
+              // background-color: #bfbfbf;
+              // background-color: #8c8c8c;
+              background-color: #a6a6a6;
 
-            .tags {
-              width: 100%;
-              height: 22.5%;
-              background-color: aqua;
+              .checkbox {
+                width: 100%;
+                height: 12.5%;
+                // background-color: red;
+
+                input {
+                  margin-left: 3%;
+                }
+              }
+
+              .image {
+                width: 100%;
+                height: 65%;
+                // background-color: green;
+              }
+
+              .tags {
+                width: calc(100% - 8px);
+                height: calc(22.5% - 8px);
+                // background-color: aqua;
+                margin: 4px;
+                border-radius: 3px;
+                // background-color: #d9d9d9;
+                // background-color: #d6d6d6;
+                background-color: #bfbfbf;
+              }
             }
           }
         }
@@ -221,33 +300,76 @@ header {
       // width: 40%;
       height: 100%;
       // background-color: rgb(71, 71, 107);
-      max-width: 384px;
+      // max-width: 384px;
 
       #tagBoard {
         width: 100%;
-        height: 35%;
+        // height: 42%;
+        height: 46%;
+        // background-color: #d9d9d9;
+        background-color: #f2f2f2;
+        border-radius: 5px 5px 0 0;
 
-        #mustBoard {
+        #tagTitle {
           width: 100%;
-          height: 50%;
+          height: 15%;
+          background-color: #a6a6a6;
+          border-radius: 5px 5px 0 0;
+
+          img {
+            margin-left: 9px;
+          }
+
+          p {
+            margin-left: 5px;
+            font-family: "NanumSquareRoundB", sans-serif;
+            font-size: 15px;
+          }
         }
 
-        #atleastBoard {
-          width: 100%;
-          height: 50%;
+        #tagBoardCont {
+          height: auto;
+          margin-top: 5px;
+
+          #mustBoard {
+            width: 100%;
+            // height: 50%;
+          }
+
+          #atleastBoard {
+            width: 100%;
+            // height: 50%;
+
+            .title {
+              img {
+                margin-right: 3px;
+              }
+            }
+          }
         }
 
         .title {
           width: 100%;
-          height: 40%;
+          height: 40px;
           // background-color: orange;
+
+          img {
+            margin-left: 10px;
+          }
+
+          p {
+            margin-left: 7px;
+            font-family: "NanumSquareRoundB", sans-serif;
+            font-size: 16px;
+          }
         }
 
         .body {
+          // @include scrollbars(10px, black, white);
           width: 100%;
           height: 60%;
           // overflow-x: scroll;
-          overflow-x: scroll;
+          // overflow-x: scroll;
         }
         // overflow-y: auto;
 
@@ -276,19 +398,22 @@ header {
 
       #tagSearch {
         width: 100%;
-        height: 48%;
-        background-color: rgb(20, 28, 52);
+        // height: 48%;
+        height: 44%;
+        // background-color: rgb(20, 28, 52);
 
         #searchLayout {
-          width: 66%;
+          // width: 66%;
+          width: 80%;
           height: 85%;
-          margin: auto 2%;
+          // margin: auto 2%;
           background-color: white;
 
           #searchContent {
             height: 85%;
             // background-color: aqua;
             overflow-y: auto;
+            @include scrollbars(3px, black, white, black, black);
 
             .tagItem {
               width: 100%;
@@ -296,6 +421,41 @@ header {
               background-color: #d9d9d9;
               border-bottom: 1px solid black;
               font-size: 12px;
+            }
+
+            .groupItem {
+              width: calc(100% - 2px);
+              height: calc(15% - 2px);
+              // margin-bottom: 1px;
+              margin: 1px;
+
+              summary {
+                width: 100%;
+                height: 100%;
+                // background-color: #808080;
+                background-color: #999999;
+                border-radius: 3px;
+
+                &::-webkit-details-marker {
+                  display: none;
+                }
+              }
+
+              img {
+                margin: auto 8px;
+              }
+
+              .name {
+                // width: 80%;
+                width: calc(100% - 58px);
+                height: 80%;
+
+                p {
+                  // margin-left: 5px;
+                  font-size: 13px;
+                  font-family: "NanumSquareRoundB", sans-serif;
+                }
+              }
             }
           }
 
@@ -317,21 +477,41 @@ header {
         }
 
         #buttonLayout {
-          width: 28%;
+          // width: 28%;
+          width: 18%;
           height: 85%;
-          margin-right: 2%;
+          margin-left: 2%;
           // background-color: yellow;
 
           .addTagItem {
             width: 100%;
             height: 48%;
-            background-color: #f2f2f2;
+            // background-color: #f2f2f2;
+            background-color: #cccccc;
             border-radius: 5px;
           }
 
           #mustAddButton {
+            background-color: #2d8659;
+
+            &:hover {
+              background-color: #339966;
+            }
+            &:active {
+              background-color: #26734d;
+            }
           }
           #atleastAddButton {
+            background-color: #ff4d4d;
+
+            &:hover {
+              background-color: #ff6666;
+            }
+            &:active {
+              // background-color: #ff3333;
+              // background-color: #ff0000;
+              background-color: #cc0000;
+            }
           }
         }
       }
@@ -352,7 +532,8 @@ header {
         width: 40%;
         height: 100%;
         // background-color: orange;
-        background-color: #328175;
+        // background-color: #328175;
+        background-color: #40a596;
         border-radius: 5px;
 
         &:hover {
