@@ -51,7 +51,7 @@ const getAppUrl: {
 };
 
 function getPreloadPath(appName: appName): string {
-  return path.join(process.cwd(), "dist", "app", appName, "preload.js");
+  return path.join(__dirname, "..", "app", appName, "preload.js");
 }
 // : {
 //   [name in appName]: string;

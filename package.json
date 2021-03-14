@@ -1,6 +1,6 @@
 {
   "name": "Croquis-ImagePicker",
-  "version": "0.1.23",
+  "version": "0.1.24",
   "description": "app for picking random image",
   "main": "dist/main.js",
   "private": "true",
@@ -19,13 +19,6 @@
       "assets/",
       "node_modules/",
       "package.json"
-    ],
-    "extraResources": [
-      "dist/app/initPage/preload.js",
-      "dist/app/startingCroquis/preload.js",
-      "dist/app/fileSelecter/preload.js",
-      "dist/app/filetagSetting/preload.js",
-      "dist/app/Croquis/preload.js"
     ]
   },
   "repository": {
