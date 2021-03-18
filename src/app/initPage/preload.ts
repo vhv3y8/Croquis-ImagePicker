@@ -7,7 +7,7 @@ contextBridge.exposeInMainWorld("api", {
       appName == "initPage" ||
       appName == "Croquis" ||
       appName == "fileSelecter" ||
-      appName == "fileSetting" ||
+      appName == "filetagSetting" ||
       appName == "startingCroquis"
     ) {
       ipcRenderer.send("openApp", appName, delay);

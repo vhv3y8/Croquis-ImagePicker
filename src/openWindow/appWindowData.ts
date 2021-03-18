@@ -5,6 +5,8 @@ import { appName } from "../types/main";
 interface appWindowValue {
   width: number;
   height: number;
+  minWidth?: number;
+  minHeight?: number;
   resizable?: boolean;
   parent?: appName;
   modal?: boolean;
@@ -27,6 +29,7 @@ const appWindowValueList: {
     width: screen.getPrimaryDisplay().workAreaSize.width * 0.3 ?? 800,
     height: screen.getPrimaryDisplay().workAreaSize.height ?? 900,
     resizable: true,
+    minWidth: 520,
   },
   fileSelecter: {
     width: 1000,
@@ -34,7 +37,7 @@ const appWindowValueList: {
     parent: "startingCroquis",
     modal: true,
   },
-  fileSetting: {
+  filetagSetting: {
     width: 600,
     height: 850,
   },
@@ -47,7 +50,7 @@ const getAppUrl: {
   startingCroquis: "../app/startingCroquis/index.html",
   Croquis: "../app/Croquis/index.html",
   fileSelecter: "../app/fileSelecter/index.html",
-  fileSetting: "../app/filetagSetting/index.html",
+  filetagSetting: "../app/filetagSetting/index.html",
 };
 
 function getPreloadPath(appName: appName): string {

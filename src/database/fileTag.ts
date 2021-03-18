@@ -10,13 +10,18 @@ interface file {
   address: string;
 }
 
+interface tagObj {
+  else: string[];
+  [group: string]: string[];
+}
+
 // interface tagDB {
 //   [tagNum: number]: string;
 // }
 
 interface dbFile {
   files: file[];
-  tags: string[];
+  tags: tagObj;
 }
 
 // let a: tagDB = {

@@ -26,7 +26,9 @@ function initialCheckConfigFile(): void {
   if (!fs.existsSync(configFilePath)) {
     console.log("file does not exist. initializing config file.");
     const initialConfig = {
-      tags: [],
+      tags: {
+        else: [],
+      },
       files: [],
     };
     let configContent: string = JSON.stringify(initialConfig, null, 2);

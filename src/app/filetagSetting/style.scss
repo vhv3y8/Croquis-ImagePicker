@@ -1,5 +1,39 @@
 @import "../../style/all.css";
 
+@mixin scrollbars(
+  $size,
+  $foreground-color,
+  $background-color: mix($foreground-color, white, 50%),
+  $hover-thumb,
+  $active-thumb
+) {
+  // For Google Chrome
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $foreground-color;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: $hover-thumb;
+  }
+  &::-webkit-scrollbar-thumb:active {
+    background: $active-thumb;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $background-color;
+  }
+
+  // For Internet Explorer
+  & {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+}
+
 html,
 body {
   margin: 0;
@@ -87,8 +121,56 @@ header {
 
   .tabBar {
     width: 100%;
-    height: 55px;
-    background-color: aqua;
+    height: 45px;
+    // background-color: aqua;
+    margin-bottom: 10px;
+    background-color: #d9d9d9;
+
+    .tab {
+      width: 20%;
+      height: 100%;
+      background-color: #d9d9d9;
+
+      .txtCont {
+        width: 100%;
+        height: calc(100% - 6px);
+
+        img {
+          margin: 5px;
+        }
+
+        p {
+          font-family: "NanumSquareRoundB", sans-serif;
+          font-size: 16px;
+          margin-top: 5px;
+        }
+      }
+
+      hr {
+        margin: 0;
+        border: 3px solid green;
+      }
+    }
+
+    #modeEndContainer {
+      width: 60%;
+      height: 100%;
+
+      #modeEndButton {
+        min-width: max-content;
+        height: 85%;
+        background-color: #009999;
+        border-radius: 5px;
+        margin: auto 5px;
+        display: flex;
+
+        p {
+          margin: auto 15px;
+          font-family: "NanumSquareRoundB", sans-serif;
+          font-size: 15px;
+        }
+      }
+    }
   }
 
   .content {
@@ -104,7 +186,7 @@ header {
 
       .item {
         width: 100%;
-        height: 8%;
+        height: 9%;
         // background-color: white;
       }
     }
@@ -113,8 +195,11 @@ header {
       .submitButton {
         height: 85%;
         width: 150px;
-        background-color: black;
+        background-color: #999999;
         border-radius: 8px;
+
+        font-family: "NanumSquareRoundB", sans-serif;
+        font-size: 17px;
       }
 
       #fileContentMain {
@@ -156,38 +241,64 @@ header {
 
         #newFileView {
           width: 100%;
-          height: 50%;
-          background-color: rgb(71, 71, 107);
+          height: 65%;
+          // background-color: rgb(71, 71, 107);
 
           .side {
             width: 15%;
             height: 100%;
-            background-color: black;
+            // background-color: black;
+            // background-color: #d9d9d9;
+            // background-color: white;
+            background-color: #666666;
             margin: 0;
           }
 
           #currImgView {
             width: 70%;
             height: 100%;
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.95);
             margin: 0;
 
-            img {
-              max-width: 90%;
-              max-height: 90%;
-              // background-color: #737373;
+            .imgCont {
+              width: 100%;
+              height: 70%;
+
+              img {
+                max-width: 90%;
+                max-height: 90%;
+                background-color: #737373;
+              }
+            }
+
+            .tagCont {
+              width: 100%;
+              height: 30%;
+              background-color: #d9d9d9;
+
+              .tagBoard {
+                width: 95%;
+                height: 86%;
+                // background-color: red;
+
+                overflow-y: scroll;
+                @include scrollbars(3px, #666666, #bfbfbf, #666666, #666666);
+                // background-color: #404040;
+                // border-radius: 8px;
+              }
             }
           }
         }
 
         #tagListView {
           width: 100%;
-          height: 42%;
-          background-color: #737373;
+          height: 27%;
+          // background-color: #737373;
 
           .board {
             width: 100%;
             height: 45%;
+            // height: 100%;
             background-color: red;
 
             .tagBoard {
@@ -208,30 +319,40 @@ header {
 
           .tagSearchList {
             width: 100%;
-            height: 55%;
-            background-color: white;
+            // height: 55%;
+            height: 100%;
+            // background-color: white;
 
             .tagSearchView {
               width: 75%;
               height: 100%;
 
-              #tagList {
-                width: 100%;
-                height: 80%;
-                background-color: #737373;
-              }
+              .inner {
+                // width: 100%;
+                width: 98%;
+                height: 90%;
+                // margin-top: 10%;
 
-              #tagInput {
-                width: 100%;
-                height: 20%;
+                #tagList {
+                  width: 100%;
+                  height: 80%;
+                  // background-color: #737373;
+                  background-color: #d9d9d9;
+                }
 
-                input {
-                  width: 90%;
-                  height: 100%;
-                  border: none;
-                  outline: none;
-                  padding: 0;
-                  margin: 0;
+                #tagInput {
+                  width: 100%;
+                  height: 20%;
+                  background-color: white;
+
+                  input {
+                    width: 90%;
+                    height: 100%;
+                    border: none;
+                    outline: none;
+                    padding: 0;
+                    margin: 0;
+                  }
                 }
               }
             }
@@ -239,13 +360,18 @@ header {
             .buttons {
               width: 25%;
               height: 100%;
-              background-color: white;
+              // background-color: white;
 
-              .tagAddButton {
-                width: 90%;
-                height: 48%;
-                background-color: gray;
-                border-radius: 3px;
+              .buttonInner {
+                width: 95%;
+                height: 90%;
+
+                .tagAddButton {
+                  width: 100%;
+                  height: 48%;
+                  background-color: gray;
+                  border-radius: 3px;
+                }
               }
             }
           }

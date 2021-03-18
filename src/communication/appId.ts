@@ -9,7 +9,7 @@ let appIds: appIdSaver = {
   startingCroquis: undefined,
   Croquis: undefined,
   fileSelecter: undefined,
-  fileSetting: undefined,
+  filetagSetting: undefined,
 };
 
 function setId(name: appName, num: number) {

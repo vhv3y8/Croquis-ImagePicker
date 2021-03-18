@@ -7,6 +7,8 @@
 
 /** initialize types */
 
+// export {};
+
 interface file {
   filename: string;
   tags: string[];
@@ -17,10 +19,10 @@ interface file {
 //   [tagNum: number]: string;
 // }
 
-interface dbFile {
-  files: file[];
-  tags: string[];
-}
+// interface dbFile {
+//   files: file[];
+//   tags: string[];
+// }
 
 interface selectedFilesTags {
   filePaths: string[];
@@ -31,10 +33,6 @@ interface selectedFilesTags {
 }
 
 /** flow start */
-
-document.querySelector(
-  "#showFolder p"
-).innerHTML = `${(window as any).api.getCroquisFolderPath()}`;
 
 /** Data */
 
@@ -55,78 +53,19 @@ console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 console.log(configFileData);
 console.log(tagList);
 
-configFileData.tags.forEach((tag) => {
-  document.getElementById("searchContent").appendChild(tagListItem(tag));
-  // console.log(tag);
-});
-
 // configFileData.tags.atleast.forEach((tag) => {
 //   document.getElementById("searchContent").appendChild(tagListItem(tag));
 // });
-/** define Functions */
-
-function getCount(): number {
-  return parseInt(document.querySelector("span.count").innerHTML);
-}
-
-function setCount(num: number) {
-  document
-    .querySelectorAll("span.count")
-    .forEach((elem) => (elem.innerHTML = num.toString()));
-}
-
-/** */
-
-function tagUI(tagname: string, where: "must" | "atleast") {
-  let tagUiElem = document.createElement("div");
-  tagUiElem.classList.add("tagItem");
-  tagUiElem.classList.add("fl-row-st");
-
-  let tagText = document.createElement("p");
-  tagText.innerHTML = tagname;
-
-  let xButton = document.createElement("div");
-  xButton.classList.add("xButton");
-  xButton.innerHTML = "X";
-
-  tagUiElem.appendChild(tagText);
-  tagUiElem.appendChild(xButton);
-
-  tagUiElem.addEventListener("click", function () {
-    removeTag(tagname, where);
-    tagUiElem.remove();
-    applySelectedTags();
-  });
-
-  return tagUiElem;
-}
-
-function selectTag(tagname: string, where: "must" | "atleast"): boolean {
-  if (selectedDataJson.tags[where].includes(tagname)) {
-    return false;
-  } else {
-    selectedDataJson.tags[where].push(tagname);
-    return true;
-  }
-}
-
-function removeTag(tagname: string, where: "must" | "atleast") {
-  selectedDataJson.tags[where] = selectedDataJson.tags[where].filter(
-    (tag) => tag !== tagname
-  );
-}
-
-/**  */
-
-/** */
 
 function getSelected() {
+  /** 선택된 파일 UI들을 리턴 */
   let toreturn = document.querySelectorAll(".imgItem._selected");
   console.log(toreturn);
   return toreturn;
 }
 
 function applySelectedTags(): void {
+  /** 앱데이터의 태그 데이터에 기반하여 적용 */
   // remove all selected
   getSelected().forEach((elem) => {
     elem.classList.remove("_selected");
@@ -176,46 +115,150 @@ function applySelectedTags(): void {
   setCount(getSelected().length);
 }
 
-/** construct UI */
+///////////////////////////////////////////////////////////////////////////////
 
-function tagListItem(tagName: string, checked?: boolean): HTMLElement {
-  let tagItem = document.createElement("div");
-  tagItem.classList.add("tagItem");
-  tagItem.dataset.name = tagName;
-  tagItem.classList.add("fl-cen-cen");
+/*
+ *
+ * Data
+ *
+ */
 
-  let cont = document.createElement("div");
+/** GlobalData - global */
 
-  let inputElem = document.createElement("input");
-  inputElem.setAttribute("type", "checkbox");
-  if (checked) {
-    inputElem.checked = true;
-    tagItem.classList.add("_selected");
-  } else {
-    inputElem.checked = false;
-  }
+var GlobalData = {
+  file: undefined,
+  tagObj: undefined,
+  loadFile: () => {
+    GlobalData.file = (window as any).api.getDataWithUpdate();
+    GlobalData.tagObj = GlobalData.file.tags;
+  },
+};
 
-  let spanElem = document.createElement("span");
-  spanElem.innerHTML = tagName;
+/** AppData - local */
 
-  tagItem.appendChild(inputElem);
-  tagItem.appendChild(spanElem);
+let RendererData = {
+  selectedTags: undefined,
+  addHaveTags: (
+    ...tags: {
+      name: string;
+      group: string;
+    }[]
+  ) => {
+    tags.forEach((tag) => {
+      RendererData.selectedTags[tag.group].have.push(tag.name);
+    });
+    console.log("addHaveTags: now RendererData.selectedTags is");
+    console.log(RendererData.selectedTags);
+  },
+  addNotHaveTags: (
+    ...tags: {
+      name: string;
+      group: string;
+    }[]
+  ) => {
+    tags.forEach((tag) => {
+      RendererData.selectedTags[tag.group].notHave.push(tag.name);
+    });
+    console.log("addNotHaveTags: now RendererData.selectedTags is");
+    console.log(RendererData.selectedTags);
+  },
+  removeTags: (
+    ...tags: {
+      name: string;
+      group: string;
+    }[]
+  ) => {
+    tags.forEach((tag) => {
+      if (RendererData.selectedTags[tag.group].have.includes(tag.name)) {
+        RendererData.selectedTags[tag.group].have = RendererData.selectedTags[
+          tag.group
+        ].have.filter((x) => x !== tag.name);
+      } else {
+        RendererData.selectedTags[
+          tag.group
+        ].notHave = RendererData.selectedTags[tag.group].have.filter(
+          (x) => x !== tag.name
+        );
+      }
+    });
+    console.log("removeTags: now RendererData.selectedTags is");
+    console.log(RendererData.selectedTags);
+  },
 
-  tagItem.addEventListener("click", function () {
-    let check = tagItem.querySelector("input");
-    if (check.checked) {
-      check.checked = false;
-      tagItem.classList.remove("_selected");
-    } else {
-      check.checked = true;
-      tagItem.classList.add("_selected");
-    }
-  });
+  selectedImgCount: 0,
+  imgCountPlus: () => {
+    RendererData.selectedImgCount++;
+  },
+  imgCountMinus: () => {
+    RendererData.selectedImgCount--;
+  },
+  setImgCount: (num: number) => {
+    RendererData.selectedImgCount = num;
+  },
+  getSelectedImgs: () => {},
 
-  return tagItem;
+  init: () => {
+    /** Copy keys of tagObj, create key have, notHave to each */
+    RendererData.selectedTags = {};
+    Object.keys(GlobalData.tagObj).forEach(
+      (key) => (RendererData.selectedTags[key] = { have: [], notHave: [] })
+    );
+  },
+};
+
+function getCount(): number {
+  /** 선택된 파일 개수 */
+  return parseInt(document.querySelector("span.count").innerHTML);
 }
 
-function createItemUI(data: file): HTMLElement {
+function setCount(num: number) {
+  /** 선택된 파일 개수 출력 */
+  document
+    .querySelectorAll("span.count")
+    .forEach((elem) => (elem.innerHTML = num.toString()));
+}
+
+////
+
+function selectTag(tagname: string, where: "must" | "atleast"): boolean {
+  /** 선택된 태그를 앱 데이터에 추가 */
+  if (selectedDataJson.tags[where].includes(tagname)) {
+    return false;
+  } else {
+    selectedDataJson.tags[where].push(tagname);
+    return true;
+  }
+}
+
+function removeTag(tagname: string, where: "must" | "atleast") {
+  /** 선택된 태그 데이터를 앱데이터에서 삭제 */
+  selectedDataJson.tags[where] = selectedDataJson.tags[where].filter(
+    (tag) => tag !== tagname
+  );
+}
+
+/*
+ *
+ * UI - create-delete-modify function for each element
+ *
+ */
+
+/** folder name and open */
+
+document.querySelector(
+  "#showFolder p"
+).innerHTML = `${(window as any).api.getCroquisFolderPath()}`;
+
+/** imgList and imgItem */
+
+let imgBody = document.getElementById("imgListBody");
+configFileData.files.forEach((file) => {
+  /** CroquisData.json에서 불러온 데이터를 기반으로 이미지 리스트에 이미지 아이템 모두 추가 */
+  imgBody.appendChild(createImgItem(file));
+});
+
+function createImgItem(data: file): HTMLElement {
+  /** 사진 리스트에 추가될 아이템 UI 생성 */
   let elem: HTMLElement = document.createElement("div");
   elem.classList.add("imgItem");
   elem.dataset.address = data.address;
@@ -258,34 +301,114 @@ function createItemUI(data: file): HTMLElement {
     if (check.checked === false) {
       check.checked = true;
       elem.classList.add("_selected");
-      setCount(getCount() + 1);
+      RendererData.imgCountPlus();
     } else {
       check.checked = false;
       elem.classList.remove("_selected");
-      setCount(getCount() - 1);
+      RendererData.imgCountMinus();
     }
   });
   return elem;
 }
 
-// add UI element
-let imgBody = document.getElementById("imgListBody");
-configFileData.files.forEach((file) => {
-  imgBody.appendChild(createItemUI(file));
+/** tagBoard and tagBoardItem */
+
+function createTagBoardItem(tagname: string, where: "must" | "atleast") {
+  /** 태그 보드에 태그 UI 만들어서 추가 */
+  let tagUiElem = document.createElement("div");
+  tagUiElem.classList.add("tagItem");
+  tagUiElem.classList.add("fl-row-st");
+
+  let tagText = document.createElement("p");
+  tagText.innerHTML = tagname;
+
+  let xButton = document.createElement("div");
+  xButton.classList.add("xButton");
+  xButton.innerHTML = "X";
+
+  tagUiElem.appendChild(tagText);
+  tagUiElem.appendChild(xButton);
+
+  tagUiElem.addEventListener("click", function () {
+    removeTag(tagname, where);
+    tagUiElem.remove();
+    applySelectedTags();
+  });
+
+  return tagUiElem;
+}
+
+/** tagSelectList and tagSelectItem */
+
+configFileData.tags.forEach((tag) => {
+  /** 태그 리스트에 모든 태그 추가 */
+  document.getElementById("searchContent").appendChild(tagListItem(tag));
+  // console.log(tag);
 });
 
-/** */
+function tagListItem(tagName: string, checked?: boolean): HTMLElement {
+  /** 태그 리스트에 추가될 태그 아이템 생성 */
+  let tagItem = document.createElement("div");
+  tagItem.classList.add("tagItem");
+  tagItem.dataset.name = tagName;
+  tagItem.classList.add("fl-cen-cen");
 
-// function selectOneFile() {}
-// function unselectOneFile() {}
+  let cont = document.createElement("div");
 
-// function addTag() {}
-// function deleteTag() {}
+  let inputElem = document.createElement("input");
+  inputElem.setAttribute("type", "checkbox");
+  if (checked) {
+    inputElem.checked = true;
+    tagItem.classList.add("_selected");
+  } else {
+    inputElem.checked = false;
+  }
 
-/** */
+  let spanElem = document.createElement("span");
+  spanElem.innerHTML = tagName;
 
-let mustAddButton = document.getElementById("mustAddButton");
-mustAddButton.addEventListener("click", function () {
+  tagItem.appendChild(inputElem);
+  tagItem.appendChild(spanElem);
+
+  tagItem.addEventListener("click", function () {
+    let check = tagItem.querySelector("input");
+    if (check.checked) {
+      check.checked = false;
+      tagItem.classList.remove("_selected");
+    } else {
+      check.checked = true;
+      tagItem.classList.add("_selected");
+    }
+  });
+
+  return tagItem;
+}
+
+/*
+ *
+ * Initial
+ *
+ */
+
+GlobalData.loadFile();
+RendererData.init();
+
+/*
+ *
+ * Event Listeners
+ *
+ */
+
+/** window event listeners */
+
+window.onbeforeunload = (e) => {
+  (window as any).api.flushConfigFile(configFileData);
+};
+
+/** element event listeners */
+
+let haveButton = document.getElementById("haveButton");
+haveButton.addEventListener("click", function () {
   let collect = Array.from(document.querySelectorAll(".tagItem._selected")).map(
     (elem: HTMLElement) => elem.dataset.name
   );
@@ -296,7 +419,7 @@ mustAddButton.addEventListener("click", function () {
     if (selectTag(tag, "must")) {
       document
         .querySelector("#mustBoard .body")
-        .appendChild(tagUI(tag, "must"));
+        .appendChild(createTagBoardItem(tag, "must"));
     }
   });
   Array.from(document.querySelectorAll(".tagItem._selected")).forEach(
@@ -311,8 +434,8 @@ mustAddButton.addEventListener("click", function () {
   applySelectedTags();
 });
 
-let atleastAddButton = document.getElementById("atleastAddButton");
-atleastAddButton.addEventListener("click", function () {
+let notHaveButton = document.getElementById("notHaveButton");
+notHaveButton.addEventListener("click", function () {
   let collect = Array.from(document.querySelectorAll(".tagItem._selected")).map(
     (elem: HTMLElement) => elem.dataset.name
   );
@@ -323,7 +446,7 @@ atleastAddButton.addEventListener("click", function () {
     if (selectTag(tag, "atleast")) {
       document
         .querySelector("#atleastBoard .body")
-        .appendChild(tagUI(tag, "atleast"));
+        .appendChild(createTagBoardItem(tag, "atleast"));
     }
   });
   Array.from(document.querySelectorAll(".tagItem._selected")).forEach(
@@ -337,8 +460,6 @@ atleastAddButton.addEventListener("click", function () {
   // selectedDataJson.tags.must.push(collect);
   applySelectedTags();
 });
-
-/** */
 
 let tagInputText: HTMLInputElement = document.querySelector("#inputDiv input");
 tagInputText.addEventListener("input", function () {
@@ -360,8 +481,6 @@ tagInputText.addEventListener("input", function () {
       searchContent.appendChild(tagListItem(tag));
     });
 });
-
-/** */
 
 let hideButton = document.getElementById("hideButton");
 hideButton.addEventListener("click", function () {
@@ -399,10 +518,3 @@ let folderExplorerButton = document.getElementById("openExplorer");
 folderExplorerButton.addEventListener("click", function () {
   (window as any).api.openfileExplorer();
 });
-
-window.onbeforeunload = (e) => {
-  // flushConfigFile(configFileData);
-  (window as any).api.flushConfigFile(configFileData);
-
-  // e.returnValue = false;
-};

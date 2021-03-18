@@ -305,14 +305,15 @@ header {
       #tagBoard {
         width: 100%;
         // height: 42%;
-        height: 46%;
+        // height: 46%;
+        height: 35%;
         // background-color: #d9d9d9;
         background-color: #f2f2f2;
         border-radius: 5px 5px 0 0;
 
         #tagTitle {
           width: 100%;
-          height: 15%;
+          height: 20%;
           background-color: #a6a6a6;
           border-radius: 5px 5px 0 0;
 
@@ -399,43 +400,52 @@ header {
       #tagSearch {
         width: 100%;
         // height: 48%;
-        height: 44%;
+        // height: 44%;
+        height: 55%;
         // background-color: rgb(20, 28, 52);
 
         #searchLayout {
           // width: 66%;
           width: 80%;
-          height: 85%;
+          height: 95%;
           // margin: auto 2%;
           background-color: white;
 
           #searchContent {
-            height: 85%;
+            height: 88%;
             // background-color: aqua;
-            overflow-y: auto;
-            @include scrollbars(3px, black, white, black, black);
+            // overflow-y: auto;
+            overflow-y: scroll;
+            @include scrollbars(3px, #666666, #d9d9d9, #666666, #666666);
 
             .tagItem {
               width: 100%;
               height: 12.5%;
               background-color: #d9d9d9;
-              border-bottom: 1px solid black;
+              // border-bottom: 1px solid black;
               font-size: 12px;
             }
 
             .groupItem {
               width: calc(100% - 2px);
-              height: calc(15% - 2px);
+              // height: calc(15% - 2px);
+              // height: 50px;
+              // min-height: calc(15% - 2px);
+              height: auto;
               // margin-bottom: 1px;
               margin: 1px;
 
               summary {
                 width: 100%;
-                height: 100%;
+                height: 35px;
+                // height: 100%;
+                // height: 30px;
+                // min-height: 100%;
+
                 // background-color: #808080;
                 background-color: #999999;
                 border-radius: 3px;
-
+                outline: none;
                 &::-webkit-details-marker {
                   display: none;
                 }
@@ -456,12 +466,34 @@ header {
                   font-family: "NanumSquareRoundB", sans-serif;
                 }
               }
+
+              .tagItem {
+                width: 98%;
+                height: 33px;
+                margin: 3px auto;
+                // background-color: rebeccapurple;
+                background-color: #d9d9d9;
+
+                input {
+                  margin-left: 10px;
+                }
+
+                .tagName {
+                  margin-left: 6px;
+                  font-family: "NanumSquareRoundB", sans-serif;
+                  font-size: 12px;
+
+                  .itemCount {
+                    font-size: 11px;
+                  }
+                }
+              }
             }
           }
 
           #inputDiv {
             width: 100%;
-            height: 15%;
+            height: 12%;
             border-top: 1px solid black;
             // background-color: #999999;
 
@@ -479,7 +511,7 @@ header {
         #buttonLayout {
           // width: 28%;
           width: 18%;
-          height: 85%;
+          height: 95%;
           margin-left: 2%;
           // background-color: yellow;
 
@@ -491,7 +523,7 @@ header {
             border-radius: 5px;
           }
 
-          #mustAddButton {
+          #haveButton {
             background-color: #2d8659;
 
             &:hover {
@@ -501,7 +533,8 @@ header {
               background-color: #26734d;
             }
           }
-          #atleastAddButton {
+
+          #notHaveButton {
             background-color: #ff4d4d;
 
             &:hover {

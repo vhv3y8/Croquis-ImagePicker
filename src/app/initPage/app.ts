@@ -5,7 +5,7 @@
 let addFileButton = document.getElementById("addFileButton");
 addFileButton.addEventListener("click", function () {
   // (window as any).api.openApp("fileSetting", 50);
-  (window as any).api.openApp("fileSetting", 50);
+  (window as any).api.openApp("filetagSetting", 50);
   window.close();
 });
 

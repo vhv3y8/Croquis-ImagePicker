@@ -3,6 +3,6 @@ type appName =
   | "startingCroquis"
   | "Croquis"
   | "fileSelecter"
-  | "fileSetting";
+  | "filetagSetting";
 
 export { appName };

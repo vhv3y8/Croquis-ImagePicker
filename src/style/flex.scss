@@ -151,3 +151,10 @@
   justify-content: space-around;
   align-items: center;
 }
+
+.fl-col-rev-end {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-start;
+  align-items: flex-end;
+}

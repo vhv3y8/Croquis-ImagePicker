@@ -20,12 +20,26 @@
       </header>
 
       <div class="body fl-col-st">
-        <div class="tabBar">
+        <div class="tabBar fl-row-st">
           <div id="fileTab" class="tab">
-            <p>파일</p>
+            <div class="txtCont fl-cen-cen">
+              <p>파일</p>
+            </div>
+            <hr />
           </div>
           <div id="tagTab" class="tab">
-            <p>태그</p>
+            <div class="txtCont fl-cen-cen">
+              <p>태그</p>
+            </div>
+          </div>
+          <div id="modeEndContainer" class="fl-row-rev-st">
+            <div
+              id="modeEndButton"
+              class="_visible fl-cen-cen"
+              data-mode="newFile"
+            >
+              <p>새 파일 모드 종료</p>
+            </div>
           </div>
         </div>
 
@@ -55,14 +69,28 @@
             <!--  -->
             <div id="newFileTagMode" class="_visible">
               <div id="newFileView" class="fl-row-st">
-                <div class="side"></div>
-                <div id="currImgView" class="fl-cen-cen">
-                  <img src="" alt="" />
+                <div class="side fl-cen-cen" style="border-radius: 7px 0 0 7px">
+                  <img src="../../../assets/icons/arrowLeft.svg" alt="" />
                 </div>
-                <div class="side"></div>
+                <div id="currImgView" class="fl-col-st">
+                  <div class="imgCont fl-cen-cen">
+                    <img
+                      src="file:///home/vhv3y8/Downloads/Croquis/_.jpeg"
+                      alt=""
+                    />
+                  </div>
+                  <div class="tagCont fl-cen-cen">
+                    <!-- <div class="tagBoard fl-cen-cen"> -->
+                    <div class="tagBoard"></div>
+                    <!-- </div> -->
+                  </div>
+                </div>
+                <div class="side fl-cen-cen" style="border-radius: 0 7px 7px 0">
+                  <img src="../../../assets/icons/arrowRight.svg" alt="" />
+                </div>
               </div>
               <div id="tagListView">
-                <div class="board fl-row-st">
+                <!-- <div class="board fl-row-st">
                   <div id="mustBoard" class="tagBoard">
                     <div class="mustleast">
                       <p>반드시 포함</p>
@@ -73,22 +101,26 @@
                       <p>적어도 하나 포함</p>
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <div class="tagSearchList fl-row-st">
-                  <div class="tagSearchView">
-                    <div id="tagList"></div>
-                    <div id="tagInput" class="fl-cen-cen">
-                      <input type="text" placeholder="태그 입력" />
+                  <div class="tagSearchView fl-col-rev-st">
+                    <div class="inner">
+                      <div id="tagList"></div>
+                      <div id="tagInput" class="fl-cen-cen">
+                        <input type="text" placeholder="태그 입력" />
+                      </div>
                     </div>
                   </div>
-                  <div class="buttons fl-col-bet">
-                    <div id="mustAddButton" class="tagAddButton"></div>
-                    <div id="atleastAddbutton" class="tagAddButton"></div>
+                  <div class="buttons fl-col-rev-end">
+                    <div class="buttonInner fl-col-bet">
+                      <div id="mustAddButton" class="tagAddButton"></div>
+                      <div id="atleastAddbutton" class="tagAddButton"></div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div id="footer" class="item fl-row-rev-st">
-                <div class="submitButton">확인</div>
+              <div id="footer" class="item fl-col-rev-end">
+                <div class="submitButton fl-cen-cen">확인</div>
               </div>
             </div>
             <!--  -->

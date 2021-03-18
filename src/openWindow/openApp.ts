@@ -23,6 +23,12 @@ function createWindow(
     let windowParams = {
       width: appWindowValueList[appName].width ?? 800,
       height: appWindowValueList[appName].height ?? 600,
+      minWidth:
+        appWindowValueList[appName].minWidth ??
+        appWindowValueList[appName].width,
+      minHeight:
+        appWindowValueList[appName].minHeight ??
+        appWindowValueList[appName].height,
       resizable: appWindowValueList[appName].resizable ?? false,
       parent: undefined,
       modal: appWindowValueList[appName].modal ?? false,
