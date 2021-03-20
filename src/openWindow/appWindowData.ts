@@ -40,6 +40,8 @@ const appWindowValueList: {
   filetagSetting: {
     width: 600,
     height: 850,
+    // width: 400,
+    // height: 600,
   },
 };
 

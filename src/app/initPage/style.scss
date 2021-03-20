@@ -7,9 +7,11 @@ body {
 
 .main {
   display: block;
-  width: 350px;
+  // width: 350px;
+  // height: 360px;
+  width: 250px;
+  height: 260px;
   // height: 300px;
-  height: 360px;
   // border-radius: 10px;
   border-radius: 8px;
   background-color: #595959;
@@ -17,15 +19,19 @@ body {
 }
 
 header {
-  width: 350px;
-  height: 55px;
+  // width: 350px;
+  // height: 55px;
+  width: 250px;
+  // height: 50px;
+  height: 45px;
   // margin: auto 12.5px;
   // padding: auto 12.5px;
   -webkit-app-region: drag;
 
   p {
     font-family: "NanumSquareRoundB", "Imprima", sans-serif;
-    font-size: 15px;
+    // font-size: 15px;
+    font-size: 13px;
     /* color: #f2f2f2; */
     /* color: black; */
     /* color: #e6e6e6; */
@@ -43,8 +49,10 @@ header {
   }
 
   .headerButtonDiv {
-    width: 28px;
-    height: 28px;
+    // width: 28px;
+    // height: 28px;
+    width: 24px;
+    height: 24px;
     -webkit-app-region: no-drag;
     // margin-bottom: 12px;
     margin-right: 3px;
@@ -65,12 +73,15 @@ header {
 
 .body {
   // height: 245px;
-  height: 295px;
+  // height: 295px;
+  height: 210px;
 
   .button {
-    width: 310px;
+    // width: 310px;
+    // height: 130px;
+    width: 90%;
+    height: 90px;
     // height: 105px;
-    height: 130px;
     /* background-color: white; */
     // border-radius: 15px;
     border-radius: 5px;
@@ -81,7 +92,8 @@ header {
 
       p {
         font-family: "NanumSquareRoundB", sans-serif;
-        font-size: 23px;
+        // font-size: 23px;
+        font-size: 19px;
         // color: #333333;
         // color: #d9d9d9;
         color: #3b332b;
