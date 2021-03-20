@@ -18,8 +18,8 @@ const appWindowValueList: {
   initPage: {
     // width: 350,
     // height: 360,
-    width: 290,
-    height: 300,
+    width: 260,
+    height: 270,
     resizable: false,
   },
   startingCroquis: {
@@ -40,10 +40,10 @@ const appWindowValueList: {
     modal: true,
   },
   filetagSetting: {
-    width: 600,
-    height: 850,
-    // width: 400,
-    // height: 600,
+    // width: 600,
+    // height: 850,
+    width: 410,
+    height: 600,
   },
 };
 
