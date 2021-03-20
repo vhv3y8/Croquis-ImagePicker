@@ -16,8 +16,10 @@ const appWindowValueList: {
   [name in appName]: appWindowValue;
 } = {
   initPage: {
-    width: 350,
-    height: 360,
+    // width: 350,
+    // height: 360,
+    width: 290,
+    height: 300,
     resizable: false,
   },
   startingCroquis: {
