@@ -39,7 +39,14 @@
               class="_visible fl-cen-cen"
               data-mode="newFile"
             >
-              <p>새 파일 모드 종료</p>
+              <p>태그 추가 완료</p>
+            </div>
+            <div
+              id="modeQuitButton"
+              class="_visible fl-cen-cen"
+              data-mode="newFile"
+            >
+              <img src="../../../assets/icons/closeBig.svg" alt="" />
             </div>
           </div>
         </div>
@@ -47,10 +54,18 @@
         <div class="content fill">
           <div class="fileContent fill fl-col-st">
             <!--  -->
-            <div id="fileContentMain" class="_visible fill fl-col-st">
+            <div id="fileContentMain" class="_invisible fill fl-col-st">
               <div class="list">
-                <div class="li">
-                  <div id="openExplorer"></div>
+                <div class="li fl-row-st">
+                  <div class="left fl-row-st">
+                    <img src="../../../assets/icons/folder.svg" alt="" />
+                    <p></p>
+                  </div>
+                  <div class="right fl-cen-cen">
+                    <div id="openExplorer" class="fl-cen-cen">
+                      <p>GO</p>
+                    </div>
+                  </div>
                 </div>
                 <div class="content">
                   <div id="fileList" class="container fl-row-st-st-wrap">
@@ -89,31 +104,62 @@
                       <p>모드 :</p>
                     </div>
                     <div class="down">
-                      <p>태그 수정</p>
+                      <p>기존 파일의 태그 수정</p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <!--  -->
-            <div id="newFileTagMode" class="_invisible fill fl-col-st">
+            <div id="newFileTagMode" class="_visible fill fl-col-st">
               <!-- ---- -->
               <div id="newFileView" class="list fl-row-st">
-                <div class="side fl-cen-cen" style="border-radius: 7px 0 0 7px">
+                <div
+                  id="prevImg"
+                  class="side fl-cen-cen"
+                  style="border-radius: 7px 0 0 7px"
+                >
                   <img src="../../../assets/icons/arrowLeft.svg" alt="" />
                 </div>
                 <div class="center fl-col-st">
                   <div class="imgCont fl-cen-cen">
                     <img
+                      id="newFileImg"
                       src="file:///home/vhv3y8/Downloads/Croquis/_.jpeg"
                       alt=""
+                      data-index="0"
                     />
                   </div>
                   <div class="tagCont fl-cen-cen">
-                    <div class="tagBoard"></div>
+                    <div id="tagBoard" class="fl-row-st-st-wrap">
+                      <div class="item fl-row-st">
+                        <span>태그입니다..</span>
+                        <img src="../../../assets/icons/close.svg" alt="" />
+                      </div>
+                      <div class="item fl-row-st">
+                        <span>태그입니다..</span>
+                        <img src="../../../assets/icons/close.svg" alt="" />
+                      </div>
+                      <div class="item fl-row-st">
+                        <span>태그입니다..</span>
+                        <img src="../../../assets/icons/close.svg" alt="" />
+                      </div>
+                      <div class="item fl-row-st">
+                        <span>태그입니다..</span>
+                        <img src="../../../assets/icons/close.svg" alt="" />
+                      </div>
+                      <div class="item fl-row-st">
+                        <span>태그입니다..</span>
+                        <img src="../../../assets/icons/close.svg" alt="" />
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div class="side fl-cen-cen" style="border-radius: 0 7px 7px 0">
+                <div
+                  id="nextImg"
+                  class="side fl-cen-cen"
+                  style="border-radius: 0 7px 7px 0"
+                >
                   <img src="../../../assets/icons/arrowRight.svg" alt="" />
                 </div>
               </div>
@@ -124,13 +170,15 @@
                     <div class="fill">
                       <div id="tagList"></div>
                       <div id="tagInput" class="fl-cen-cen">
-                        <input type="text" placeholder="태그 입력" />
+                        <input type="text" placeholder="태그 검색" />
                       </div>
                     </div>
                   </div>
                   <div class="right fl-col-rev-end">
                     <div class="fill fl-col-bet">
-                      <div id="tagAddButton" class="fill"></div>
+                      <div id="tagAddButton" class="fill fl-cen-cen">
+                        <img src="../../../assets/icons/plus.svg" alt="" />
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -154,7 +202,7 @@
       </div>
       <!--  -->
       <footer class="fl-col-rev-end">
-        <div id="submitButton" class="fl-cen-cen">닫기</div>
+        <div id="submitButton" class="fl-cen-cen">완료</div>
       </footer>
     </div>
 

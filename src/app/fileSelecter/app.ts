@@ -340,12 +340,6 @@ function createTagBoardItem(tagname: string, where: "must" | "atleast") {
 
 /** tagSelectList and tagSelectItem */
 
-configFileData.tags.forEach((tag) => {
-  /** 태그 리스트에 모든 태그 추가 */
-  document.getElementById("searchContent").appendChild(tagListItem(tag));
-  // console.log(tag);
-});
-
 function tagListItem(tagName: string, checked?: boolean): HTMLElement {
   /** 태그 리스트에 추가될 태그 아이템 생성 */
   let tagItem = document.createElement("div");
@@ -392,6 +386,12 @@ function tagListItem(tagName: string, checked?: boolean): HTMLElement {
 
 GlobalData.loadFile();
 RendererData.init();
+
+configFileData.tags.forEach((tag) => {
+  /** 태그 리스트에 모든 태그 추가 */
+  document.getElementById("searchContent").appendChild(tagListItem(tag));
+  // console.log(tag);
+});
 
 /*
  *

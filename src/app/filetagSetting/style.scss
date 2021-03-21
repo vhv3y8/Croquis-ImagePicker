@@ -180,6 +180,15 @@ footer {
       width: 60%;
       height: 100%;
 
+      #modeQuitButton {
+        // height: calc(100% - 7px);
+        // width: 38px;
+        width: 35px;
+        height: 35px;
+        background-color: #ff6666;
+        border-radius: 6px;
+      }
+
       #modeEndButton {
         min-width: max-content;
         height: calc(100% - 7px);
@@ -220,13 +229,47 @@ footer {
 
           .li {
             width: 100%;
-            height: 35px;
+            height: 40px;
             background-color: #8c8c8c;
+
+            .left {
+              width: 80%;
+              height: 100%;
+              // background-color: red;
+
+              img {
+                margin: 0 7.5px;
+              }
+
+              p {
+                font-family: "NanumSquareRoundB", sans-serif;
+                font-size: 13px;
+              }
+            }
+
+            .right {
+              width: 20%;
+              height: 100%;
+              // background-color: black;
+
+              #openExplorer {
+                width: calc(100% - 10px);
+                height: calc(100% - 10px);
+                background-color: #d9d9d9;
+                border-radius: 3px;
+
+                p {
+                  margin: 0;
+                  font-family: "NanumSquareRoundB", sans-serif;
+                  font-size: 13px;
+                }
+              }
+            }
           }
 
           .content {
             width: 100%;
-            height: calc(100% - 35px);
+            height: calc(100% - 40px);
 
             .container {
               padding: 2px;
@@ -345,6 +388,10 @@ footer {
             height: 100%;
             background-color: #666666;
             margin: 0;
+
+            &._unselectable {
+              background-color: #a6a6a6;
+            }
           }
 
           .center {
@@ -369,12 +416,30 @@ footer {
               height: 30%;
               background-color: #d9d9d9;
 
-              .tagBoard {
+              #tagBoard {
                 width: 95%;
                 height: 86%;
 
                 overflow-y: scroll;
                 @include scrollbars(3px, #666666, #bfbfbf, #666666, #666666);
+
+                .item {
+                  min-width: max-content;
+                  height: 25px;
+                  border-radius: 3px;
+                  background-color: #999999;
+                  margin: 4px;
+
+                  span {
+                    font-size: 11px;
+                    font-family: "NanumGothicR", sans-serif;
+                    margin-left: 9px;
+                  }
+
+                  img {
+                    margin: 0 7px;
+                  }
+                }
               }
             }
           }
@@ -391,10 +456,31 @@ footer {
             margin-left: 2%;
 
             #tagList {
-              width: 100%;
-              height: 75%;
+              width: calc(100% - 6px);
+              height: calc(75% - 3px);
               // background-color: #737373;
               background-color: #d9d9d9;
+              padding: 3px 3px 0;
+              overflow-y: scroll;
+              @include scrollbars(8px, #333333, #d9d9d9, #333333, #333333);
+
+              .item {
+                width: 100%;
+                height: 25px;
+                border-radius: 3px;
+                background-color: #a6a6a6;
+                margin-bottom: 3px;
+
+                input {
+                  margin: auto 5px;
+                }
+
+                span {
+                  font-size: 11px;
+                  font-family: "NanumSquareRoundB", sans-serif;
+                  margin-left: 3px;
+                }
+              }
             }
 
             #tagInput {
@@ -419,7 +505,7 @@ footer {
             height: 100%;
 
             #tagAddButton {
-              background-color: gray;
+              background-color: #008000;
               border-radius: 3px;
             }
           }
