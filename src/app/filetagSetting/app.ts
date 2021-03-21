@@ -4,7 +4,7 @@
 // export {};
 
 interface file {
-  filename: string;
+  // filename: string;
   tags: string[];
   address: string;
 }
@@ -83,6 +83,49 @@ var ftsAppData = {
  *
  */
 
+/** Main */
+
+function initMain() {
+  let fileList = document.getElementById("fileList");
+  ftsGlobalData.file.files.forEach((file) => {
+    fileList.appendChild(createTagListItem(file));
+  });
+}
+
+function createTagListItem(fileData: file): HTMLElement {
+  let elem = document.createElement("div");
+  elem.classList.add("item");
+  elem.classList.add("fl-cen-cen");
+
+  let inner = document.createElement("div");
+  inner.classList.add("inner");
+
+  let imgDiv = document.createElement("div");
+  imgDiv.classList.add("img");
+  imgDiv.classList.add("fl-cen-cen");
+
+  let img = document.createElement("img");
+  img.src = fileData.address;
+
+  imgDiv.appendChild(img);
+
+  let tagDiv = document.createElement("div");
+  tagDiv.classList.add("tag");
+  tagDiv.classList.add("fl-cen-cen");
+
+  let tagInner = document.createElement("div");
+  tagInner.classList.add("inner");
+
+  tagDiv.appendChild(tagInner);
+
+  inner.appendChild(imgDiv);
+  inner.appendChild(tagDiv);
+
+  elem.appendChild(inner);
+
+  return elem;
+}
+
 /** changing mode */
 
 function changeModeTo(mode: "main" | "newFile" | "editFile" | "tag"): void {
@@ -148,6 +191,9 @@ function addModeEndButton(modeName: "newFile" | "editFile"): void {
  * Initial
  *
  */
+
+ftsGlobalData.loadFile();
+initMain();
 
 /**
  *

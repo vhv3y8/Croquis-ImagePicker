@@ -10,7 +10,7 @@
 // export {};
 
 interface file {
-  filename: string;
+  // filename: string;
   tags: string[];
   address: string;
 }

@@ -58,9 +58,8 @@ function updateFiles(configFile: dbFile): dbFile {
   console.log(newFileList);
   newFileList.forEach((filePath) => {
     configFile.files.push({
-      filename: path.basename(filePath),
-      tags: [],
       address: filePath,
+      tags: [],
     });
   });
 

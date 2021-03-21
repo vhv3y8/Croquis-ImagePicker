@@ -43,8 +43,8 @@ header {
     color: #d9d9d9;
 
     margin: 0;
-    padding-left: 12px;
-    padding-top: 8px;
+    padding-left: 10px;
+    padding-top: 5px;
   }
 
   .headerInner {
@@ -79,14 +79,14 @@ header {
   // height: 245px;
   // height: 295px;
   // height: 210px;
-  height: calc(100% - 50px);
+  height: calc(100% - 45px - 15px);
 
   .button {
     // width: 310px;
     // height: 130px;
-    width: 90%;
+    width: calc(100% - 30px);
     // height: 90px;
-    height: calc(50% - 15px);
+    height: calc(50% - 7px);
     // height: 105px;
     /* background-color: white; */
     // border-radius: 15px;
