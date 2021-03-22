@@ -36,14 +36,14 @@
           <div id="modeEndContainer" class="fl-row-rev-st">
             <div
               id="modeEndButton"
-              class="_visible fl-cen-cen"
+              class="_invisible fl-cen-cen"
               data-mode="newFile"
             >
               <p>태그 추가 완료</p>
             </div>
             <div
               id="modeQuitButton"
-              class="_visible fl-cen-cen"
+              class="_invisible fl-cen-cen"
               data-mode="newFile"
             >
               <img src="../../../assets/icons/closeBig.svg" alt="" />
@@ -54,7 +54,7 @@
         <div class="content fill">
           <div class="fileContent fill fl-col-st">
             <!--  -->
-            <div id="fileContentMain" class="_invisible fill fl-col-st">
+            <div id="fileContentMain" class="_visible fill fl-col-st">
               <div class="list">
                 <div class="li fl-row-st">
                   <div class="left fl-row-st">
@@ -68,7 +68,7 @@
                   </div>
                 </div>
                 <div class="content">
-                  <div id="fileList" class="container fl-row-st-st-wrap">
+                  <div id="fileListMain" class="container fl-row-st-st-wrap">
                     <div class="item fl-cen-cen">
                       <div class="inner">
                         <div class="img fl-cen-cen">
@@ -111,7 +111,7 @@
               </div>
             </div>
             <!--  -->
-            <div id="newFileTagMode" class="_visible fill fl-col-st">
+            <div id="newFileTagMode" class="_invisible fill fl-col-st">
               <!-- ---- -->
               <div id="newFileView" class="list fl-row-st">
                 <div
@@ -131,28 +131,7 @@
                     />
                   </div>
                   <div class="tagCont fl-cen-cen">
-                    <div id="tagBoard" class="fl-row-st-st-wrap">
-                      <div class="item fl-row-st">
-                        <span>태그입니다..</span>
-                        <img src="../../../assets/icons/close.svg" alt="" />
-                      </div>
-                      <div class="item fl-row-st">
-                        <span>태그입니다..</span>
-                        <img src="../../../assets/icons/close.svg" alt="" />
-                      </div>
-                      <div class="item fl-row-st">
-                        <span>태그입니다..</span>
-                        <img src="../../../assets/icons/close.svg" alt="" />
-                      </div>
-                      <div class="item fl-row-st">
-                        <span>태그입니다..</span>
-                        <img src="../../../assets/icons/close.svg" alt="" />
-                      </div>
-                      <div class="item fl-row-st">
-                        <span>태그입니다..</span>
-                        <img src="../../../assets/icons/close.svg" alt="" />
-                      </div>
-                    </div>
+                    <div id="tagBoard" class="fl-row-st-st-wrap"></div>
                   </div>
                 </div>
                 <div
@@ -186,11 +165,25 @@
               <!-- ---- -->
             </div>
             <!--  -->
-            <div id="editTagMode" class="_invisible">
-              <div class="item"></div>
-              <div id="fileList"></div>
-              <div id="footer" class="item fl-row-rev-st">
-                <div class="submitButton">확인</div>
+            <div id="editTagMode" class="_invisible fill fl-col-st">
+              <div class="list">
+                <div class="content">
+                  <div
+                    id="fileListEdit"
+                    class="container fl-row-st-st-wrap"
+                  ></div>
+                </div>
+              </div>
+              <div class="board fl-cen-cen">
+                <div class="content fl-row-st">
+                  <div class="left fl-row-rev-st">
+                    <div class="tags"></div>
+                    <div class="img"></div>
+                  </div>
+                  <div class="right fl-cen-cen">
+                    <div id="tagListEdit"></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

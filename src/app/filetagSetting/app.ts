@@ -3,6 +3,27 @@
 // var win = remote.getCurrentWindow();
 // export {};
 
+function goclone(source) {
+  // https://stackoverflow.com/a/12690145
+  if (Object.prototype.toString.call(source) === "[object Array]") {
+    let cloneArr = [];
+    for (var i = 0; i < source.length; i++) {
+      cloneArr[i] = goclone(source[i]);
+    }
+    return cloneArr;
+  } else if (typeof source == "object") {
+    let cloneObj = {};
+    for (var prop in source) {
+      if (source.hasOwnProperty(prop)) {
+        cloneObj[prop] = goclone(source[prop]);
+      }
+    }
+    return cloneObj;
+  } else {
+    return source;
+  }
+}
+
 interface file {
   // filename: string;
   tags: string[];
@@ -62,14 +83,13 @@ newInputTag.addEventListener("input", function () {});
  */
 
 var ftsGlobalData = {
-  file: undefined,
   fileArr: undefined,
   tagObj: undefined,
   tagArr: undefined,
   loadFile: () => {
-    ftsGlobalData.file = (window as any).api.getDataWithUpdate();
-    ftsGlobalData.fileArr = ftsGlobalData.file.files;
-    ftsGlobalData.tagObj = ftsGlobalData.file.tags;
+    let file = (window as any).api.getDataWithUpdate();
+    ftsGlobalData.fileArr = file.files;
+    ftsGlobalData.tagObj = file.tags;
     ftsGlobalData.tagArr = [];
     Object.keys(ftsGlobalData.tagObj).forEach((group) => {
       ftsGlobalData.tagObj[group].forEach((tag) => {
@@ -77,15 +97,31 @@ var ftsGlobalData = {
       });
     });
     console.log("from loadFile: ");
-    console.log(ftsGlobalData.file);
+    console.log(file);
     console.log(ftsGlobalData.fileArr);
     console.log(ftsGlobalData.tagObj);
   },
   createGroup: () => {},
   createTag: () => {},
 
-  changeFile: (address, fileObj) => {},
-  deleteFile: (address) => {},
+  changeImgItem: (address, tagArr) => {
+    let fileArr = ftsGlobalData.fileArr;
+    for (let i = 0; i < fileArr.length; i++) {
+      if (fileArr[i].address == address) {
+        fileArr[i].tags = tagArr;
+        break;
+      }
+    }
+  },
+  deleteImgItem: (address) => {
+    let fileArr = ftsGlobalData.fileArr;
+    for (let i = 0; i < fileArr.length; i++) {
+      if (fileArr[i].address == address) {
+        fileArr.splice(i, 1);
+        break;
+      }
+    }
+  },
 
   tagIncluding: (string) => {
     // let arr = [];
@@ -100,6 +136,12 @@ var ftsGlobalData = {
 
     // return arr;
     return ftsGlobalData.tagArr.filter((tag) => tag.includes(string));
+  },
+  flushFile: () => {
+    (window as any).api.flushConfigFile({
+      files: ftsGlobalData.fileArr,
+      tags: ftsGlobalData.tagObj,
+    });
   },
 };
 
@@ -118,8 +160,8 @@ var ftsAppData = {
     selected: [],
     // doneStack: [],
     initFiles: () => {
-      ftsAppData.newFileTagModeData.files = ftsGlobalData.fileArr.filter(
-        (file) => file.tags.length == 0
+      ftsAppData.newFileTagModeData.files = goclone(
+        ftsGlobalData.fileArr.filter((file) => file.tags.length == 0)
       );
       console.log("new Files array :");
       console.log(ftsAppData.newFileTagModeData.files);
@@ -156,7 +198,7 @@ var ftsAppData = {
     },
     apply: () => {
       ftsAppData.newFileTagModeData.files.forEach((file) => {
-        ftsGlobalData.changeFile(file.address, file);
+        ftsGlobalData.changeImgItem(file.address, file.tags);
       });
     },
     discard: () => {
@@ -223,6 +265,8 @@ function changeModeTo(mode: "main" | "newFile" | "editFile" | "tag"): void {
       modeQuitButton.classList.remove("_visible");
       modeEndButton.classList.add("_invisible");
       modeEndButton.classList.remove("_visible");
+
+      // reset newFileTagMode elements
       document.getElementById("prevImg").classList.remove("_unselectable");
       document.getElementById("nextImg").classList.remove("_unselectable");
       let parent = document.getElementById("tagBoard");
@@ -244,6 +288,10 @@ function changeModeTo(mode: "main" | "newFile" | "editFile" | "tag"): void {
       viewList[3].classList.add("_invisible");
 
       ftsAppData.changeModeDataTo("newFile");
+
+      // mode end button
+      addModeEndButton(mode);
+      addQuitButton();
       break;
     }
     case "editFile": {
@@ -253,6 +301,9 @@ function changeModeTo(mode: "main" | "newFile" | "editFile" | "tag"): void {
       viewList[3].classList.add("_invisible");
 
       ftsAppData.changeModeDataTo("editFile");
+
+      // mode end button
+      addModeEndButton(mode);
       break;
     }
     case "tag": {
@@ -265,12 +316,6 @@ function changeModeTo(mode: "main" | "newFile" | "editFile" | "tag"): void {
       break;
     }
   }
-
-  // mode end button
-  if (mode === "newFile" || mode === "editFile") {
-    addModeEndButton(mode);
-    addQuitButton(mode);
-  }
 }
 
 function addModeEndButton(modeName: "newFile" | "editFile"): void {
@@ -282,7 +327,7 @@ function addModeEndButton(modeName: "newFile" | "editFile"): void {
   elem.classList.add("_visible");
 }
 
-function addQuitButton(modeName: "newFile" | "editFile"): void {
+function addQuitButton(): void {
   let elem = document.getElementById("modeQuitButton");
   elem.classList.remove("_invisible");
   elem.classList.add("_visible");
@@ -291,9 +336,10 @@ function addQuitButton(modeName: "newFile" | "editFile"): void {
 /** Main */
 
 function initMain() {
-  let fileList = document.getElementById("fileList");
+  let fileListMain = document.getElementById("fileListMain");
+  // let fileList = Array.from(document.getElementsByClassName("fileList"));
   ftsGlobalData.fileArr.forEach((file) => {
-    fileList.appendChild(createTagListItem(file));
+    fileListMain.appendChild(createTagListItem(file, "main"));
   });
 
   document.querySelector(
@@ -301,7 +347,7 @@ function initMain() {
   ).innerHTML = (window as any).api.getCroquisFolderPath();
 }
 
-function createTagListItem(fileData: file): HTMLElement {
+function createTagListItem(fileData: file, mode: "main" | "edit"): HTMLElement {
   let elem = document.createElement("div");
   elem.classList.add("item");
   elem.classList.add("fl-cen-cen");
@@ -331,6 +377,18 @@ function createTagListItem(fileData: file): HTMLElement {
   inner.appendChild(tagDiv);
 
   elem.appendChild(inner);
+
+  if (mode == "edit") {
+    elem.addEventListener("click", function () {
+      Array.from(
+        document.querySelectorAll("#fileListEdit .item._selected")
+      ).forEach((elem) => {
+        elem.classList.remove("_selected");
+      });
+
+      elem.classList.add("_selected");
+    });
+  }
 
   return elem;
 }
@@ -457,6 +515,18 @@ function newFileModeUncheckAllTagItem(): void {
   });
 }
 
+/** editFile */
+
+function initEdit() {
+  let fileListEdit = document.getElementById("fileListEdit");
+
+  ftsGlobalData.fileArr.forEach((file) => {
+    fileListEdit.appendChild(createTagListItem(file, "edit"));
+  });
+}
+
+function editfileModeShowBoard(address) {}
+
 /**
  *
  * Initial
@@ -465,6 +535,7 @@ function newFileModeUncheckAllTagItem(): void {
 
 ftsGlobalData.loadFile();
 initMain();
+initEdit();
 
 /**
  *
@@ -480,15 +551,17 @@ window.onbeforeunload = (e) => {
     console.log("new files applied.");
   }
   // flush datas
-  (window as any).api.flushConfigFile({
-    files: ftsGlobalData.fileArr,
-    tags: ftsGlobalData.tagObj,
-  });
-  console.log("Flushed.");
-  console.dir({
-    files: ftsGlobalData.fileArr,
-    tags: ftsGlobalData.tagObj,
-  });
+  // (window as any).api.flushConfigFile({
+  //   files: ftsGlobalData.fileArr,
+  //   tags: ftsGlobalData.tagObj,
+  // });
+  ftsGlobalData.flushFile();
+
+  // console.log("Flushed.");
+  // console.dir({
+  //   files: ftsGlobalData.fileArr,
+  //   tags: ftsGlobalData.tagObj,
+  // });
 
   // e.returnValue = false;
   return null;
@@ -564,7 +637,7 @@ let newfiletagInput: HTMLInputElement = document.querySelector(
   "#tagInput input"
 );
 newfiletagInput.addEventListener("input", function () {
-  let result = ftsGlobalData.tagIncluding(newfiletagInput.value);
+  let searchResult = ftsGlobalData.tagIncluding(newfiletagInput.value);
   // remove all childs
   let parent = document.getElementById("tagList");
   while (parent.firstChild) {
@@ -572,13 +645,16 @@ newfiletagInput.addEventListener("input", function () {
   }
 
   // add selected tags to tagList
-  ftsAppData.newFileTagModeData.selected.forEach((tag) => {
+  let selectedArr = ftsAppData.newFileTagModeData.selected;
+  selectedArr.forEach((tag) => {
     parent.appendChild(createNewFileModeTagListItem(tag, true));
   });
   // add input matching tags to tagList
-  result.forEach((tag) => {
-    parent.appendChild(createNewFileModeTagListItem(tag));
-  });
+  searchResult
+    .filter((tag) => !selectedArr.includes(tag))
+    .forEach((tag) => {
+      parent.appendChild(createNewFileModeTagListItem(tag));
+    });
 });
 
 //
@@ -606,16 +682,16 @@ submitButton.addEventListener("click", function () {
   //   console.log("new files applied.");
   // }
   // flush datas
-  (window as any).api.flushConfigFile({
-    files: ftsGlobalData.fileArr,
-    tags: ftsGlobalData.tagObj,
-  });
-  console.log("Flushed.");
-  console.dir({
-    files: ftsGlobalData.fileArr,
-    tags: ftsGlobalData.tagObj,
-  });
-
-  // (window as any).api.openApp("initPage", 25);
-  // window.close();
+  // (window as any).api.flushConfigFile({
+  //   files: ftsGlobalData.fileArr,
+  //   tags: ftsGlobalData.tagObj,
+  // });
+  // ftsGlobalData.flushFile();
+  // console.log("Flushed.");
+  // console.dir({
+  //   files: ftsGlobalData.fileArr,
+  //   tags: ftsGlobalData.tagObj,
+  // });
+  (window as any).api.openApp("initPage", 25);
+  window.close();
 });
