@@ -211,8 +211,24 @@ var ftsAppData = {
   },
 
   editFileModeData: {
-    // apply: () => {},
-    // discard: () => {},
+    current: undefined,
+    setCurrent: (address) => {
+      let fileArr = ftsGlobalData.fileArr;
+      for (let i = 0; i < fileArr.length; i++) {
+        if (fileArr[i].address == address) {
+          ftsAppData.editFileModeData.current = fileArr[i];
+          break;
+        }
+      }
+    },
+    addTag: (tagName) => {
+      ftsAppData.editFileModeData.current.tags.push(tagName);
+    },
+    deleteTag: (tagName) => {
+      ftsAppData.editFileModeData.current.tags = ftsAppData.editFileModeData.current.tags.filter(
+        (tag) => tag !== tagName
+      );
+    },
   },
 
   tagModeData: {
@@ -247,6 +263,8 @@ function changeModeTo(mode: "main" | "newFile" | "editFile" | "tag"): void {
   let editTagMode = document.getElementById("editTagMode");
   let tagContent = document.getElementById("tagContent");
   let viewList = [fileContentMain, newFileTagMode, editTagMode, tagContent];
+  let hrFile = document.getElementById("hrFile");
+  let hrTag = document.getElementById("hrTag");
 
   // visible invisible control
   viewList.forEach((view) => {
@@ -265,6 +283,9 @@ function changeModeTo(mode: "main" | "newFile" | "editFile" | "tag"): void {
       modeQuitButton.classList.remove("_visible");
       modeEndButton.classList.add("_invisible");
       modeEndButton.classList.remove("_visible");
+
+      hrFile.classList.remove("_invisible");
+      hrTag.classList.add("_invisible");
 
       // reset newFileTagMode elements
       document.getElementById("prevImg").classList.remove("_unselectable");
@@ -287,6 +308,9 @@ function changeModeTo(mode: "main" | "newFile" | "editFile" | "tag"): void {
       viewList[2].classList.add("_invisible");
       viewList[3].classList.add("_invisible");
 
+      hrFile.classList.remove("_invisible");
+      hrTag.classList.add("_invisible");
+
       ftsAppData.changeModeDataTo("newFile");
 
       // mode end button
@@ -300,6 +324,9 @@ function changeModeTo(mode: "main" | "newFile" | "editFile" | "tag"): void {
       viewList[2].classList.add("_visible");
       viewList[3].classList.add("_invisible");
 
+      hrFile.classList.remove("_invisible");
+      hrTag.classList.add("_invisible");
+
       ftsAppData.changeModeDataTo("editFile");
 
       // mode end button
@@ -311,6 +338,14 @@ function changeModeTo(mode: "main" | "newFile" | "editFile" | "tag"): void {
       viewList[1].classList.add("_invisible");
       viewList[2].classList.add("_invisible");
       viewList[3].classList.add("_visible");
+
+      modeQuitButton.classList.add("_invisible");
+      modeQuitButton.classList.remove("_visible");
+      modeEndButton.classList.add("_invisible");
+      modeEndButton.classList.remove("_visible");
+
+      hrFile.classList.add("_invisible");
+      hrTag.classList.remove("_invisible");
 
       ftsAppData.changeModeDataTo("tag");
       break;
@@ -387,6 +422,7 @@ function createTagListItem(fileData: file, mode: "main" | "edit"): HTMLElement {
       });
 
       elem.classList.add("_selected");
+      editfileModeShowBoard(fileData.address);
     });
   }
 
@@ -525,7 +561,59 @@ function initEdit() {
   });
 }
 
-function editfileModeShowBoard(address) {}
+function editfileModeShowBoard(address) {
+  function createCurrTagItem(tagName) {
+    let elem = document.createElement("div");
+    elem.classList.add("item");
+    elem.classList.add("fl-cen-cen");
+    elem.dataset.tagName = tagName;
+
+    let inner = document.createElement("div");
+    inner.classList.add("inner");
+    inner.classList.add("fl-row-st");
+
+    let txt = document.createElement("span");
+    txt.innerHTML = tagName;
+
+    let btnDiv = document.createElement("div");
+    btnDiv.classList.add("button");
+    btnDiv.classList.add("fl-cen-cen");
+    btnDiv.addEventListener("click", function () {
+      elem.remove();
+      ftsAppData.editFileModeData.deleteTag(elem.dataset.tagName);
+      console.log("now current is :");
+      console.log(ftsAppData.editFileModeData.current);
+    });
+
+    let img = document.createElement("img");
+    img.src = "../../../assets/icons/close.svg";
+
+    btnDiv.appendChild(img);
+
+    inner.appendChild(txt);
+    inner.appendChild(btnDiv);
+
+    elem.appendChild(inner);
+
+    return elem;
+  }
+
+  // flow start
+  let img = <HTMLImageElement>document.getElementById("editModeImg");
+  img.src = address;
+
+  let currTagList = document.getElementById("editModeCurrTagList");
+  // remove existing tags
+  while (currTagList.firstChild) {
+    currTagList.firstChild.remove();
+  }
+  ftsAppData.editFileModeData.setCurrent(address);
+  console.log("now current is :");
+  console.dir(ftsAppData.editFileModeData.current);
+  ftsAppData.editFileModeData.current.tags.forEach((tag) => {
+    currTagList.appendChild(createCurrTagItem(tag));
+  });
+}
 
 /**
  *
@@ -546,10 +634,6 @@ initEdit();
 /** window listeners */
 
 window.onbeforeunload = (e) => {
-  if (ftsAppData.getModeData() == "newFile") {
-    ftsAppData.newFileTagModeData.apply();
-    console.log("new files applied.");
-  }
   // flush datas
   // (window as any).api.flushConfigFile({
   //   files: ftsGlobalData.fileArr,
@@ -664,6 +748,18 @@ tagEditModeBtn.addEventListener("click", function () {
   changeModeTo("editFile");
 });
 
+//
+
+let fileTab = document.getElementById("fileTab");
+fileTab.addEventListener("click", function () {
+  changeModeTo("main");
+});
+
+let tagTab = document.getElementById("tagTab");
+tagTab.addEventListener("click", function () {
+  changeModeTo("tag");
+});
+
 let openExplorer = document.getElementById("openExplorer");
 openExplorer.addEventListener("click", function () {
   (window as any).api.openfileExplorer();
@@ -692,6 +788,10 @@ submitButton.addEventListener("click", function () {
   //   files: ftsGlobalData.fileArr,
   //   tags: ftsGlobalData.tagObj,
   // });
+  if (ftsAppData.getModeData() == "newFile") {
+    ftsAppData.newFileTagModeData.apply();
+    console.log("new files applied.");
+  }
   (window as any).api.openApp("initPage", 25);
   window.close();
 });

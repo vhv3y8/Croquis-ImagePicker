@@ -26,12 +26,13 @@
             <div class="txtCont fl-cen-cen">
               <p>파일</p>
             </div>
-            <hr />
+            <hr id="hrFile" />
           </div>
           <div id="tagTab" class="tab">
             <div class="txtCont fl-cen-cen">
               <p>태그</p>
             </div>
+            <hr id="hrTag" class="_invisible" />
           </div>
           <div id="modeEndContainer" class="fl-row-rev-st">
             <div
@@ -177,8 +178,26 @@
               <div class="board fl-cen-cen">
                 <div class="content fl-row-st">
                   <div class="left fl-row-rev-st">
-                    <div class="tags"></div>
-                    <div class="img"></div>
+                    <div id="editModeCurrTagList">
+                      <!--  -->
+                      <div class="item fl-cen-cen">
+                        <div class="inner fl-row-st">
+                          <span>태그입니다</span>
+                          <div class="button fl-cen-cen">
+                            <img src="../../../assets/icons/close.svg" alt="" />
+                          </div>
+                        </div>
+                      </div>
+                      <!--  -->
+                      <div class="item"></div>
+                      <div class="item"></div>
+                      <div class="item"></div>
+                      <div class="item"></div>
+                      <div class="item"></div>
+                    </div>
+                    <div class="img fl-cen-cen">
+                      <img src="" alt="" id="editModeImg" />
+                    </div>
                   </div>
                   <div class="right fl-cen-cen">
                     <div id="tagListEdit"></div>
