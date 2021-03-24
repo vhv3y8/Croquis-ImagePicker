@@ -1,6 +1,6 @@
 {
   "name": "Croquis-ImagePicker",
-  "version": "0.1.33",
+  "version": "0.1.34",
   "description": "app for picking random image",
   "main": "dist/main.js",
   "private": "true",

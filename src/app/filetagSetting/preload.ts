@@ -49,6 +49,10 @@ contextBridge.exposeInMainWorld("api", {
     );
   },
 
+  joinPath: (address) => {
+    return path.join(address);
+  },
+
   getDataWithUpdate: () => {
     return updateFiles(getConfigFile());
   },

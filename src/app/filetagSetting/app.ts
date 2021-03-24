@@ -101,8 +101,63 @@ var ftsGlobalData = {
     console.log(ftsGlobalData.fileArr);
     console.log(ftsGlobalData.tagObj);
   },
+
+  createTag: (tagName) => {
+    ftsGlobalData.tagObj.else.push(tagName);
+  },
+  deleteTag: (tagName) => {
+    let tagObj = ftsGlobalData.tagObj;
+    let tagArr = ftsGlobalData.tagArr;
+    for (let key of Object.keys(tagObj)) {
+      for (let tag of tagObj[key]) {
+        if (tag == tagName) {
+          // remove from tag array
+          tagObj[key] = tagObj[key].filter((t) => t !== tagName);
+          tagArr = tagArr.filter((t) => t !== tagName);
+
+          // delete tag at files
+          let fileArr = ftsGlobalData.fileArr;
+          for (let j = 0; j < fileArr.length; j++) {
+            for (let k = 0; k < fileArr[j].tags.length; k++) {
+              if (fileArr[j].tags[k] == tagName) {
+                fileArr[j].tags = fileArr[j].tags.filter((t) => t !== tagName);
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  moveTag: (tagName, groupTo) => {
+    ftsGlobalData.deleteTag(tagName);
+    ftsGlobalData.tagObj[groupTo].push(tagName);
+  },
+  renameTag: (tagName, changeNameTo) => {
+    let tagObj = ftsGlobalData.tagObj;
+    let tagArr = ftsGlobalData.tagArr;
+    for (let key of Object.keys(tagObj)) {
+      for (let i = 0; i < tagObj[key].length; i++) {
+        if (tagObj[key][i] == tagName) {
+          // change name
+          tagObj[key][i] = changeNameTo;
+          tagArr = tagArr.filter((t) => t !== tagName);
+          tagArr.push(changeNameTo);
+
+          // change all files that have this tag
+          let fileArr = ftsGlobalData.fileArr;
+          for (let j = 0; j < fileArr.length; j++) {
+            for (let k = 0; k < fileArr[j].tags.length; k++) {
+              if (fileArr[j].tags[k] == tagName) {
+                fileArr[j].tags[k] = changeNameTo;
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
   createGroup: () => {},
-  createTag: () => {},
 
   changeImgItem: (address, tagArr) => {
     let fileArr = ftsGlobalData.fileArr;
@@ -123,18 +178,17 @@ var ftsGlobalData = {
     }
   },
 
+  get: (address) => {
+    let fileArr = ftsGlobalData.fileArr;
+    for (let i = 0; i < fileArr.length; i++) {
+      if (fileArr[i].address == address) {
+        return fileArr[i];
+      }
+    }
+    return null;
+  },
+
   tagIncluding: (string) => {
-    // let arr = [];
-
-    // Object.keys(ftsGlobalData.tagObj).forEach((group) => {
-    //   ftsGlobalData.tagObj[group].forEach((tag) => {
-    //     if (tag.includes(string)) {
-    //       arr.push(tag);
-    //     }
-    //   });
-    // });
-
-    // return arr;
     return ftsGlobalData.tagArr.filter((tag) => tag.includes(string));
   },
   flushFile: () => {
@@ -150,7 +204,9 @@ var ftsAppData = {
   getModeData: () => {
     return ftsAppData.mode;
   },
-  changeModeDataTo: (mode: "main" | "newFile" | "editFile" | "tag") => {
+  changeModeDataTo: (
+    mode: "main" | "newFile" | "editFile" | "tag" | "group"
+  ) => {
     ftsAppData.mode = mode;
   },
 
@@ -232,21 +288,17 @@ var ftsAppData = {
   },
 
   tagModeData: {
-    data: {
-      tag: {
-        new: {},
-        delete: {},
-        rename: [],
-      },
-      group: {
-        new: {},
-        delete: {},
-        rename: [],
-      },
+    current: {
+      tagName: undefined,
+      group: undefined,
     },
-    // apply: () => {},
-    // discard: () => {},
+    setCurrentData: (tagName, groupName) => {
+      ftsAppData.tagModeData.current.tagName = tagName;
+      ftsAppData.tagModeData.current.group = groupName;
+    },
   },
+
+  groupModeData: {},
 };
 
 /**
@@ -257,16 +309,27 @@ var ftsAppData = {
 
 /** changing mode */
 
-function changeModeTo(mode: "main" | "newFile" | "editFile" | "tag"): void {
+function changeModeTo(
+  mode: "main" | "newFile" | "editFile" | "tag" | "group"
+): void {
   let fileContentMain = document.getElementById("fileContentMain");
   let newFileTagMode = document.getElementById("newFileTagMode");
   let editTagMode = document.getElementById("editTagMode");
-  let tagContent = document.getElementById("tagContent");
-  let viewList = [fileContentMain, newFileTagMode, editTagMode, tagContent];
+  let tagMode = document.getElementById("tagMode");
+  let viewList = [fileContentMain, newFileTagMode, editTagMode, tagMode];
+  let contentList = [
+    document.getElementsByClassName("fileContent")[0],
+    document.getElementsByClassName("tagContent")[0],
+    document.getElementsByClassName("groupContent")[0],
+  ];
   let hrFile = document.getElementById("hrFile");
   let hrTag = document.getElementById("hrTag");
 
   // visible invisible control
+  contentList.forEach((view) => {
+    view.classList.remove("_visible");
+    view.classList.remove("_invisible");
+  });
   viewList.forEach((view) => {
     view.classList.remove("_visible");
     view.classList.remove("_invisible");
@@ -278,6 +341,10 @@ function changeModeTo(mode: "main" | "newFile" | "editFile" | "tag"): void {
       viewList[1].classList.add("_invisible");
       viewList[2].classList.add("_invisible");
       viewList[3].classList.add("_invisible");
+
+      contentList[0].classList.add("_visible");
+      contentList[1].classList.add("_invisible");
+      contentList[2].classList.add("_invisible");
 
       modeQuitButton.classList.add("_invisible");
       modeQuitButton.classList.remove("_visible");
@@ -300,6 +367,7 @@ function changeModeTo(mode: "main" | "newFile" | "editFile" | "tag"): void {
       }
 
       ftsAppData.changeModeDataTo("main");
+      refreshMainItems();
       break;
     }
     case "newFile": {
@@ -307,6 +375,10 @@ function changeModeTo(mode: "main" | "newFile" | "editFile" | "tag"): void {
       viewList[1].classList.add("_visible");
       viewList[2].classList.add("_invisible");
       viewList[3].classList.add("_invisible");
+
+      contentList[0].classList.add("_visible");
+      contentList[1].classList.add("_invisible");
+      contentList[2].classList.add("_invisible");
 
       hrFile.classList.remove("_invisible");
       hrTag.classList.add("_invisible");
@@ -324,6 +396,10 @@ function changeModeTo(mode: "main" | "newFile" | "editFile" | "tag"): void {
       viewList[2].classList.add("_visible");
       viewList[3].classList.add("_invisible");
 
+      contentList[0].classList.add("_visible");
+      contentList[1].classList.add("_invisible");
+      contentList[2].classList.add("_invisible");
+
       hrFile.classList.remove("_invisible");
       hrTag.classList.add("_invisible");
 
@@ -331,6 +407,8 @@ function changeModeTo(mode: "main" | "newFile" | "editFile" | "tag"): void {
 
       // mode end button
       addModeEndButton(mode);
+
+      refreshEditItems();
       break;
     }
     case "tag": {
@@ -338,6 +416,10 @@ function changeModeTo(mode: "main" | "newFile" | "editFile" | "tag"): void {
       viewList[1].classList.add("_invisible");
       viewList[2].classList.add("_invisible");
       viewList[3].classList.add("_visible");
+
+      contentList[0].classList.add("_invisible");
+      contentList[1].classList.add("_visible");
+      contentList[2].classList.add("_invisible");
 
       modeQuitButton.classList.add("_invisible");
       modeQuitButton.classList.remove("_visible");
@@ -348,7 +430,11 @@ function changeModeTo(mode: "main" | "newFile" | "editFile" | "tag"): void {
       hrTag.classList.remove("_invisible");
 
       ftsAppData.changeModeDataTo("tag");
+
+      refreshTagMode();
       break;
+    }
+    case "group": {
     }
   }
 }
@@ -371,21 +457,29 @@ function addQuitButton(): void {
 /** Main */
 
 function initMain() {
-  let fileListMain = document.getElementById("fileListMain");
   // let fileList = Array.from(document.getElementsByClassName("fileList"));
-  ftsGlobalData.fileArr.forEach((file) => {
-    fileListMain.appendChild(createTagListItem(file, "main"));
-  });
+  refreshMainItems();
 
   document.querySelector(
     "#fileContentMain .list .li .left p"
   ).innerHTML = (window as any).api.getCroquisFolderPath();
 }
 
+function refreshMainItems() {
+  let fileListMain = document.getElementById("fileListMain");
+  while (fileListMain.firstChild) {
+    fileListMain.firstChild.remove();
+  }
+  ftsGlobalData.fileArr.forEach((file) => {
+    fileListMain.appendChild(createTagListItem(file, "main"));
+  });
+}
+
 function createTagListItem(fileData: file, mode: "main" | "edit"): HTMLElement {
   let elem = document.createElement("div");
   elem.classList.add("item");
   elem.classList.add("fl-cen-cen");
+  elem.dataset.address = fileData.address;
 
   let inner = document.createElement("div");
   inner.classList.add("inner");
@@ -405,6 +499,11 @@ function createTagListItem(fileData: file, mode: "main" | "edit"): HTMLElement {
 
   let tagInner = document.createElement("div");
   tagInner.classList.add("inner");
+
+  let tagtxt = document.createElement("span");
+  tagtxt.innerHTML = fileData.tags.join(", ");
+
+  tagInner.appendChild(tagtxt);
 
   tagDiv.appendChild(tagInner);
 
@@ -553,9 +652,11 @@ function newFileModeUncheckAllTagItem(): void {
 
 /** editFile */
 
-function initEdit() {
+function refreshEditItems() {
   let fileListEdit = document.getElementById("fileListEdit");
-
+  while (fileListEdit.firstChild) {
+    fileListEdit.firstChild.remove();
+  }
   ftsGlobalData.fileArr.forEach((file) => {
     fileListEdit.appendChild(createTagListItem(file, "edit"));
   });
@@ -581,6 +682,7 @@ function editfileModeShowBoard(address) {
     btnDiv.addEventListener("click", function () {
       elem.remove();
       ftsAppData.editFileModeData.deleteTag(elem.dataset.tagName);
+      updateItem(ftsAppData.editFileModeData.current.address);
       console.log("now current is :");
       console.log(ftsAppData.editFileModeData.current);
     });
@@ -615,6 +717,125 @@ function editfileModeShowBoard(address) {
   });
 }
 
+function updateItem(address) {
+  let list = document.getElementById("fileListEdit");
+  let curr = ftsAppData.editFileModeData.current;
+  console.log("path: ");
+  console.log(address);
+  console.log("joined path:");
+  console.log((window as any).api.joinPath(address));
+  let elems = document.querySelectorAll("#fileListEdit .item");
+  for (let i = 0; i < elems.length; i++) {
+    let currElem = <HTMLElement>elems[i];
+    if (currElem.dataset.address == address) {
+      currElem.querySelector(
+        ".inner .tag .inner span"
+      ).innerHTML = curr.tags.join(", ");
+      break;
+    }
+  }
+}
+
+/** tag */
+
+function initTagMode() {
+  function createOptionItem(groupName) {
+    let opt = document.createElement("option");
+    opt.value = groupName;
+    opt.innerHTML = groupName;
+    return opt;
+  }
+
+  // flow start
+  let select = document.getElementById("groupSelect");
+  Object.keys(ftsGlobalData.tagObj).forEach((groupName) => {
+    select.appendChild(createOptionItem(groupName));
+  });
+}
+
+function refreshTagMode() {
+  let list = document.getElementById("tagModeList");
+  while (list.firstChild) {
+    list.firstChild.remove();
+  }
+  Object.keys(ftsGlobalData.tagObj).forEach((key) => {
+    list.appendChild(createTagModeGroupItem(key, ftsGlobalData.tagObj[key]));
+  });
+}
+
+function createTagModeGroupItem(groupName, tagArr) {
+  let elem = document.createElement("details");
+  elem.classList.add("groupItem");
+  elem.dataset.groupName = groupName;
+
+  let summ = document.createElement("summary");
+  summ.classList.add("fl-row-st");
+
+  let groupImg = document.createElement("img");
+  groupImg.src = "../../../assets/icons/group.svg";
+
+  let groupNameSpan = document.createElement("span");
+  groupNameSpan.classList.add("groupName");
+  groupNameSpan.classList.add("fl-row-st");
+  groupNameSpan.appendChild(document.createTextNode(groupName + "  "));
+
+  let count = document.createElement("div");
+  count.classList.add("count");
+  count.innerHTML = `- ${ftsGlobalData.tagObj[groupName].length} tags`;
+
+  groupNameSpan.appendChild(count);
+
+  let arrowImg = document.createElement("img");
+  arrowImg.src = "../../../assets/icons/arrowDown.svg";
+
+  summ.appendChild(groupImg);
+  summ.appendChild(groupNameSpan);
+  summ.appendChild(arrowImg);
+
+  elem.appendChild(summ);
+
+  ftsGlobalData.tagObj[groupName].forEach((tag) => {
+    elem.appendChild(createTagModeTagItem(tag));
+  });
+
+  return elem;
+}
+
+function createTagModeTagItem(tagName) {
+  let elem = document.createElement("div");
+  elem.classList.add("tagItem");
+  elem.classList.add("fl-row-st");
+  elem.dataset.tagName = tagName;
+
+  let span = document.createElement("span");
+  span.classList.add("tagName");
+  span.innerHTML = tagName;
+
+  elem.appendChild(span);
+
+  elem.addEventListener("click", function () {
+    let parent = <HTMLElement>elem.parentNode;
+    let [tagName, groupName] = [elem.dataset.tagName, parent.dataset.groupName];
+    changeTagModeCurrBoard(tagName, groupName);
+    ftsAppData.tagModeData.setCurrentData(tagName, groupName);
+  });
+
+  return elem;
+}
+
+function changeTagModeCurrBoard(tagName, groupName) {
+  console.log("from changeTagModeCurrboard : tagName and groupName is =>");
+  console.log(tagName + ", " + groupName);
+  currentTagSpan.innerHTML = tagName;
+  let select: HTMLSelectElement = document.querySelector("select#groupSelect");
+  select.value = groupName;
+  console.log("now value is : " + select.value);
+}
+
+function changeGroupCount(groupName, count) {}
+
+/** group */
+
 /**
  *
  * Initial
@@ -623,7 +844,7 @@ function editfileModeShowBoard(address) {
 
 ftsGlobalData.loadFile();
 initMain();
-initEdit();
+initTagMode();
 
 /**
  *
@@ -746,6 +967,97 @@ newfiletagInput.addEventListener("input", function () {
 let tagEditModeBtn = document.getElementById("tagEditModeBtn");
 tagEditModeBtn.addEventListener("click", function () {
   changeModeTo("editFile");
+});
+
+// tag Mode
+
+let currentTagSpan = document.querySelector("#currentTag .inner .txt span");
+let currentTagInput: HTMLInputElement = document.querySelector(
+  "#currentTag .inner .txt input"
+);
+let groupSelect = <HTMLSelectElement>document.getElementById("groupSelect");
+
+let editTagName = document.getElementById("editTagName");
+editTagName.addEventListener("click", function () {
+  editTagName.classList.remove("_visible");
+  editTagName.classList.add("_invisible");
+  editTagNameSubmit.classList.remove("_invisible");
+  editTagNameSubmit.classList.add("_visible");
+  currentTagSpan.classList.remove("_visible");
+  currentTagSpan.classList.add("_invisible");
+  currentTagInput.classList.remove("_invisible");
+  currentTagInput.classList.add("_visible");
+  currentTagInput.value = currentTagSpan.innerHTML;
+});
+
+let editTagNameSubmit = document.getElementById("editTagNameSubmit");
+editTagNameSubmit.addEventListener("click", function () {
+  editTagName.classList.remove("_invisible");
+  editTagName.classList.add("_visible");
+  editTagNameSubmit.classList.remove("_visible");
+  editTagNameSubmit.classList.add("_invisible");
+  currentTagSpan.classList.remove("_invisible");
+  currentTagSpan.classList.add("_visible");
+  currentTagInput.classList.remove("_visible");
+  currentTagInput.classList.add("_invisible");
+  ftsGlobalData.renameTag(
+    ftsAppData.tagModeData.current.tagName,
+    currentTagInput.value
+  );
+  ftsAppData.tagModeData.current.tagName = currentTagInput.value;
+  currentTagSpan.innerHTML = currentTagInput.value;
+  refreshTagMode();
+});
+
+let tagMoveGroup = document.getElementById("tagMoveGroup");
+tagMoveGroup.addEventListener("click", function () {
+  ftsGlobalData.moveTag(
+    ftsAppData.tagModeData.current.tagName,
+    groupSelect.value
+  );
+  console.log("from tagMoveGroup:");
+  console.log(
+    `change group from ${ftsAppData.tagModeData.current.tagName} to ${groupSelect.value}`
+  );
+  ftsAppData.tagModeData.current.group = groupSelect.value;
+  refreshTagMode();
+});
+
+let deleteTag = document.getElementById("deleteTag");
+deleteTag.addEventListener("click", function () {
+  ftsGlobalData.deleteTag(ftsAppData.tagModeData.current.tagName);
+  ftsAppData.tagModeData.current = {
+    tagName: undefined,
+    group: undefined,
+  };
+
+  changeTagModeCurrBoard("없음", "else");
+  refreshTagMode();
+});
+
+let tagModeInput: HTMLInputElement = document.querySelector(
+  "input#tagModeInput"
+);
+tagModeInput.addEventListener("input", function () {
+  console.log("inputchanged!!!");
+  if (tagModeInput.value == "") {
+    refreshTagMode();
+  } else {
+    let tagModeList = document.getElementById("tagModeList");
+    while (tagModeList.firstChild) {
+      tagModeList.firstChild.remove();
+    }
+    ftsGlobalData.tagIncluding(tagModeInput.value).forEach((tag) => {
+      tagModeList.appendChild(createTagModeTagItem(tag));
+    });
+  }
+});
+
+let addTag = document.getElementById("addTag");
+addTag.addEventListener("click", function () {
+  ftsGlobalData.createTag(tagModeInput.value);
+
+  refreshTagMode();
 });
 
 //

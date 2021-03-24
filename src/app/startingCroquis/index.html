@@ -8,22 +8,22 @@
     <title></title>
   </head>
   <body class="nonselectable">
-    <!-- <div id="mainContainer"> -->
-    <div id="main">
-      <header class="fl-cen-cen">
-        <div class="headerInner fl-row-bet">
-          <div>
-            <p>그리기 옵션 설정</p>
+    <div id="mainContainer">
+      <div id="main">
+        <header class="fl-cen-cen">
+          <div class="headerInner fl-row-bet">
+            <div>
+              <p>그리기 옵션 설정</p>
+            </div>
+            <div id="closeButton" class="headerButtonDiv fl-cen-cen">
+              <img src="../../../assets/icons/close.svg" alt="" />
+            </div>
           </div>
-          <div id="closeButton" class="headerButtonDiv fl-cen-cen">
-            <img src="../../../assets/icons/close.svg" alt="" />
-          </div>
-        </div>
-        <!-- <div></div> -->
-      </header>
-      <div class="body fl-col-st">
-        <div id="article1" class="article">
-          <!-- 
+          <!-- <div></div> -->
+        </header>
+        <div class="body fl-col-st">
+          <div id="article1" class="article">
+            <!-- 
                   article/
                       articleBar/
                           name/
@@ -33,9 +33,9 @@
                       -------------hr---------------
                       content
                -->
-          <div class="articleBar fl-row-bet">
-            <div class="name fl-row-st">
-              <!-- <svg
+            <div class="articleBar fl-row-bet">
+              <div class="name fl-row-st">
+                <!-- <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
                   height="16"
@@ -45,93 +45,93 @@
                     d="M16 0h-14v24h20v-18l-6-6zm0 3l3 3h-3v-3zm-12 19v-20h10v6h6v14h-16z"
                   />
                 </svg> -->
-              <img src="../../../assets/icons/pictures.svg" alt="" />
-              <p>그림 파일 선택</p>
+                <img src="../../../assets/icons/pictures.svg" alt="" />
+                <p>그림 파일 선택</p>
+              </div>
+
+              <div id="openFileSelect" class="fl-cen-cen">
+                <p>Select</p>
+              </div>
             </div>
 
-            <div id="openFileSelect" class="fl-cen-cen">
-              <p>Select</p>
-            </div>
-          </div>
+            <hr />
 
-          <hr />
-
-          <div class="content" id="fileView">
-            <div id="tags">
-              <div id="tagMust" class="item">
-                <div class="containTxt">
-                  <span class="txtTitle">반드시 포함 | </span>
-                  <!-- 파이프 아이콘 -->
-                  <span class="text">없음</span>
+            <div class="content" id="fileView">
+              <div id="tags">
+                <div id="tagMust" class="item">
+                  <div class="containTxt">
+                    <span class="txtTitle">반드시 포함 | </span>
+                    <!-- 파이프 아이콘 -->
+                    <span class="text">없음</span>
+                  </div>
+                </div>
+                <div id="tagAtleast" class="item">
+                  <div class="containTxt">
+                    <span class="txtTitle">적어도 하나 포함 | </span>
+                    <span class="text">없음</span>
+                  </div>
                 </div>
               </div>
-              <div id="tagAtleast" class="item">
-                <div class="containTxt">
-                  <span class="txtTitle">적어도 하나 포함 | </span>
-                  <span class="text">없음</span>
+              <div id="fileCount" class="item fl-row-st">
+                <div>
+                  <span>파일 <span class="count">0</span>개 선택됨</span>
                 </div>
               </div>
             </div>
-            <div id="fileCount" class="item fl-row-st">
-              <div>
-                <span>파일 <span class="count">0</span>개 선택됨</span>
-              </div>
-            </div>
           </div>
-        </div>
 
-        <div id="article2" class="article">
-          <div class="articleBar fl-row-bet">
-            <div class="name fl-row-st">
-              <img src="../../../assets/icons/detailSettings.svg" alt="" />
-              <p>세부 설정</p>
+          <div id="article2" class="article">
+            <div class="articleBar fl-row-bet">
+              <div class="name fl-row-st">
+                <img src="../../../assets/icons/detailSettings.svg" alt="" />
+                <p>세부 설정</p>
+              </div>
+            </div>
+            <hr />
+            <div class="content">
+              <div id="timeSetting" class="item fl-row-st">
+                <div class="title">
+                  <p>타이머</p>
+                </div>
+                <div class="detail fl-row-rev-st">
+                  <select name="selectTime" id="selectTime">
+                    <option value="15sec">15초</option>
+                    <option value="30sec">30초</option>
+                    <option value="1min">1분</option>
+                    <option value="2min">2분</option>
+                    <option value="3min">3분</option>
+                    <option value="5min">5분</option>
+                    <option value="10min">10분</option>
+                    <option value="15min">15분</option>
+                    <option value="20min">20분</option>
+                    <option value="30min">30분</option>
+                  </select>
+                </div>
+              </div>
+              <div id="goalSetting" class="item fl-row-st">
+                <div class="title">
+                  <p>목표치</p>
+                </div>
+                <div class="detail fl-row-rev-st">
+                  <input type="number" min="1" placeholder="없음" />
+                </div>
+              </div>
+              <div id="autopassSetting" class="item fl-row-st">
+                <div class="fl-row-st">
+                  <input type="checkbox" name="" id="autopassCheckbox" />
+                  <p>시간 종료시 자동으로 넘어가기</p>
+                </div>
+              </div>
             </div>
           </div>
-          <hr />
-          <div class="content">
-            <div id="timeSetting" class="item fl-row-st">
-              <div class="title">
-                <p>타이머</p>
-              </div>
-              <div class="detail fl-row-rev-st">
-                <select name="selectTime" id="selectTime">
-                  <option value="15sec">15초</option>
-                  <option value="30sec">30초</option>
-                  <option value="1min">1분</option>
-                  <option value="2min">2분</option>
-                  <option value="3min">3분</option>
-                  <option value="5min">5분</option>
-                  <option value="10min">10분</option>
-                  <option value="15min">15분</option>
-                  <option value="20min">20분</option>
-                  <option value="30min">30분</option>
-                </select>
-              </div>
+          <div id="startContainer">
+            <div id="startButton" class="fl-cen-cen">
+              <p>그리기 시작!</p>
             </div>
-            <div id="goalSetting" class="item fl-row-st">
-              <div class="title">
-                <p>목표치</p>
-              </div>
-              <div class="detail fl-row-rev-st">
-                <input type="number" min="1" placeholder="없음" />
-              </div>
-            </div>
-            <div id="autopassSetting" class="item fl-row-st">
-              <div class="fl-row-st">
-                <input type="checkbox" name="" id="autopassCheckbox" />
-                <p>시간 종료시 자동으로 넘어가기</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div id="startContainer">
-          <div id="startButton" class="fl-cen-cen">
-            <p>그리기 시작!</p>
           </div>
         </div>
       </div>
     </div>
-    <!-- </div> -->
 
     <script type="module" src="./app.js"></script>
   </body>

@@ -14,14 +14,16 @@ p {
   margin: 0;
 }
 
-// #mainContainer {
-//   display: block;
-//   position: relative;
-//   width: 380px;
-//   height: 565px;
-//   border-radius: 10px;
-//   background-color: black;
-// }
+#mainContainer {
+  display: block;
+  position: relative;
+  // width: 380px;
+  // height: 565px;
+  width: 290px;
+  height: 420px;
+  border-radius: 10px;
+  background-color: black;
+}
 
 #main {
   display: block;

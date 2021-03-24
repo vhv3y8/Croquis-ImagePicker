@@ -34,6 +34,12 @@
             </div>
             <hr id="hrTag" class="_invisible" />
           </div>
+          <div id="groupTab" class="tab">
+            <div class="txtCont fl-cen-cen">
+              <p>그룹</p>
+            </div>
+            <hr id="hrGroup" class="_invisible" />
+          </div>
           <div id="modeEndContainer" class="fl-row-rev-st">
             <div
               id="modeEndButton"
@@ -53,9 +59,9 @@
         </div>
 
         <div class="content fill">
-          <div class="fileContent fill fl-col-st">
+          <div class="fileContent _invisible fill fl-col-st">
             <!--  -->
-            <div id="fileContentMain" class="_visible fill fl-col-st">
+            <div id="fileContentMain" class="_invisible fill fl-col-st">
               <div class="list">
                 <div class="li fl-row-st">
                   <div class="left fl-row-st">
@@ -79,7 +85,9 @@
                           />
                         </div>
                         <div class="tag fl-cen-cen">
-                          <div class="inner"></div>
+                          <div class="inner">
+                            <span>ㅎㅇ</span>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -207,8 +215,127 @@
             </div>
           </div>
           <!--  -->
-          <div id="tagContent" class="_invisible contentInner fl-col-st">
-            <div id="tagMode" class="_invisible"></div>
+          <div class="tagContent _visible fill fl-col-st">
+            <div id="tagMode" class="_visible fill fl-col-st">
+              <div class="list fl-col-st">
+                <div id="tagModeList" class="up">
+                  <details class="groupItem">
+                    <summary class="fl-row-st">
+                      <img src="../../../assets/icons/group.svg" alt="" />
+                      <span class="groupName"
+                        >구도 <span class="count">- 13 tags</span></span
+                      >
+                      <img src="../../../assets/icons/arrowDown.svg" alt="" />
+                    </summary>
+                    <div class="tagItem fl-row-st">
+                      <span class="tagName"
+                        >역동적이다 <span class="count">- 13 items</span></span
+                      >
+                    </div>
+                    <div class="tagItem"></div>
+                    <div class="tagItem"></div>
+                    <div class="tagItem"></div>
+                  </details>
+                  <details class="groupItem">
+                    <summary class="fl-row-st">
+                      <img src="../../../assets/icons/group.svg" alt="" />
+                      <span class="groupName"
+                        >구도 <span class="count">- 13 tags</span></span
+                      >
+                      <img src="../../../assets/icons/arrowDown.svg" alt="" />
+                    </summary>
+                    <div class="tagItem fl-row-st">
+                      <span class="tagName"
+                        >역동적이다 <span class="count">- 13 items</span></span
+                      >
+                    </div>
+                    <div class="tagItem"></div>
+                    <div class="tagItem"></div>
+                    <div class="tagItem"></div>
+                  </details>
+                  <details class="groupItem">
+                    <summary class="fl-row-st">
+                      <img src="../../../assets/icons/group.svg" alt="" />
+                      <span class="groupName"
+                        >구도 <span class="count">- 13 tags</span></span
+                      >
+                      <img src="../../../assets/icons/arrowDown.svg" alt="" />
+                    </summary>
+                    <div class="tagItem fl-row-st">
+                      <span class="tagName">역동적이다</span>
+                    </div>
+                    <div class="tagItem"></div>
+                    <div class="tagItem"></div>
+                    <div class="tagItem"></div>
+                  </details>
+                </div>
+                <div class="down fl-cen-cen">
+                  <div class="inner fl-row-st">
+                    <div class="left">
+                      <input
+                        id="tagModeInput"
+                        type="text"
+                        class="fill"
+                        placeholder="태그 검색 or 추가"
+                      />
+                    </div>
+                    <div id="addTag" class="right fl-cen-cen">
+                      <img src="../../../assets/icons/plusSmall.svg" alt="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="board fl-cen-cen">
+                <div class="inner fl-col-bet">
+                  <div id="currentTag" class="item fl-cen-cen">
+                    <div class="inner fl-row-st">
+                      <div class="txt fl-row-st">
+                        <span class="_visible">역동적이다</span>
+                        <input
+                          type="text"
+                          name=""
+                          id=""
+                          class="_invisible"
+                          placeholder=""
+                        />
+                      </div>
+                      <div id="editTagName" class="_visible fl-cen-cen">
+                        <img src="../../../assets/icons/pencil.svg" alt="" />
+                        <span>수정</span>
+                      </div>
+                      <div id="editTagNameSubmit" class="_invisible fl-cen-cen">
+                        <span>완료</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item fl-row-st">
+                    <div class="left fl-row-st">
+                      <span>그룹 이동</span>
+                    </div>
+                    <div class="right fl-row-rev-st">
+                      <div id="tagMoveGroup" class="fl-cen-cen">
+                        <span>적용</span>
+                      </div>
+                      <select name="" id="groupSelect"></select>
+                    </div>
+                  </div>
+                  <div class="item fl-row-st">
+                    <div class="left fl-row-st">
+                      <span>태그 삭제</span>
+                    </div>
+                    <div class="right fl-row-rev-st">
+                      <div id="deleteTag" class="fl-cen-cen">
+                        <span>삭제하기</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--  -->
+          <div class="groupContent" class="_invisible fill fl-col-st">
+            <div id="groupMode" class="_invisible"></div>
           </div>
         </div>
       </div>
