@@ -27,7 +27,7 @@ function initialCheckConfigFile(): void {
     console.log("file does not exist. initializing config file.");
     const initialConfig = {
       tags: {
-        else: [],
+        default: [],
       },
       files: [],
     };

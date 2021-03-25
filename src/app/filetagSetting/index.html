@@ -59,9 +59,9 @@
         </div>
 
         <div class="content fill">
-          <div class="fileContent _invisible fill fl-col-st">
+          <div class="fileContent fill fl-col-st">
             <!--  -->
-            <div id="fileContentMain" class="_invisible fill fl-col-st">
+            <div id="fileContentMain" class="fill fl-col-st">
               <div class="list">
                 <div class="li fl-row-st">
                   <div class="left fl-row-st">
@@ -75,23 +75,10 @@
                   </div>
                 </div>
                 <div class="content">
-                  <div id="fileListMain" class="container fl-row-st-st-wrap">
-                    <div class="item fl-cen-cen">
-                      <div class="inner">
-                        <div class="img fl-cen-cen">
-                          <img
-                            src="file:///home/vhv3y8/Downloads/Croquis/_.jpeg"
-                            alt=""
-                          />
-                        </div>
-                        <div class="tag fl-cen-cen">
-                          <div class="inner">
-                            <span>ㅎㅇ</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <div
+                    id="fileListMain"
+                    class="container fl-row-st-st-wrap"
+                  ></div>
                 </div>
               </div>
               <div class="board fl-row-bet">
@@ -132,12 +119,7 @@
                 </div>
                 <div class="center fl-col-st">
                   <div class="imgCont fl-cen-cen">
-                    <img
-                      id="newFileImg"
-                      src="file:///home/vhv3y8/Downloads/Croquis/_.jpeg"
-                      alt=""
-                      data-index="0"
-                    />
+                    <img id="newFileImg" src="" alt="" data-index="0" />
                   </div>
                   <div class="tagCont fl-cen-cen">
                     <div id="tagBoard" class="fl-row-st-st-wrap"></div>
@@ -186,89 +168,49 @@
               <div class="board fl-cen-cen">
                 <div class="content fl-row-st">
                   <div class="left fl-row-rev-st">
-                    <div id="editModeCurrTagList">
-                      <!--  -->
-                      <div class="item fl-cen-cen">
-                        <div class="inner fl-row-st">
-                          <span>태그입니다</span>
-                          <div class="button fl-cen-cen">
-                            <img src="../../../assets/icons/close.svg" alt="" />
-                          </div>
-                        </div>
-                      </div>
-                      <!--  -->
-                      <div class="item"></div>
-                      <div class="item"></div>
-                      <div class="item"></div>
-                      <div class="item"></div>
-                      <div class="item"></div>
-                    </div>
+                    <div id="editModeCurrTagList"></div>
                     <div class="img fl-cen-cen">
                       <img src="" alt="" id="editModeImg" />
                     </div>
                   </div>
-                  <div class="right fl-cen-cen">
-                    <div id="tagListEdit"></div>
+                  <div class="right fl-col-st">
+                    <div id="tagListEdit" class="up">
+                      <!-- <details class="groupItem">
+                        <summary class="fl-row-st">
+                          <img src="../../../assets/icons/group.svg" alt="" />
+                          <span>구도</span>
+                          <img
+                            src="../../../assets/icons/arrowDown.svg"
+                            alt=""
+                          />
+                        </summary>
+                        <div class="tagItem fl-row-st">
+                          <input type="checkbox" name="" id="" />
+                          <span>태그</span>
+                        </div>
+                        <div class="tagItem fl-row-st">
+                          <input type="checkbox" name="" id="" />
+                          <span>태그</span>
+                        </div>
+                        <div class="tagItem fl-row-st">
+                          <input type="checkbox" name="" id="" />
+                          <span>태그</span>
+                        </div>
+                      </details> -->
+                    </div>
+                    <div id="addTagToCurrent" class="down fl-cen-cen">
+                      <img src="../../../assets/icons/plusSmall.svg" alt="" />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <!--  -->
-          <div class="tagContent _visible fill fl-col-st">
-            <div id="tagMode" class="_visible fill fl-col-st">
+          <div class="tagContent _invisible fill fl-col-st">
+            <div id="tagMode" class="_invisible fill fl-col-st">
               <div class="list fl-col-st">
-                <div id="tagModeList" class="up">
-                  <details class="groupItem">
-                    <summary class="fl-row-st">
-                      <img src="../../../assets/icons/group.svg" alt="" />
-                      <span class="groupName"
-                        >구도 <span class="count">- 13 tags</span></span
-                      >
-                      <img src="../../../assets/icons/arrowDown.svg" alt="" />
-                    </summary>
-                    <div class="tagItem fl-row-st">
-                      <span class="tagName"
-                        >역동적이다 <span class="count">- 13 items</span></span
-                      >
-                    </div>
-                    <div class="tagItem"></div>
-                    <div class="tagItem"></div>
-                    <div class="tagItem"></div>
-                  </details>
-                  <details class="groupItem">
-                    <summary class="fl-row-st">
-                      <img src="../../../assets/icons/group.svg" alt="" />
-                      <span class="groupName"
-                        >구도 <span class="count">- 13 tags</span></span
-                      >
-                      <img src="../../../assets/icons/arrowDown.svg" alt="" />
-                    </summary>
-                    <div class="tagItem fl-row-st">
-                      <span class="tagName"
-                        >역동적이다 <span class="count">- 13 items</span></span
-                      >
-                    </div>
-                    <div class="tagItem"></div>
-                    <div class="tagItem"></div>
-                    <div class="tagItem"></div>
-                  </details>
-                  <details class="groupItem">
-                    <summary class="fl-row-st">
-                      <img src="../../../assets/icons/group.svg" alt="" />
-                      <span class="groupName"
-                        >구도 <span class="count">- 13 tags</span></span
-                      >
-                      <img src="../../../assets/icons/arrowDown.svg" alt="" />
-                    </summary>
-                    <div class="tagItem fl-row-st">
-                      <span class="tagName">역동적이다</span>
-                    </div>
-                    <div class="tagItem"></div>
-                    <div class="tagItem"></div>
-                    <div class="tagItem"></div>
-                  </details>
-                </div>
+                <div id="tagModeList" class="up"></div>
                 <div class="down fl-cen-cen">
                   <div class="inner fl-row-st">
                     <div class="left">
@@ -290,7 +232,7 @@
                   <div id="currentTag" class="item fl-cen-cen">
                     <div class="inner fl-row-st">
                       <div class="txt fl-row-st">
-                        <span class="_visible">역동적이다</span>
+                        <span class="">없음</span>
                         <input
                           type="text"
                           name=""
@@ -299,7 +241,7 @@
                           placeholder=""
                         />
                       </div>
-                      <div id="editTagName" class="_visible fl-cen-cen">
+                      <div id="editTagName" class="fl-cen-cen">
                         <img src="../../../assets/icons/pencil.svg" alt="" />
                         <span>수정</span>
                       </div>
@@ -334,8 +276,77 @@
             </div>
           </div>
           <!--  -->
-          <div class="groupContent" class="_invisible fill fl-col-st">
-            <div id="groupMode" class="_invisible"></div>
+          <div class="groupContent _invisible fill fl-col-st">
+            <div id="groupMode" class="_invisible fill fl-col-st">
+              <div id="groupList" class="list">
+                <!-- <div class="groupItem fl-row-st">
+                  <img src="../../../assets/icons/group.svg" alt="" />
+                  <span>default</span>
+                </div> -->
+              </div>
+              <div class="board fl-cen-cen">
+                <div class="inner fl-col-bet">
+                  <div id="currentGroup" class="item">
+                    <div class="current fill fl-cen-cen">
+                      <div class="inner fl-row-st">
+                        <div class="left fl-row-st">
+                          <span class="">없음</span>
+                          <input
+                            type="text"
+                            class="_invisible"
+                            placeholder="그룹 이름 수정"
+                          />
+                        </div>
+                        <div class="right fl-cen-cen">
+                          <div id="editGroup" class="fill fl-cen-cen">
+                            <img
+                              src="../../../assets/icons/pencil.svg"
+                              alt=""
+                            />
+                            <span>수정</span>
+                          </div>
+                          <div
+                            id="editGroupSubmit"
+                            class="_invisible fill fl-cen-cen"
+                          >
+                            <span>완료</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="item fl-row-st">
+                    <div class="left fl-cen-cen">
+                      <div class="inner fl-col-st-st">
+                        <span>그룹 삭제</span>
+                        <span class="small"
+                          >해당 그룹에 속한 태그들은 default 그룹으로
+                          이동됩니다.</span
+                        >
+                      </div>
+                    </div>
+                    <div class="right">
+                      <div id="deleteGroup" class="fill fl-cen-cen">
+                        <span>삭제하기</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="add fl-row-st">
+                <div class="left fl-cen-cen">
+                  <input
+                    id="groupInput"
+                    class="fill"
+                    type="text"
+                    placeholder="그룹 추가하기"
+                  />
+                </div>
+                <div id="addGroup" class="right fl-cen-cen">
+                  <img src="../../../assets/icons/plusSmall.svg" alt="" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
