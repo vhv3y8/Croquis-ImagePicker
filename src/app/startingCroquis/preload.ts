@@ -88,6 +88,10 @@ window.addEventListener("DOMContentLoaded", function () {
       ).innerHTML = selectedData.filePaths.length.toString();
       let goal: HTMLInputElement = document.querySelector("#goalSetting input");
       goal.value = selectedData.filePaths.length.toString();
+      let inp: HTMLInputElement = document.querySelector(
+        "#goalSetting .detail input"
+      );
+      inp.max = selectedData.filePaths.length.toString();
     }
   }
 });

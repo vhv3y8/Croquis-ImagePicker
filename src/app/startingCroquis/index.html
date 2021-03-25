@@ -60,14 +60,14 @@
               <div id="tags">
                 <div id="tagMust" class="item">
                   <div class="containTxt">
-                    <span class="txtTitle">반드시 포함 | </span>
+                    <span class="txtTitle">Have | </span>
                     <!-- 파이프 아이콘 -->
                     <span class="text">없음</span>
                   </div>
                 </div>
                 <div id="tagAtleast" class="item">
                   <div class="containTxt">
-                    <span class="txtTitle">적어도 하나 포함 | </span>
+                    <span class="txtTitle">NOT Have | </span>
                     <span class="text">없음</span>
                   </div>
                 </div>
@@ -105,7 +105,15 @@
                     <option value="15min">15분</option>
                     <option value="20min">20분</option>
                     <option value="30min">30분</option>
+                    <option value="custom">직접 입력</option>
                   </select>
+                  <input
+                    id="selectTimeNum"
+                    type="number"
+                    class="_invisible"
+                    placeholder="초"
+                    min="0"
+                  />
                 </div>
               </div>
               <div id="goalSetting" class="item fl-row-st">

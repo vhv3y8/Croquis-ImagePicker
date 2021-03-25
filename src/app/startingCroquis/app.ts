@@ -60,6 +60,12 @@ function configData(): CroquisInitial {
         return 1200;
       case "30min":
         return 1800;
+      case "custom": {
+        let num: HTMLInputElement = document.querySelector(
+          "input#selectTimeNum"
+        );
+        return parseInt(num.value) * 1000;
+      }
     }
   }
 
@@ -109,16 +115,6 @@ startButton.addEventListener("click", function () {
 
 let openFileSelect = document.getElementById("openFileSelect");
 openFileSelect.addEventListener("click", function () {
-  // console.log(fileSelected);
-  // console.log(selectedData);
-
-  // ipcRenderer.send(
-  //   "openApp",
-  //   "fileSelecter",
-  //   25,
-  //   "startingCroquis",
-  //   fileSelected == true ? selectedData : undefined
-  // );
   (window as any).api.openApp(
     "fileSelecter",
     25,
@@ -131,6 +127,14 @@ openFileSelect.addEventListener("click", function () {
   setTimeout(() => {
     document.getElementById("main").style.opacity = "0.5";
   }, 100);
+});
+
+let selectTime: HTMLSelectElement = document.querySelector("select#selectTime");
+selectTime.addEventListener("change", function () {
+  if (selectTime.value == "custom") {
+    document.getElementById("selectTimeNum").classList.remove("_invisible");
+    document.getElementById("selectTime").classList.add("_invisible");
+  }
 });
 
 let autopassSetting = document.getElementById("autopassSetting");
