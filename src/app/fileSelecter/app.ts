@@ -280,8 +280,8 @@ function createImgItem(data: file): HTMLElement {
   imgDiv.classList.add("fl-cen-cen");
   let img = document.createElement("img");
   img.src = data.address;
-  img.style.maxHeight = "120px";
-  img.style.maxWidth = "140px";
+  // img.style.maxHeight = "120px";
+  // img.style.maxWidth = "140px";
   imgDiv.appendChild(img);
 
   let tagsDiv = document.createElement("div");

@@ -150,7 +150,7 @@ header {
     }
 
     #bodyLeft {
-      width: calc(53% - 15px);
+      width: calc(55% - 15px);
       // width: 60%;
       height: 100%;
       // padding-left: 1%;
@@ -169,7 +169,7 @@ header {
           p {
             margin-left: 10px;
             font-family: "NanumSquareB", sans-serif;
-            font-size: 15px;
+            font-size: 11px;
           }
         }
 
@@ -202,7 +202,8 @@ header {
           height: 6.5%;
           // background-color: red;
           // background-color: #a6a6a6;
-          background-color: #81b3fd;
+          // background-color: #81b3fd;
+          background-color: #bfbfbf;
 
           p {
             margin-left: 0.8em;
@@ -272,6 +273,11 @@ header {
                 width: 100%;
                 height: 65%;
                 // background-color: green;
+
+                img {
+                  max-width: 100px;
+                  max-height: 80px;
+                }
               }
 
               .tags {
@@ -283,6 +289,7 @@ header {
                 // background-color: #d9d9d9;
                 // background-color: #d6d6d6;
                 background-color: #bfbfbf;
+                font-size: 10px;
               }
             }
           }
@@ -304,7 +311,7 @@ header {
     }
 
     #bodyRight {
-      width: 47%;
+      width: 45%;
       // width: 40%;
       height: 100%;
       // background-color: rgb(71, 71, 107);
@@ -314,7 +321,8 @@ header {
         width: 100%;
         // height: 42%;
         // height: 46%;
-        height: 35%;
+        // height: 35%;
+        height: 50%;
         // background-color: #d9d9d9;
         background-color: #f2f2f2;
         border-radius: 5px 5px 0 0;
@@ -343,6 +351,73 @@ header {
 
           overflow-y: scroll;
           @include scrollbars(8px, #999999, #d9d9d9, #999999, #999999);
+
+          .selectGroupItem {
+            width: calc(100% - 15px);
+            min-height: 50px;
+            // height: 50px;
+            max-height: fit-content;
+            background-color: #bfbfbf;
+            margin: 5px auto;
+            border-radius: 5px;
+
+            .inner {
+              width: calc(100% - 10px);
+              // height: calc(100% - 10px);
+              min-height: calc(100% - 10px);
+              max-height: fit-content;
+              margin: 5px;
+              // background-color: white;
+
+              .left {
+                width: 25%;
+                // height: 100%;
+                min-height: 100%;
+                max-height: fit-content;
+                // background-color: red;
+
+                .groupName {
+                  width: fit-content;
+                  height: fit-content;
+
+                  img {
+                    margin-bottom: 6.5px;
+                  }
+
+                  span {
+                    font-size: 10px;
+                    font-family: "NanumSquareRoundB", sans-serif;
+                  }
+                }
+              }
+
+              .right {
+                width: calc(75% - 4px);
+                height: calc(100% - 4px);
+                padding: 2px;
+                // background-color: green;
+
+                .selectTagItem {
+                  min-height: 25px;
+                  max-height: fit-content;
+                  width: fit-content;
+                  background-color: #a6a6a6;
+                  margin: 3px;
+                  border-radius: 3px;
+
+                  span {
+                    font-size: 9px;
+                    font-family: "NanumSquareRoundB", sans-serif;
+                    margin-left: 5px;
+                  }
+
+                  img {
+                    margin: 5px;
+                  }
+                }
+              }
+            }
+          }
 
           #mustBoard {
             width: 100%;
@@ -413,7 +488,7 @@ header {
         width: 100%;
         // height: 48%;
         // height: 44%;
-        height: calc(55% - 20px);
+        height: calc(40% - 20px);
         margin-top: 10px;
         margin-bottom: 10px;
         // background-color: rgb(20, 28, 52);
@@ -426,32 +501,35 @@ header {
           background-color: white;
 
           #searchContent {
-            height: 88%;
+            width: calc(100% - 4px);
+            height: calc(100% - 30px - 4px);
+            padding: 2px;
             // background-color: aqua;
+
             // overflow-y: auto;
             overflow-y: scroll;
             @include scrollbars(5px, #666666, #d9d9d9, #666666, #666666);
 
             .tagItem {
               width: 100%;
-              height: 12.5%;
+              height: 30px;
               background-color: #d9d9d9;
               // border-bottom: 1px solid black;
               font-size: 12px;
             }
 
             .groupItem {
-              width: calc(100% - 2px);
+              width: 100%;
               // height: calc(15% - 2px);
               // height: 50px;
               // min-height: calc(15% - 2px);
               height: auto;
-              // margin-bottom: 1px;
-              margin: 1px;
+              margin-bottom: 2px;
+              // margin: 1px;
 
               summary {
                 width: 100%;
-                height: 35px;
+                height: 30px;
                 // height: 100%;
                 // height: 30px;
                 // min-height: 100%;
@@ -471,19 +549,19 @@ header {
 
               .name {
                 // width: 80%;
-                width: calc(100% - 58px);
+                width: calc(100% - 54px);
                 height: 80%;
 
                 p {
                   // margin-left: 5px;
-                  font-size: 13px;
+                  font-size: 10px;
                   font-family: "NanumSquareRoundB", sans-serif;
                 }
               }
 
               .tagItem {
                 width: 98%;
-                height: 33px;
+                height: 28px;
                 margin: 3px auto;
                 // background-color: rebeccapurple;
                 background-color: #d9d9d9;
@@ -495,10 +573,11 @@ header {
                 .tagName {
                   margin-left: 6px;
                   font-family: "NanumSquareRoundB", sans-serif;
-                  font-size: 12px;
+                  font-size: 9px;
 
                   .itemCount {
-                    font-size: 11px;
+                    font-size: 8px;
+                    margin-left: 3px;
                   }
                 }
               }
@@ -507,16 +586,18 @@ header {
 
           #inputDiv {
             width: 100%;
-            height: 12%;
+            height: 30px;
             border-top: 1px solid black;
             // background-color: #999999;
 
             input {
-              width: 90%;
-              height: 90%;
+              width: 100%;
+              height: 100%;
               padding: 0;
               border: 0;
               outline: none;
+              font-size: 9px;
+              padding-left: 1em;
               // background-color: beige;
             }
           }
