@@ -262,7 +262,7 @@ header {
         @include scrollbars(5px, #d9d9d9, #999999, #d9d9d9, #d9d9d9);
       }
 
-      #tagMust {
+      #tagHave {
         // max-height: 42.5px;
         min-height: fit-content;
         height: auto;
@@ -277,7 +277,7 @@ header {
         }
       }
 
-      #tagAtleast {
+      #tagNotHave {
         // max-height: 42.5px;
         min-height: fit-content;
         height: auto;

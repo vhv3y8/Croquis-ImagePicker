@@ -36,30 +36,30 @@ interface CroquisInitial {
 // let selectedData = (window as any).api.getSelectedData();
 // let fileSelected = (window as any).api.getFileSelected();
 
-function configData(): CroquisInitial {
+function configData() {
   function convertSelectValue(val: string): number {
     // need to * 1000 to get milliseconds
     switch (val) {
       case "15sec":
-        return 15;
+        return 15 * 1000;
       case "30sec":
-        return 30;
+        return 30 * 1000;
       case "1min":
-        return 60;
+        return 60 * 1000;
       case "2min":
-        return 120;
+        return 120 * 1000;
       case "3min":
-        return 180;
+        return 180 * 1000;
       case "5min":
-        return 300;
+        return 300 * 1000;
       case "10min":
-        return 600;
+        return 600 * 1000;
       case "15min":
-        return 900;
+        return 900 * 1000;
       case "20min":
-        return 1200;
+        return 1200 * 1000;
       case "30min":
-        return 1800;
+        return 1800 * 1000;
       case "custom": {
         let num: HTMLInputElement = document.querySelector(
           "input#selectTimeNum"
@@ -78,8 +78,8 @@ function configData(): CroquisInitial {
 
   let goalElem: HTMLInputElement = goal.querySelector("input");
 
-  let croquisData: CroquisInitial = {
-    filePaths: (window as any).api.getSelectedData().filePaths,
+  let croquisData = {
+    files: (window as any).api.getSelectedData().files,
     tags: (window as any).api.getSelectedData().tags,
     config: {
       time: convertSelectValue(time.querySelector("select").value),
@@ -105,7 +105,7 @@ closeBtn.addEventListener("click", function () {
 
 let startButton = document.getElementById("startButton");
 startButton.addEventListener("click", function () {
-  if ((window as any).api.getSelectedData().filePaths.length > 0) {
+  if ((window as any).api.getSelectedData().files.length > 0) {
     // ipcRenderer.send("openApp", "Croquis", 25, undefined, configData());
     (window as any).api.openApp("Croquis", 25, undefined, configData());
     console.log(configData());

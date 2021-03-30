@@ -23,8 +23,8 @@ const appWindowValueList: {
     resizable: false,
   },
   startingCroquis: {
-    width: 380,
-    height: 565,
+    width: 290,
+    height: 420,
     resizable: false,
   },
   Croquis: {
@@ -34,8 +34,8 @@ const appWindowValueList: {
     minWidth: 520,
   },
   fileSelecter: {
-    width: 1000,
-    height: 700,
+    width: 600,
+    height: 500,
     parent: "startingCroquis",
     modal: true,
   },

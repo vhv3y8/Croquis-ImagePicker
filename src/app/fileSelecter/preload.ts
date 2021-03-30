@@ -12,12 +12,27 @@ let croquisFolderPath = path.join(
   "Croquis"
 );
 
+let tagArr = {
+  have: ["야"],
+  notHave: [],
+};
+
+function setHave(data) {
+  tagArr.have = data;
+  console.log(tagArr);
+}
+function setNotHave(data) {
+  tagArr.notHave = data;
+  console.log(tagArr);
+}
+
 contextBridge.exposeInMainWorld("api", {
   toStartingCroquis: (data) => {
     if (data === null) {
       ipcRenderer.send("toStartingCroquis", "fileSelecter", data);
-    } else if ("filePaths" in data && "tags" in data) {
+    } else if ("files" in data && "tags" in data) {
       // need to check more precisely...
+
       ipcRenderer.send("toStartingCroquis", "fileSelecter", data);
     } else {
       console.log("not existing data");
@@ -34,6 +49,15 @@ contextBridge.exposeInMainWorld("api", {
     } else {
       return croquisFolderPath;
     }
+  },
+
+  getTagArr: () => {
+    console.log("tagArr is ");
+    console.log(tagArr);
+    return {
+      have: tagArr.have,
+      notHave: tagArr.notHave,
+    };
   },
 
   getDataWithUpdate: () => {
@@ -70,47 +94,66 @@ window.addEventListener("DOMContentLoaded", function () {
       .querySelectorAll("span.count")
       .forEach((elem) => (elem.innerHTML = num.toString()));
   }
-
-  ipcRenderer.on("getInitialData", (event, data) => {
-    console.log("initial data is : ");
-    console.dir(data);
-    // if data exists, get it. if does not, just show default page.
-    if (data !== undefined) {
-      /** apply data */
-      selectedDataJson.tags = data.tags;
-      selectedDataJson.filePaths = data.filePaths;
-
-      console.log("selectedDataJson:");
-      console.log(selectedDataJson);
-
-      if (selectedDataJson.filePaths !== undefined) {
-        let imgList: HTMLDataElement[] = Array.from(
-          document.querySelectorAll(".imgItem")
-        );
-        selectedDataJson.filePaths
-          .map((path) => {
-            // return document.querySelector("[data-address='" + path + "']");
-            for (let i = 0; i < imgList.length; i++) {
-              if (imgList[i].dataset.address == path) {
-                return imgList[i];
-              }
-            }
-            return undefined;
-          })
-          .forEach((elem) => {
-            if (elem !== undefined) {
-              elem.classList.add("_selected");
-              let check: HTMLInputElement = elem.querySelector(
-                ".checkbox input"
-              );
-              check.checked = true;
-              setCount(getCount() + 1);
-            }
-          });
-        console.log("fileSelecter: data Applied.");
-      }
-      // apply tag
-      // apply selected files
-    }
-  });
 });
+
+// ipcRenderer.on("getInitialData", (event, data) => {
+//   console.log("initial data is : ");
+//   console.dir(data);
+//   // if data exists, get it. if does not, just show default page.
+//   if (data !== undefined) {
+//     /** apply data */
+//     // data.files.forEach((address) => {
+//     (Array.from(
+//       document.querySelectorAll(".imgItem")
+//     ) as HTMLElement[]).forEach((elem) => {
+//       // if (elem.)
+//       if (data.files.includes(elem.dataset.address)) {
+//         let check: HTMLInputElement = elem.querySelector(
+//           ".cont .checkbox input"
+//         );
+//         check.checked = true;
+//         elem.classList.add("_selected");
+//       }
+//     });
+
+//     setHave(data.tags.have);
+//     setNotHave(data.tags.notHave);
+
+//     console.log("now tagArr is ");
+//     console.log(tagArr);
+
+//     // });
+//     // selectedDataJson.tags = data.tags;
+//     // selectedDataJson.filePaths = data.filePaths;
+//     // console.log("selectedDataJson:");
+//     // console.log(selectedDataJson);
+//     // if (selectedDataJson.filePaths !== undefined) {
+//     //   let imgList: HTMLDataElement[] = Array.from(
+//     //     document.querySelectorAll(".imgItem")
+//     //   );
+//     //   selectedDataJson.filePaths
+//     //     .map((path) => {
+//     //       // return document.querySelector("[data-address='" + path + "']");
+//     //       for (let i = 0; i < imgList.length; i++) {
+//     //         if (imgList[i].dataset.address == path) {
+//     //           return imgList[i];
+//     //         }
+//     //       }
+//     //       return undefined;
+//     //     })
+//     //     .forEach((elem) => {
+//     //       if (elem !== undefined) {
+//     //         elem.classList.add("_selected");
+//     //         let check: HTMLInputElement = elem.querySelector(
+//     //           ".checkbox input"
+//     //         );
+//     //         check.checked = true;
+//     //         setCount(getCount() + 1);
+//     //       }
+//     //     });
+//     //   console.log("fileSelecter: data Applied.");
+//     // }
+//     // apply tag
+//     // apply selected files
+//   }
+// });

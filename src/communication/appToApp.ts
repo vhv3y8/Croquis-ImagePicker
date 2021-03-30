@@ -16,21 +16,17 @@ function st() {
 //   }
 // );
 
-ipcMain.on(
-  "toStartingCroquis",
-  (event, from: appName, data: selectedFilesTags) => {
-    console.log("############$#$#$#$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-    console.log(from);
-    if (from == "fileSelecter") {
-      BrowserWindow.fromId(appIds["startingCroquis"]).send(
-        "selectedFiles",
-        data
-      );
-      console.log(
-        "######################################################################"
-      );
-    }
+ipcMain.on("toStartingCroquis", (event, from: appName, data) => {
+  console.log(data);
+  console.log("############$#$#$#$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+  console.log(from);
+  if (from == "fileSelecter") {
+    BrowserWindow.fromId(appIds["startingCroquis"]).send("selectedFiles", data);
+    console.log(
+      "######################################################################"
+    );
+    console.log(data);
   }
-);
+});
 
 export { st };

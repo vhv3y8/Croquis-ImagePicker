@@ -28,17 +28,17 @@
       <div id="infoBar" class="fl-row-bet">
         <!-- width 100% 높이 고정 -->
         <p style="padding-left: 10px; font-size: 14px">
-          역동적 / 인간, 물고기, 악귀
+          <!-- 역동적 / 인간, 물고기, 악귀 -->
         </p>
         <p id="goalInfo" style="padding-right: 10px; font-size: 14px">
-          <span class="current">0</span> / <span class="goal">3장째</span>
+          <span class="current"></span> / <span class="goal"></span>
         </p>
       </div>
 
       <div id="timer" class="fl-row-aro">
         <!-- 조정 가능 -->
         <div class="timeButtonContainer fl-cen-cen">
-          <div class="timeButton fl-cen-cen _unactable">
+          <div id="resetButton" class="btn fl-cen-cen">
             <img
               src="../../../assets/icons/timerReset.svg"
               alt=""
@@ -54,14 +54,14 @@
               alt=""
               draggable="false"
             />
-            <span id="timeText">3:10</span>
+            <span id="timeText"></span>
           </div>
         </div>
 
         <div class="timeButtonContainer fl-cen-cen">
-          <div id="timerStartPause" class="timeButton fl-cen-cen">
+          <div id="timerStartPause" class="btn fl-cen-cen">
             <img
-              src="../../../assets/icons/timerPause.svg"
+              src="../../../assets/icons/timerPlay.svg"
               alt=""
               draggable="false"
             />

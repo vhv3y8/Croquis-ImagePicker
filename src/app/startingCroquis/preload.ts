@@ -3,11 +3,11 @@ import { appName } from "../../types/main";
 const { contextBridge, ipcRenderer } = require("electron");
 
 let fileSelected: boolean = false;
-let selectedData: selectedFilesTags = {
-  filePaths: [],
+let selectedData = {
+  files: [],
   tags: {
-    must: [],
-    atleast: [],
+    have: [],
+    notHave: [],
   },
 };
 
@@ -53,7 +53,7 @@ window.addEventListener("DOMContentLoaded", function () {
   /** usage : when opening fileSelecter, if this value is true, than give selected file data that is already existing. */
 
   // ipcRenderer functions
-  ipcRenderer.on("selectedFiles", (event, data: selectedFilesTags) => {
+  ipcRenderer.on("selectedFiles", (event, data) => {
     if (data === null) {
       // closed with X button
       // closing value null is needed to change opacity to 1..
@@ -69,29 +69,33 @@ window.addEventListener("DOMContentLoaded", function () {
   });
 
   function applySelectedFileUI(): void {
-    let [must, atleast, fileCount] = [
-      document.getElementById("tagMust"),
-      document.getElementById("tagAtleast"),
+    let [have, notHave, fileCount] = [
+      document.getElementById("tagHave"),
+      document.getElementById("tagNotHave"),
       document.getElementById("fileCount"),
     ];
     if (selectedData === undefined) {
       console.log("ERR at applySelectedFileUI : selectedData is undefined");
     } else {
-      must.querySelector("div .text").innerHTML = selectedData.tags.must.join(
+      have.querySelector("div .text").innerHTML = selectedData.tags.have.join(
         ", "
       );
-      atleast.querySelector(
+
+      // console.log("have");
+      // console.log(selectedData.tags.have);
+      // console.log("notHave");
+      // console.log(selectedData.tags.notHave);
+      let count = selectedData.files.length;
+      notHave.querySelector(
         "div .text"
-      ).innerHTML = selectedData.tags.atleast.join(", ");
-      fileCount.querySelector(
-        "div .count"
-      ).innerHTML = selectedData.filePaths.length.toString();
+      ).innerHTML = selectedData.tags.notHave.join(", ");
+      fileCount.querySelector("div .count").innerHTML = count.toString();
       let goal: HTMLInputElement = document.querySelector("#goalSetting input");
-      goal.value = selectedData.filePaths.length.toString();
+      goal.value = count.toString();
       let inp: HTMLInputElement = document.querySelector(
         "#goalSetting .detail input"
       );
-      inp.max = selectedData.filePaths.length.toString();
+      inp.max = count.toString();
     }
   }
 });
